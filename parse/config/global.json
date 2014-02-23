@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "Allocate": {
+            "applicationId": "JkYNfPBw2aPgcc7PeTGHMAU2XKvjzeqVIkyClVuo", 
+            "masterKey": "NrnZlHZRCTdJND4IzO42WXVmnKcYTbtyV474xHBR"
+        }, 
+        "_default": {
+            "link": "Allocate"
+        }
+    }
+}
