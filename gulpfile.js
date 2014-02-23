@@ -3,7 +3,9 @@
 
 var gulp = require('gulp');
 var bower = 'app/bower_components';
-var rootFolder = 'phonegap/www'
+var rootFolder = 'phonegap/www';
+var fs = require('fs');
+var replace = require('gulp-replace');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -59,10 +61,18 @@ gulp.task('scripts', function () {
 });
 
 // HTML
-gulp.task('html', function () {
-  return gulp.src('app/*.html')
+gulp.task('html', ['templates'], function () {
+  return gulp.src('app/index.html')
+    .pipe(replace('<!-- html templates -->', fs.readFileSync(rootFolder + '/templates.html', 'utf8')))
     .pipe(gulp.dest(rootFolder))
     .pipe($.size());
+});
+
+// HTML Templates
+gulp.task('templates', function () {
+  return gulp.src('app/templates/*.html')
+    .pipe($.concat('templates.html'))
+    .pipe(gulp.dest(rootFolder))
 });
 
 // Lint
@@ -121,7 +131,8 @@ gulp.task('watch', ['connect'], function () {
     gulp.watch([
         'app/less/**/*.less',
         'app/scripts/**/*.js',
-        'app/images/**/*'
+        'app/images/**/*',
+        'app/templates/**/*.html'
     ], $.connect.reload);
 
     
@@ -133,7 +144,6 @@ gulp.task('watch', ['connect'], function () {
 
     // Watch image files
     gulp.watch('app/images/**/*', ['images']);
-
     
     // Watch .html files
     gulp.watch('app/**/*.html', ['html']);
