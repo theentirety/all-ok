@@ -21,6 +21,10 @@ function App() {
 
 	self.onDeviceReady = function() {
 		ko.applyBindings(self.myViewModel);
+		setTimeout(function() {
+			navigator.splashscreen.hide();
+		}, 2000);
+		
 	}
 
 	return self;

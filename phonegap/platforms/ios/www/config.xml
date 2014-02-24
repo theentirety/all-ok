@@ -8,17 +8,24 @@
         Intuitive Company
     </author>
 
-    <gap:plugin name="org.apache.cordova.core.camera" />
-    <gap:plugin name="org.apache.cordova.core.media-capture" />
-    <gap:plugin name="org.apache.cordova.core.device" />
-    <gap:plugin name="org.apache.cordova.core.device-orientation" />
-    <gap:plugin name="org.apache.cordova.core.file" />
-    <gap:plugin name="org.apache.cordova.core.file-transfer" />
-    <gap:plugin name="org.apache.cordova.core.geolocation" />
-    <gap:plugin name="org.apache.cordova.core.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.core.audiohandler" />
-    <gap:plugin name="org.apache.cordova.core.network-information" />
-    <gap:plugin name="org.apache.cordova.core.splashscreen" />
+    <gap:plugin name="org.apache.cordova.battery-status" />
+    <gap:plugin name="org.apache.cordova.camera" />
+    <gap:plugin name="org.apache.cordova.media-capture" />
+    <gap:plugin name="org.apache.cordova.console" />
+    <gap:plugin name="org.apache.cordova.contacts" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.device-motion" />
+    <gap:plugin name="org.apache.cordova.device-orientation" />
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.file" />
+    <gap:plugin name="org.apache.cordova.file-transfer" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.globalization" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.media" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="org.apache.cordova.vibration" />
 
     <!--
         If you do not want any permissions to be added to your app, add the
@@ -38,14 +45,15 @@
     <preference name="detect-data-types"          value="true" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
     <preference name="exit-on-suspend"            value="false" />          <!-- ios: if set to true, app will terminate when home button is pressed -->
     <preference name="show-splash-screen-spinner" value="false" />          <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
-    <preference name="auto-hide-splash-screen"    value="true" />           <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
-    <preference name="disable-cursor"             value="true" />           <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
+    <preference name="auto-hide-splash-screen"    value="false" />          <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
+    <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
     <preference name="DisallowOverscroll"         value="true" />           <!-- keep the ios app from bouncing at the edges -->        
     <preference name="UIWebViewBounce"            value="false" />          <!-- keep the ios app from bouncing at the edges -->
     <preference name="AllowInlineMediaPlayback"   value="yes" />            <!-- ios: allow for inline html5 video playback -->
-    <preference name="StatusBarOverlaysWebView"   value="false" />            <!-- ios: allow for inline html5 video playback -->
+    <preference name="StatusBarOverlaysWebView"   value="false" />          
+    <preference name="ios-statusbarstyle"         value="white-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
 
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
@@ -62,16 +70,19 @@
     <icon gap:platform="winphone" src="res/icon/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icon/windows-phone/icon-173.png" />
 
-    <gap:splash gap:density="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:density="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:density="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
-    <gap:splash gap:density="xhdpi" gap:platform="android" src="res/screen/android/screen-xhdpi-portrait.png" />
-    <gap:splash gap:platform="blackberry" src="res/screen/blackberry/screen-225.png" />
-    <gap:splash gap:platform="ios" height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
-    <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
-    <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
-    <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    <gap:splash gap:density="ldpi"            gap:platform="android"             src="res/screen/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:density="mdpi"            gap:platform="android"             src="res/screen/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:density="hdpi"            gap:platform="android"             src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:density="xhdpi"           gap:platform="android"             src="res/screen/android/screen-xhdpi-portrait.png" />
+    <gap:splash                               gap:platform="blackberry"          src="res/screen/blackberry/screen-225.png" />
+    <gap:splash                               gap:platform="ios"                 src="res/screen/ios/screen-iphone-portrait.png"      height="480"      width="320" />
+    <gap:splash                               gap:platform="ios"                 src="res/screen/ios/screen-iphone-portrait-2x.png"   height="960"      width="640" />
+    <gap:splash                               gap:platform="ios"                 src="res/screen/ios/screen-ipad-portrait.png"        height="1024"     width="768" />
+    <gap:splash                               gap:platform="ios"                 src="res/screen/ios/screen-ipad-landscape.png"       height="768"      width="1024" />
+    <gap:splash                               gap:platform="ios"                 src="res/screen/ios/screen-iphone-portrait-568h-2x.png" height="1136"  width="640" />
+    <gap:splash                               gap:platform="winphone"            src="res/screen/windows-phone/screen-portrait.jpg" />
 
     <access origin="http://127.0.0.1*" />
+    <access origin="https://api.parse.com*" />
+    <access origin="https://allocate.parseapp.com*" />
 </widget>
