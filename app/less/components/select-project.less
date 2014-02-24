@@ -1,0 +1,39 @@
+/* ==========================================================================
+   SelectProject Stylesheet
+   select-project.less
+   ========================================================================== */
+
+#select-project {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		-webkit-overflow-scrolling: touch;
+	}
+	li {
+		padding: 10px;
+		margin-bottom: 1px;
+		background-color: #616161;
+		color: #FFF;
+		font-size: 14px;
+		font-family: @_font-helvetica-light;
+	}
+	.user-projects {
+		position: fixed;
+		width: 49%;
+		left: 0;
+		top: 90px;
+	}
+	.all-projects {
+		position: absolute;
+		width: 50%;
+		right: 0;
+		top: 0;
+		li {
+			background-color: #D0D102;
+			&.active {
+				background-color: #D70060;
+			}
+		}
+	}
+}

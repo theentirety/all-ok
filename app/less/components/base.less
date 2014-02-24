@@ -6,7 +6,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	font-family: @_font-proxima;
+	font-family: @_font-helvetica;
 	overflow: hidden;
 
 	-ms-touch-action: none;
@@ -19,10 +19,19 @@ html, body {
 	-ms-user-select: none;
 	user-select: none;
 
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: transparent;
+
 	outline: none;
 	button, input {
 		outline: none;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	}
+}
+
+.screen {
+	position: absolute;
+	top: 90px;
+	width: 100%;
+	z-index: 1;
+	-webkit-overflow-scrolling: touch;
 }

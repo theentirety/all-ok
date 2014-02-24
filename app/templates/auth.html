@@ -1,19 +1,16 @@
+<!-- ko if: !auth.currentUser() -->
 <div id="auth">
-	<!-- sign in/up form -->
-	<div data-bind="visible: !auth.currentUser()">
+	<div>
 		<h1>allocate</h1>
-		<div class="alert alert-danger" data-bind="visible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
+		<div class="alert alert-danger" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
 		<form data-bind="submit: auth.signInUp">
-			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="visible: auth.signUpMode">
-			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="visible: auth.signUpMode">
+			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode">
+			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode">
 			<input name="auth_username" type="text" class="form-control" placeholder="Username" autocapitalize="off">
 			<input name="auth_password" type="password" class="form-control" placeholder="Password">
-			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="visible: auth.signUpMode">
+			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="fadeVisible: auth.signUpMode">
 			<button type="submit" class="btn btn-default navbar-btn" data-bind="text: (auth.signUpMode() ? 'Sign up' : 'Sign in')">Sign in</button> or <a data-bind="event: { touchend: auth.showSignUp }, text: (auth.signUpMode() ? 'sign in' : 'sign up')">Sign up</a>
 		</form>
 	</div>
-	<!-- logout -->
-	<div data-bind="visible: auth.currentUser">
-		<button class="btn btn-default navbar-btn" data-bind="event: { touchend: auth.logout }">Log out</button>
-	</div>
 </div>
+<!-- /ko -->

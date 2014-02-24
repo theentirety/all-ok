@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Steps Stylesheet
+   steps.less
+   ========================================================================== */
+
+#steps {
+	position: fixed;
+	top: 60px;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	opacity: 0.8;
+	z-index: 2;
+	background-color: #FFF;
+	.position-center-center;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		height: 15px;
+		opacity: 0.5;
+	}
+	li {
+		display: inline-block;
+		background-color: #000;
+		width: 5px;
+		height: 5px;
+		border-radius: 5px;
+		margin: 2px;
+		opacity: 0.5;
+		-webkit-transition: all 0.25s ease-in-out;
+		-moz-transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;
+		&.active {
+			opacity: 1;
+		}
+	}
+}

@@ -1,0 +1,7 @@
+<!-- ko if: auth.currentUser -->
+<div id="steps">
+	<ul data-bind="foreach: steps.steps">
+		<li data-bind="event: { touchend: function($item) { $parent.steps.changeStep($item) } }, css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
+	</ul>
+</div>
+<!-- /ko -->

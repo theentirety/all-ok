@@ -113,7 +113,7 @@ function Auth(app) {
 		switch(error.code)
 		{
 			case 101:
-				return 'Please enter a valid full name and password.';
+				return 'Please enter a valid username and password.';
 			case 124:
 				return 'Oops! We messed up. Please try again.';
 			default:
