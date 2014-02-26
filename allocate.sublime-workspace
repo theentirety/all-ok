@@ -4,382 +4,211 @@
 		"selected_items":
 		[
 			[
-				"fun",
-				"function"
+				"init",
+				"initialize"
 			],
 			[
-				"vid",
-				"videolist_scrolltop"
+				"tree",
+				"treenav_shownPrintMsg"
 			],
 			[
-				"vi",
-				"videolist_scrolltop"
+				"font-s",
+				"font-size"
 			],
 			[
-				"video",
-				"videolist_screenDimensions"
+				"editor_print",
+				"editor_printMode"
 			],
 			[
-				"pla",
-				"playingVideoFound"
+				"editor_prin",
+				"editor_printMode"
 			],
 			[
-				"first",
-				"firstVideo"
+				"treenav_s",
+				"treenav_sliderValue"
 			],
 			[
-				"vide",
-				"videolist_playing"
+				"treen",
+				"treenav_sliderValue"
 			],
 			[
-				"scroll",
-				"scrollTop"
+				"off",
+				"offsetX"
 			],
 			[
-				"scree",
-				"screenWidth"
+				"u",
+				"utterscroll"
 			],
 			[
-				"scro",
-				"scrollTop"
+				"editor_time",
+				"editor_lastEditTimestamp"
+			],
+			[
+				"editor_show",
+				"editor_showMessage"
+			],
+			[
+				"draft",
+				"draftData"
+			],
+			[
+				"editor_active",
+				"editor_activeVersionNumber"
+			],
+			[
+				"editor_tre",
+				"editor_treeId"
+			],
+			[
+				"coni",
+				"confirmOpen"
+			],
+			[
+				"html",
+				"html2canvas"
+			],
+			[
+				"editor_tree",
+				"editor_treeTitle"
+			],
+			[
+				"bor",
+				"border-bottom"
 			],
 			[
 				"font-",
 				"font-size"
 			],
 			[
-				"font",
-				"font-family"
-			],
-			[
-				"back",
-				"background-color"
-			],
-			[
-				"fon",
-				"font-family"
-			],
-			[
-				"cap",
-				"capture_visible"
-			],
-			[
-				"bor",
-				"border"
-			],
-			[
-				"bac",
-				"background-color"
-			],
-			[
-				"text",
-				"text-align"
-			],
-			[
-				"background",
-				"background-color"
-			],
-			[
-				"header",
-				"header_activeNav"
-			],
-			[
-				"te",
-				"text-align"
-			],
-			[
-				"ba",
-				"background-position"
-			],
-			[
-				"b",
-				"background-position"
-			],
-			[
-				"parse",
-				"parseRestId"
-			],
-			[
-				"inlin",
-				"inline-block"
-			],
-			[
-				"fo",
-				"font-family"
-			],
-			[
-				"_",
-				"_color-blue"
-			],
-			[
-				"sears",
-				"search_results"
-			],
-			[
-				"sear",
-				"search_lists"
-			],
-			[
-				"search_fi",
-				"search_firstSearch"
+				"ob",
+				"observable"
 			],
 			[
 				"border-",
 				"border-radius"
 			],
 			[
-				"app",
-				"applicationId"
+				"fon",
+				"font-weight"
 			],
 			[
-				"trans",
-				"transcoded"
+				"co",
+				"color"
 			],
 			[
-				"tran",
-				"transcoderMsg"
+				"font",
+				"font-family"
 			],
 			[
-				"ob",
-				"observable"
+				"editor_sav",
+				"editor_saveMessage"
 			],
 			[
-				"obser",
-				"observableArray"
+				"curr",
+				"currentUser"
 			],
 			[
-				"uplo",
-				"upload_isLoading"
-			],
-			[
-				"pu",
-				"publish"
-			],
-			[
-				"backg",
-				"background-color"
-			],
-			[
-				"sound",
-				"soundcloud"
-			],
-			[
-				"bet",
-				"beta_error"
-			],
-			[
-				"optout_",
-				"optout_enabled"
-			],
-			[
-				"search",
-				"search_timer"
+				"editor_s",
+				"editor_showSwatchPicker"
 			],
 			[
 				"no",
 				"nowrap"
 			],
 			[
-				"remove",
-				"removeClass"
+				"text",
+				"text-align"
 			],
 			[
-				"curr",
-				"current_video"
-			],
-			[
-				"cur",
-				"currentVideo"
-			],
-			[
-				"old",
-				"oldVideo"
-			],
-			[
-				"videos",
-				"videos_scrollAmount"
-			],
-			[
-				"curre",
-				"currentVideo"
-			],
-			[
-				"current",
-				"current_video"
-			],
-			[
-				"videos_act",
-				"videos_activeIndex"
-			],
-			[
-				"comments_re",
-				"comments_retryTimer"
-			],
-			[
-				"comments_R",
-				"comments_retryTimer"
-			],
-			[
-				"comm",
-				"comments_numComments"
-			],
-			[
-				"comments_l",
-				"comments_lastComment"
-			],
-			[
-				"newc",
-				"newCommentHeight"
-			],
-			[
-				"creat",
-				"creatorCommentHeight"
-			],
-			[
-				"doc",
-				"docHeight"
-			],
-			[
-				"thu",
-				"thumbnailsHeight"
-			],
-			[
-				"cu",
-				"comments_userRating"
-			],
-			[
-				"exi",
-				"existingRecord"
-			],
-			[
-				"pos",
-				"postbox"
-			],
-			[
-				"comme",
-				"comments_rating"
-			],
-			[
-				"comments_get",
-				"comments_getVideoRating"
-			],
-			[
-				"rating",
-				"ratingBuffer"
-			],
-			[
-				"rat",
-				"ratingBuffer"
-			],
-			[
-				"comment",
-				"comments_list"
-			],
-			[
-				"commen",
-				"comments_list"
-			],
-			[
-				"comments_ac",
-				"comments_activeVideoId"
-			],
-			[
-				"auth_init",
-				"auth_initUser"
-			],
-			[
-				"auth_cur",
-				"auth_currentUserImage"
-			],
-			[
-				"auth_curr",
-				"auth_currentUserName"
-			],
-			[
-				"auth_si",
-				"auth_signedInWithFacebook"
-			],
-			[
-				"_o",
-				"_color-blue"
-			],
-			[
-				"header_show",
-				"header_showUserMenu"
+				"inlin",
+				"inline-block"
 			],
 			[
 				"border",
 				"border-radius"
 			],
 			[
-				"pub",
-				"publishOn"
+				"background",
+				"background-color"
 			],
 			[
-				"auth_err",
-				"auth_signInError"
+				"can",
+				"canCaptureVideo"
 			],
 			[
-				"auth_c",
-				"auth_currentUser"
+				"back",
+				"background-color"
 			],
 			[
-				"user",
-				"username"
+				"signIn",
+				"signInError"
 			],
 			[
-				"auth_show",
-				"auth_showUsernameModal"
-			],
-			[
-				"curren",
-				"currentUser"
-			],
-			[
-				"loading",
-				"loading_isLoading"
-			],
-			[
-				"load",
-				"loading_animateSpinner"
-			],
-			[
-				"loadin",
-				"loading_isLoading"
-			],
-			[
-				"menu",
-				"menu_active"
-			],
-			[
-				"n",
-				"nghtclub"
+				"show",
+				"showForgotPasswordForm"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "app/scripts/controllers/main.js",
+			"settings":
+			{
+				"buffer_size": 384,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 947,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 751,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/auth.js",
+			"settings":
+			{
+				"buffer_size": 1014,
+				"line_ending": "Unix",
+				"name": "app.controller('PlayerController', ['$scope', func"
+			}
+		},
+		{
+			"file": "app/views/main.html",
+			"settings":
+			{
+				"buffer_size": 1071,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 47.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"instal",
+				"",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 366.0
 	},
 	"distraction_free":
 	{
@@ -392,128 +221,44 @@
 	},
 	"file_history":
 	[
-		"/Users/aaronmartlage/nghtclub/app/app/views/main.html",
-		"/Users/aaronmartlage/nghtclub/app/app/views/auth.html",
-		"/Users/aaronmartlage/nghtclub/app/Gruntfile.js",
-		"/Users/aaronmartlage/nghtclub/app/node_modules/grunt-durandal/Gruntfile.js",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/scripts/modules/app.js",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/pull-to-refresh.css",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/screen.less",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/scripts/init.js",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/screen_start.less",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/videolist.less",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/main.less",
-		"/Users/aaronmartlage/Dropbox/nghtclub/mobile_deploy/deploy_20131201/js/js.js",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/scripts/modules/videolist.js",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/templates/screen_start.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/config.xml",
-		"/Users/aaronmartlage/nghtclub/app/public/app/index.html",
-		"/Users/aaronmartlage/nghtclub/app/public/app/templates/screen_start.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/screen_start.less",
-		"/Users/aaronmartlage/nghtclub/app/public/app/scripts/modules/screen_start.js",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/header.less",
-		"/Users/aaronmartlage/nghtclub/app/public/app/templates/header.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/menu.less",
-		"/Users/aaronmartlage/nghtclub/app/public/app/scripts/modules/menu.js",
-		"/Users/aaronmartlage/nghtclub/app/public/app/scripts/modules/header.js",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/main.less",
-		"/Users/aaronmartlage/nghtclub/app/public/app/scripts/init.js",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/font-awesome.min.css",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/index.html",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/templates/capture.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/scripts/modules/capture.js",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/nav.less",
-		"/Users/aaronmartlage/nghtclub/app/public/build/www/styles/capture.less",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/screen_start.css",
-		"/Users/aaronmartlage/nghtclub/app/public/app/templates/menu.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/app/templates/loading.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/app/styles/loading.less",
-		"/Users/aaronmartlage/nghtclub/app/public/app/templates/upload.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/app/public/scripts/modules/app.js",
-		"/Users/aaronmartlage/nghtclub/app/public/index.html",
-		"/Users/aaronmartlage/nghtclub/app/public/scripts/init.js",
-		"/Users/aaronmartlage/nghtclub/app/public/config.xml",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/init.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/main.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/upload-iframe.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/upload.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/videos.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/query.js",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/menu.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/menu.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/soundcloud.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/videos.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/main.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/auth.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/auth.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/upload-iframe.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/success.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/video.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/auth.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/beta.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/search.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/generalQuery.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/social.js",
-		"/Users/aaronmartlage/nghtclub/web/cloud/transcoder.js",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/success.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/search.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/upload-iframe.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/success.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/upload.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/upload.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/upload.html",
-		"/Users/aaronmartlage/nghtclub/web/public/success.html",
-		"/Users/aaronmartlage/nghtclub/web/public/index.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/menu.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/auth.js",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/header.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/header.js",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/videos.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/comments.js",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/comments.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/search.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/loading.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/loading.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/comments.less",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/loading.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/promo.js",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/promo.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/promo.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/soundcloud.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/header.less",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/soundcloud.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/search.js",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/beta.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/beta.js",
-		"/Users/aaronmartlage/nghtclub/web/public/beta.html",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/beta.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/legal.less",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/optout.less",
-		"/Users/aaronmartlage/nghtclub/web/public/templates/optout.tmpl.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/optout.js",
-		"/Users/aaronmartlage/nghtclub/web/public/privacy.html",
-		"/Users/aaronmartlage/nghtclub/web/public/terms.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/init-min.js",
-		"/Users/aaronmartlage/nghtclub/web/public/beta-terms.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/extras.js",
-		"/Users/aaronmartlage/nghtclub/web/public/beta-enrolled.html",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modules/app.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/fb.js",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/videos.lss",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/loading.css",
-		"/Users/aaronmartlage/nghtclub/web/public/styles/main.css",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/auth.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/soundcloud.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/loading.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/menu.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/search.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/app.js",
-		"/Users/aaronmartlage/nghtclub/web.sublime-project",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/promo.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/main.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/jquery.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/fonts.js",
-		"/Users/aaronmartlage/nghtclub/web/public/scripts/modal.js"
+		"/Users/amartlage/allocate/app/views/auth.html",
+		"/Users/amartlage/allocate/app/scripts/controllers.js",
+		"/Users/amartlage/allocate_old/yo/app/scripts/controllers/main.js",
+		"/Users/amartlage/allocate_old/yo/app/scripts/init.js",
+		"/Users/amartlage/allocate/yo/app/index.html",
+		"/Users/amartlage/allocate/yo/app/styles/main.less",
+		"/Users/amartlage/ProductMap/product-map/public/styles/treenav.css",
+		"/Users/amartlage/ProductMap/product-map/public/styles/main.less",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/modules/tree.js",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/modules/app.js",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/modules/treenav.js",
+		"/Users/amartlage/ProductMap/product-map/public/styles/treenav.less",
+		"/Users/amartlage/ProductMap/product-map/public/templates/tree.tmpl.html",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/lib/debiki-utterscroll.js",
+		"/Users/amartlage/ProductMap/product-map/public/styles/auth.less",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/modules/auth.js",
+		"/Users/amartlage/ProductMap/product-map/public/templates/print.tmpl.html",
+		"/Users/amartlage/ProductMap/product-map/public/print.html",
+		"/Users/amartlage/ProductMap/product-map/public/styles/print.less",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/modules/print.js",
+		"/Users/amartlage/ProductMap/product-map/public/templates/auth.tmpl.html",
+		"/Users/amartlage/ProductMap/product-map/public/index.html",
+		"/Users/amartlage/ProductMap/product-map/public/styles/tree.less",
+		"/Users/amartlage/ProductMap/product-map/public/scripts/init.js",
+		"/Users/amartlage/Expenses/cloud/ko.js",
+		"/Users/amartlage/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/amartlage/Expenses/cloud/main.js",
+		"/Users/amartlage/Expenses/public/index.html",
+		"/Users/amartlage/Desktop/MetTel_20131009",
+		"/Users/amartlage/Documents/Local Cloud/Shared/Clients/SearsHolding/Provided/Kickoff2Notes_Sears_20130930",
+		"/Users/amartlage/Documents/Local Cloud/Shared/Clients/SearsHolding/Working/UX/PrototypeLinks_20131004.txt",
+		"/Users/amartlage/Documents/Local Cloud/Shared/Clients/SearsHolding/Working/UX/PrototypeLinks_20131004",
+		"/Users/amartlage/Documents/Local Cloud/Shared/Clients/SearsHolding/Provided/Notes_Sears_2013-09-30",
+		"/Users/amartlage/Dropbox/nghtclub/static/privacy.html",
+		"/Users/amartlage/Dropbox/nghtclub/static/terms.html",
+		"/Users/amartlage/Dropbox/nghtclub/static/index.html",
+		"/Library/WebServer/Documents/SymbolAssembler/root/index.html",
+		"/Library/WebServer/Documents/SymbolAssembler/symbolassembler.sublime-project"
 	],
 	"find":
 	{
@@ -524,18 +269,7 @@
 		"height": 0.0,
 		"where_history":
 		[
-			"/Users/aaronmartlage/nghtclub/app/public/build/www/scripts",
-			"/Users/aaronmartlage/nghtclub/app/public",
-			"/Users/aaronmartlage/nghtclub/app/public/app/templates",
-			"/Users/aaronmartlage/nghtclub/web/public/scripts/modules",
-			"/Users/aaronmartlage/nghtclub/web/cloud",
-			"/Users/aaronmartlage/nghtclub/web/public/templates",
-			"/Users/aaronmartlage/nghtclub/web/public/scripts/modules",
-			"/Users/aaronmartlage/nghtclub/web/public",
-			"/Users/aaronmartlage/nghtclub/web",
-			"/Users/aaronmartlage/nghtclub/web/cloud",
-			"/Users/aaronmartlage/nghtclub/web/public/styles",
-			"/Users/aaronmartlage/nghtclub/web/public"
+			"/Users/amartlage/ProductMap/product-map/public"
 		]
 	},
 	"find_state":
@@ -543,88 +277,39 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"fav",
+			"lib",
+			"bower",
 			"vendor",
-			"dist",
-			"concurrent",
-			"main_lightboxed",
-			"shadow",
-			"active",
-			"s3",
-			"fa-",
-			"s3",
-			"comments_imageBaseUrl",
-			"comments_userRating",
-			"getVideoRating",
-			"comments_rating",
-			"comments_getVideoRating",
-			"getVideoRating",
-			"JSON",
-			"comments_margin",
-			".length",
-			"underscore",
-			"nghtclub",
-			"videos_root",
-			"$.",
-			"json",
-			"nghtclub-web",
-			"nghtclub",
-			".save",
-			"gamescore",
-			"/>\n",
-			"signin",
-			"signIn",
-			");\n",
-			"position: absolute",
-			"position: fixed",
-			"videos",
-			"videos_setDimensions",
-			".modal",
-			"pause",
-			"togglepause",
-			"soundplayer",
-			"soundcloudWi",
-			"soundplayer",
-			"soundPlayer",
-			"videos_active",
-			"comments_calculateMargin",
-			"postbox",
-			"comments_margin",
-			"force",
-			".modal",
-			"isLoading",
-			"equal",
-			"comments_creatorComment",
-			"newComment",
-			"comments_retryCounter",
-			">\n",
-			"console",
-			"auth_currentUserImage",
-			"activeVideo",
-			"ko.postbox.publish",
-			"videos_active",
-			";\n",
-			"'\"></",
+			"phonegap.config.root",
+			"clean",
+			"tree_printMode",
+			"editor_scrub",
+			"toggle",
+			"showhier",
+			"hierarchy",
+			"save",
+			"z-in",
+			"showMes",
+			"editor_showSav",
+			"editor_saving(",
+			"editor_isDirty",
+			"editor_saveMessage",
+			"save",
+			"close",
+			"render",
+			"editor_numVersions",
+			"editor_versionTreeTitle",
+			"editor_empty_message",
+			"message",
 			"span",
-			"venue",
-			"videos_event",
-			"venue",
-			"}\n",
-			"auth_signedInWithFacebook",
-			"auth_initUser",
-			"refresh",
-			"();\n",
-			"checkforusername",
-			"auth_toggle",
-			"!auth_signedIn()",
-			"signedIn",
-			"@_color-blue",
-			"loading",
-			"menu_button",
-			"showsearch",
-			"signedin",
-			"soundcloud_isPlayingSoundcloud",
-			"INFO"
+			"ascending",
+			"{\n",
+			"console",
+			"getTree",
+			"console.log(",
+			"console.log",
+			"editor_apply",
+			"ul"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -632,9 +317,8 @@
 		"regex": false,
 		"replace_history":
 		[
-			"soundcloud_player",
-			"soundcloud_isPlaying",
-			""
+			"editor_showMessage(",
+			"ol"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -645,8 +329,146 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/scripts/controllers/main.js",
+					"settings":
+					{
+						"buffer_size": 384,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								280,
+								280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/index.html",
+					"settings":
+					{
+						"buffer_size": 947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								947,
+								947
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/scripts/app.js",
+					"settings":
+					{
+						"buffer_size": 751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22,
+								33
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/scripts/controllers/auth.js",
+					"settings":
+					{
+						"buffer_size": 1014,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1014,
+								1014
+							]
+						],
+						"settings":
+						{
+							"auto_name": "app.controller('PlayerController', ['$scope', func",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/main.html",
+					"settings":
+					{
+						"buffer_size": 1071,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -706,6 +528,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 256.0,
+	"side_bar_width": 333.0,
 	"status_bar_visible": true
 }

@@ -15,29 +15,75 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser -->
-<div id="header" class="screen">
-	<div class="logout">
-		<h1 data-bind="event: { touchend: auth.scrollTop }">allocate</h1>
-		<button class="btn btn-default navbar-btn" data-bind="event: { touchend: auth.logout }">Log out</button>
+<div id="header" class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle fa fa-bars" data-toggle="collapse" data-target=".navbar-collapse"></button>
+			<span class="logo" data-bind="event: { touchend: auth.scrollTop }">allocate</span>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="./">My time</a></li>
+				<li><a href="./">People</a></li>
+				<li><button class="btn btn-default navbar-btn" data-bind="event: { touchend: auth.logout }">Log out</button></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container-fluid -->
+</div>
+<!-- /ko -->
+<!-- ko if: auth.currentUser -->
+<div id="rate-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 1">
+	<div class="project-number"><span data-bind="text: rateProject.activeDomIndex() + 1"></span> of <span data-bind="text: rateProject.projectDomLength"></span></div>
+	<ol data-bind="foreach: selectProject.allProjects" class="user-projects">
+		<!-- ko if: $data.active() -->
+		<li data-bind="click: function() { $parent.rateProject.goToProject($index(), this, event) }, css: { active: ($parent.rateProject.activeProject() == $index() && $parent.rateProject.activeIndex() == -1) || ($parent.rateProject.activeIndex() == $index()), 'internal': $data.type == 'internal' }, text: $data.name"></li>
+		<!-- /ko -->
+	</ol>
+	<div class="project-fader"></div>
+	<div data-bind="text: rateProject.workingPercentage() + '%'" class="working"></div>
+	<div class="dial">
+		<div class="handle" data-bind="event: { touchstart: rateProject.dragHandle }"></div>
+		<div class="track background">
+			<div class="ring"></div>
+		</div>
+		<div class="track foreground">
+			<div class="ring"></div>
+		</div>
+	</div>
+	<div class="row chart" data-bind="foreach: rateProject.dates">
+		<!-- ko if: $parent.rateProject.activeProject -->
+		<div class="col-xs-4 bar" data-bind="style: { height: ($parent.rateProject.activeProject().percentage()[$index()].value() * 2) + 75 + 'px' }, tap: function() { $parent.rateProject.setColumn($index()) }, css: { active: $parent.rateProject.workingColumn() == $index(), zero: $parent.rateProject.activeProject().percentage()[$index()].value() == 0 }">
+			<div class="value" data-bind="text: $parent.rateProject.activeProject().percentage()[$index()].value() + $parent.rateProject.dialSettings().value"></div>
+			<div class="date" data-bind="text: date"></div>
+		</div>
+		<!-- /ko -->
 	</div>
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser -->
 <div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
-	<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
-		<li data-bind="text: name, click: $parent.selectProject.toggleProject, css: { active: $data.active() }"></li>
-	</ul>
-	<ul data-bind="foreach: selectProject.allProjects" class="user-projects">
-		<!-- ko if: $data.active() -->
-		<li data-bind="text: name"></li>
-		<!-- /ko -->
-	</ul>
+	<div class="row">
+		<div class="col-xs-6">
+			<ul data-bind="foreach: selectProject.allProjects" class="user-projects">
+				<!-- ko if: $data.active() -->
+				<li data-bind="text: name, tap: $parent.selectProject.toggleProject, css: { 'internal': $data.type == 'internal' }"></li>
+				<!-- /ko -->
+			</ul>
+		</div>
+		<div class="col-xs-6">
+			<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
+				<li data-bind="text: name, tap: $parent.selectProject.toggleProject, css: { active: $data.active(), 'internal': $data.type == 'internal' }"></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser -->
 <div id="steps">
+	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-chevron-left left"></button>
 	<ul data-bind="foreach: steps.steps">
-		<li data-bind="event: { touchend: function($item) { $parent.steps.changeStep($item) } }, css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
+		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
+	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-chevron-right right"></button>
 </div>
 <!-- /ko -->

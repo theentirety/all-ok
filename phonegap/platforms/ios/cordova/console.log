@@ -1,112 +1,149 @@
-2014-02-22 14:56:14.514 allocate[20697:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-22 14:56:14.553 allocate[20697:80b] Unlimited access to network resources
-2014-02-22 14:56:15.106 allocate[20697:80b] Resetting plugins due to page load.
-2014-02-22 14:56:15.292 allocate[20697:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-22 15:54:00.691 allocate[21960:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-22 15:54:00.731 allocate[21960:80b] Unlimited access to network resources
-2014-02-22 15:54:01.232 allocate[21960:80b] Resetting plugins due to page load.
-2014-02-22 15:54:12.126 allocate[21960:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-22 15:56:26.856 allocate[22870:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-22 15:56:26.870 allocate[22870:80b] Unlimited access to network resources
-2014-02-22 15:56:27.136 allocate[22870:80b] Resetting plugins due to page load.
-2014-02-22 15:56:33.501 allocate[22870:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-22 16:04:03.443 allocate[24699:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-22 16:04:03.490 allocate[24699:80b] Unlimited access to network resources
-2014-02-22 16:04:03.856 allocate[24699:80b] Resetting plugins due to page load.
-2014-02-22 16:04:10.268 allocate[24699:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-22 16:06:10.733 allocate[25602:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-22 16:06:10.749 allocate[25602:80b] Unlimited access to network resources
-2014-02-22 16:06:11.184 allocate[25602:80b] Resetting plugins due to page load.
-2014-02-22 16:06:17.060 allocate[25602:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-22 17:09:20.479 allocate[27046:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-22 17:09:20.522 allocate[27046:80b] Unlimited access to network resources
-2014-02-22 17:09:20.988 allocate[27046:80b] Resetting plugins due to page load.
-2014-02-22 17:09:27.370 allocate[27046:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 15:50:34.585 allocate[2658:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 15:50:34.638 allocate[2658:80b] Unlimited access to network resources
-2014-02-23 15:50:35.183 allocate[2658:80b] Resetting plugins due to page load.
-2014-02-23 15:50:35.496 allocate[2658:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSaveGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFlatness: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextAddPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextDrawPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextRestoreGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSaveGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFlatness: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextAddPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextDrawPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextRestoreGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextGetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextFillRects: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextGetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextFillRects: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextGetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextFillRects: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Feb 23 15:50:52 Aarons-MacBook-Air.local allocate[2658] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-2014-02-23 16:02:12.075 allocate[3655:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 16:02:12.089 allocate[3655:80b] Unlimited access to network resources
-2014-02-23 16:02:12.342 allocate[3655:80b] Resetting plugins due to page load.
-2014-02-23 16:02:12.523 allocate[3655:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 16:12:12.654 allocate[4640:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 16:12:12.671 allocate[4640:80b] Unlimited access to network resources
-2014-02-23 16:12:12.779 allocate[4640:80b] Resetting plugins due to page load.
-2014-02-23 16:12:12.929 allocate[4640:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 17:44:27.180 allocate[6357:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 17:44:27.218 allocate[6357:80b] Unlimited access to network resources
-2014-02-23 17:44:27.698 allocate[6357:80b] Resetting plugins due to page load.
-2014-02-23 17:44:28.243 allocate[6357:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 17:46:57.279 allocate[7275:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 17:46:57.294 allocate[7275:80b] Unlimited access to network resources
-2014-02-23 17:46:57.591 allocate[7275:80b] Resetting plugins due to page load.
-2014-02-23 17:46:57.912 allocate[7275:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 17:53:40.583 allocate[8268:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 17:53:40.598 allocate[8268:80b] Unlimited access to network resources
-2014-02-23 17:53:40.886 allocate[8268:80b] Resetting plugins due to page load.
-2014-02-23 17:53:41.241 allocate[8268:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 18:01:36.377 allocate[9274:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 18:01:36.419 allocate[9274:80b] Unlimited access to network resources
-2014-02-23 18:01:36.884 allocate[9274:80b] Resetting plugins due to page load.
-2014-02-23 18:01:37.430 allocate[9274:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 18:06:47.740 allocate[10256:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 18:06:47.752 allocate[10256:80b] Unlimited access to network resources
-2014-02-23 18:06:48.024 allocate[10256:80b] Resetting plugins due to page load.
-2014-02-23 18:06:48.343 allocate[10256:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 18:58:38.637 allocate[12164:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 18:58:38.679 allocate[12164:80b] Unlimited access to network resources
-2014-02-23 18:58:39.129 allocate[12164:80b] Resetting plugins due to page load.
-2014-02-23 18:58:39.554 allocate[12164:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 19:05:20.404 allocate[13442:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 19:05:20.426 allocate[13442:80b] Unlimited access to network resources
-2014-02-23 19:05:20.714 allocate[13442:80b] Resetting plugins due to page load.
-2014-02-23 19:05:21.062 allocate[13442:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 19:34:55.061 allocate[14911:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 19:34:55.104 allocate[14911:80b] Unlimited access to network resources
-2014-02-23 19:34:55.324 allocate[14911:80b] Resetting plugins due to page load.
-2014-02-23 19:34:55.838 allocate[14911:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 19:47:05.462 allocate[16230:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 19:47:05.476 allocate[16230:80b] Unlimited access to network resources
-2014-02-23 19:47:05.783 allocate[16230:80b] Resetting plugins due to page load.
-2014-02-23 19:47:06.217 allocate[16230:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 20:45:11.919 allocate[17915:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 20:45:11.935 allocate[17915:80b] Unlimited access to network resources
-2014-02-23 20:45:12.230 allocate[17915:80b] Resetting plugins due to page load.
-2014-02-23 20:45:12.527 allocate[17915:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
-2014-02-23 21:18:13.418 allocate[20637:80b] Multi-tasking -> Device: YES, App: YES
-2014-02-23 21:18:13.461 allocate[20637:80b] Unlimited access to network resources
-2014-02-23 21:18:13.954 allocate[20637:80b] Resetting plugins due to page load.
-2014-02-23 21:18:14.340 allocate[20637:80b] Finished load of: file:///Users/aaronmartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/32DBCC1B-4130-4AAD-9B3B-C0097DFCB2B7/allocate.app/www/index.html
+2014-02-24 15:44:16.832 allocate[8949:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-24 15:44:16.842 allocate[8949:80b] Unlimited access to network resources
+2014-02-24 15:44:16.851 allocate[8949:80b] Fix applied for database locations?: YES
+2014-02-24 15:44:17.005 allocate[8949:80b] Resetting plugins due to page load.
+2014-02-24 15:44:17.343 allocate[8949:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-24 16:17:11.821 allocate[9783:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-24 16:17:11.832 allocate[9783:80b] Unlimited access to network resources
+2014-02-24 16:17:11.950 allocate[9783:80b] Resetting plugins due to page load.
+2014-02-24 16:17:12.128 allocate[9783:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-24 16:26:17.697 allocate[10563:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-24 16:26:17.706 allocate[10563:80b] Unlimited access to network resources
+2014-02-24 16:26:17.823 allocate[10563:80b] Resetting plugins due to page load.
+2014-02-24 16:26:18.014 allocate[10563:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 00:25:55.458 allocate[13738:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 00:25:55.466 allocate[13738:80b] Unlimited access to network resources
+2014-02-25 00:25:55.598 allocate[13738:80b] Resetting plugins due to page load.
+2014-02-25 00:25:55.893 allocate[13738:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:00:40.072 allocate[15578:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:00:40.082 allocate[15578:80b] Unlimited access to network resources
+2014-02-25 08:00:40.233 allocate[15578:80b] Resetting plugins due to page load.
+2014-02-25 08:00:40.514 allocate[15578:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:02:09.305 allocate[16332:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:02:09.312 allocate[16332:80b] Unlimited access to network resources
+2014-02-25 08:02:09.444 allocate[16332:80b] Resetting plugins due to page load.
+2014-02-25 08:02:09.639 allocate[16332:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:10:57.559 allocate[17120:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:10:57.570 allocate[17120:80b] Unlimited access to network resources
+2014-02-25 08:10:57.699 allocate[17120:80b] Resetting plugins due to page load.
+2014-02-25 08:10:57.921 allocate[17120:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:13:22.186 allocate[17883:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:13:22.193 allocate[17883:80b] Unlimited access to network resources
+2014-02-25 08:13:22.318 allocate[17883:80b] Resetting plugins due to page load.
+2014-02-25 08:13:22.540 allocate[17883:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:17:27.232 allocate[18644:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:17:27.242 allocate[18644:80b] Unlimited access to network resources
+2014-02-25 08:17:27.379 allocate[18644:80b] Resetting plugins due to page load.
+2014-02-25 08:17:27.579 allocate[18644:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:18:36.632 allocate[19396:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:18:36.640 allocate[19396:80b] Unlimited access to network resources
+2014-02-25 08:18:36.779 allocate[19396:80b] Resetting plugins due to page load.
+2014-02-25 08:18:37.006 allocate[19396:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:19:37.625 allocate[20148:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:19:37.632 allocate[20148:80b] Unlimited access to network resources
+2014-02-25 08:19:37.768 allocate[20148:80b] Resetting plugins due to page load.
+2014-02-25 08:19:37.996 allocate[20148:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:20:27.397 allocate[20899:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:20:27.404 allocate[20899:80b] Unlimited access to network resources
+2014-02-25 08:20:27.544 allocate[20899:80b] Resetting plugins due to page load.
+2014-02-25 08:20:27.745 allocate[20899:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 08:24:37.577 allocate[21669:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 08:24:37.586 allocate[21669:80b] Unlimited access to network resources
+2014-02-25 08:24:37.713 allocate[21669:80b] Resetting plugins due to page load.
+2014-02-25 08:24:37.901 allocate[21669:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 10:37:53.128 allocate[23792:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 10:37:53.138 allocate[23792:80b] Unlimited access to network resources
+2014-02-25 10:37:53.284 allocate[23792:80b] Resetting plugins due to page load.
+2014-02-25 10:37:53.541 allocate[23792:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 10:40:57.315 allocate[24565:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 10:40:57.326 allocate[24565:80b] Unlimited access to network resources
+2014-02-25 10:40:57.441 allocate[24565:80b] Resetting plugins due to page load.
+2014-02-25 10:40:57.637 allocate[24565:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 11:09:42.684 allocate[25420:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 11:09:42.693 allocate[25420:80b] Unlimited access to network resources
+2014-02-25 11:09:42.838 allocate[25420:80b] Resetting plugins due to page load.
+2014-02-25 11:09:43.035 allocate[25420:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 11:42:01.810 allocate[26271:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 11:42:01.819 allocate[26271:80b] Unlimited access to network resources
+2014-02-25 11:42:01.959 allocate[26271:80b] Resetting plugins due to page load.
+2014-02-25 11:42:02.150 allocate[26271:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 14:46:58.917 allocate[29402:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 14:46:58.927 allocate[29402:80b] Unlimited access to network resources
+2014-02-25 14:46:59.054 allocate[29402:80b] Resetting plugins due to page load.
+2014-02-25 14:46:59.251 allocate[29402:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 15:35:24.368 allocate[30271:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 15:35:24.376 allocate[30271:80b] Unlimited access to network resources
+2014-02-25 15:35:24.495 allocate[30271:80b] Resetting plugins due to page load.
+2014-02-25 15:35:24.700 allocate[30271:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 15:40:08.218 allocate[31037:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 15:40:08.226 allocate[31037:80b] Unlimited access to network resources
+2014-02-25 15:40:08.362 allocate[31037:80b] Resetting plugins due to page load.
+2014-02-25 15:40:08.555 allocate[31037:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 15:55:24.248 allocate[31826:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 15:55:24.255 allocate[31826:80b] Unlimited access to network resources
+2014-02-25 15:55:24.369 allocate[31826:80b] Resetting plugins due to page load.
+2014-02-25 15:55:24.578 allocate[31826:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 15:59:01.558 allocate[32588:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 15:59:01.566 allocate[32588:80b] Unlimited access to network resources
+2014-02-25 15:59:01.683 allocate[32588:80b] Resetting plugins due to page load.
+2014-02-25 15:59:01.873 allocate[32588:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:03:41.425 allocate[33353:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:03:41.432 allocate[33353:80b] Unlimited access to network resources
+2014-02-25 16:03:41.566 allocate[33353:80b] Resetting plugins due to page load.
+2014-02-25 16:03:41.776 allocate[33353:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:12:11.225 allocate[34125:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:12:11.234 allocate[34125:80b] Unlimited access to network resources
+2014-02-25 16:12:11.358 allocate[34125:80b] Resetting plugins due to page load.
+2014-02-25 16:12:11.554 allocate[34125:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:13:16.983 allocate[34876:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:13:16.990 allocate[34876:80b] Unlimited access to network resources
+2014-02-25 16:13:17.113 allocate[34876:80b] Resetting plugins due to page load.
+2014-02-25 16:13:17.299 allocate[34876:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:14:31.881 allocate[36379:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:14:31.888 allocate[36379:80b] Unlimited access to network resources
+2014-02-25 16:14:32.001 allocate[36379:80b] Resetting plugins due to page load.
+2014-02-25 16:14:32.208 allocate[36379:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:21:57.548 allocate[37154:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:21:57.555 allocate[37154:80b] Unlimited access to network resources
+2014-02-25 16:21:57.674 allocate[37154:80b] Resetting plugins due to page load.
+2014-02-25 16:21:57.879 allocate[37154:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:22:35.690 allocate[37904:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:22:35.697 allocate[37904:80b] Unlimited access to network resources
+2014-02-25 16:22:35.819 allocate[37904:80b] Resetting plugins due to page load.
+2014-02-25 16:22:36.003 allocate[37904:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:23:21.743 allocate[38656:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:23:21.753 allocate[38656:80b] Unlimited access to network resources
+2014-02-25 16:23:21.851 allocate[38656:80b] Resetting plugins due to page load.
+2014-02-25 16:23:22.073 allocate[38656:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 16:24:05.225 allocate[39406:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 16:24:05.235 allocate[39406:80b] Unlimited access to network resources
+2014-02-25 16:24:05.355 allocate[39406:80b] Resetting plugins due to page load.
+2014-02-25 16:24:05.551 allocate[39406:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:03:47.479 allocate[40325:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:03:47.486 allocate[40325:80b] Unlimited access to network resources
+2014-02-25 17:03:47.626 allocate[40325:80b] Resetting plugins due to page load.
+2014-02-25 17:03:47.842 allocate[40325:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:17:49.701 allocate[42045:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:17:49.709 allocate[42045:80b] Unlimited access to network resources
+2014-02-25 17:17:49.823 allocate[42045:80b] Resetting plugins due to page load.
+2014-02-25 17:17:50.032 allocate[42045:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:18:49.653 allocate[42797:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:18:49.661 allocate[42797:80b] Unlimited access to network resources
+2014-02-25 17:18:49.786 allocate[42797:80b] Resetting plugins due to page load.
+2014-02-25 17:18:49.998 allocate[42797:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:24:55.049 allocate[43590:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:24:55.059 allocate[43590:80b] Unlimited access to network resources
+2014-02-25 17:24:55.185 allocate[43590:80b] Resetting plugins due to page load.
+2014-02-25 17:24:55.390 allocate[43590:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:25:50.581 allocate[44343:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:25:50.588 allocate[44343:80b] Unlimited access to network resources
+2014-02-25 17:25:50.718 allocate[44343:80b] Resetting plugins due to page load.
+2014-02-25 17:25:50.898 allocate[44343:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:27:18.082 allocate[45096:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:27:18.089 allocate[45096:80b] Unlimited access to network resources
+2014-02-25 17:27:18.190 allocate[45096:80b] Resetting plugins due to page load.
+2014-02-25 17:27:18.408 allocate[45096:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-02-25 17:27:50.104 allocate[45847:80b] Multi-tasking -> Device: YES, App: YES
+2014-02-25 17:27:50.111 allocate[45847:80b] Unlimited access to network resources
+2014-02-25 17:27:50.237 allocate[45847:80b] Resetting plugins due to page load.
+2014-02-25 17:27:50.427 allocate[45847:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html

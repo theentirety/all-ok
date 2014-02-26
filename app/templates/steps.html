@@ -1,7 +1,9 @@
 <!-- ko if: auth.currentUser -->
 <div id="steps">
+	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-chevron-left left"></button>
 	<ul data-bind="foreach: steps.steps">
-		<li data-bind="event: { touchend: function($item) { $parent.steps.changeStep($item) } }, css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
+		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
+	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-chevron-right right"></button>
 </div>
 <!-- /ko -->

@@ -31,8 +31,12 @@ gulp.task('vendor', function () {
   return gulp.src([
     'app/scripts/vendor/jquery-1.11.0.min.js',
     'app/scripts/vendor/bootstrap.min.js',
+    'app/scripts/vendor/parse-1.2.16.min.js',
+    'app/scripts/vendor/underscore-min.js',
+    'app/scripts/vendor/hammer.min.js',
     'app/scripts/vendor/knockout-3.0.0.js',
-    'app/scripts/vendor/parse-1.2.16.min.js'
+    'app/scripts/vendor/knockouch.min.js',
+    'app/scripts/vendor/moment.min.js'
     ])
     .pipe($.concat('vendor.js'))
     .pipe($.uglify())

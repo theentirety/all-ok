@@ -1,12 +1,18 @@
 <!-- ko if: auth.currentUser -->
 <div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
-	<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
-		<li data-bind="text: name, click: $parent.selectProject.toggleProject, css: { active: $data.active() }"></li>
-	</ul>
-	<ul data-bind="foreach: selectProject.allProjects" class="user-projects">
-		<!-- ko if: $data.active() -->
-		<li data-bind="text: name"></li>
-		<!-- /ko -->
-	</ul>
+	<div class="row">
+		<div class="col-xs-6">
+			<ul data-bind="foreach: selectProject.allProjects" class="user-projects">
+				<!-- ko if: $data.active() -->
+				<li data-bind="text: name, tap: $parent.selectProject.toggleProject, css: { 'internal': $data.type == 'internal' }"></li>
+				<!-- /ko -->
+			</ul>
+		</div>
+		<div class="col-xs-6">
+			<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
+				<li data-bind="text: name, tap: $parent.selectProject.toggleProject, css: { active: $data.active(), 'internal': $data.type == 'internal' }"></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <!-- /ko -->

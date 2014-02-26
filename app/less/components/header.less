@@ -4,27 +4,26 @@
    ========================================================================== */
 
 #header {
-	height: 60px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	text-align: right;
-	background-color: #F5F5F5;
 	z-index: 5;
-	h1 {
-		font-size: 36px;
+	position: fixed;
+	width: 100%;
+	.nav {
+		margin-top: 0;
+		text-align: right;
+	}
+	.logo {
 		margin: 0;
-		text-shadow: 0 0 7px fade(#000, 30%);
+		// text-shadow: 0 0 7px fade(#000, 30%);
 		font-family: @_font-helvetica-light;
+		font-size: 36px;
 		position: absolute;
-		left: 10px;
-		top: 14px;
+		display: block;
+		left: 7px;
+		top: 3px;
+		height: 48px;
+		overflow: hidden;
 	}
 	button {
-		width: auto;
-		min-width: initial;
-		padding-top: 8px;
-		margin: 10px;
+		margin-right: 10px;
 	}
 }

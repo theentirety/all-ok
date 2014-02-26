@@ -33,7 +33,7 @@ function Auth(app) {
 		var password = $(formElement).find('input[name=auth_password]').val();
 
 		if (auth.signUpMode()) {
-			var email = $(formElement).find('input[name=auth_email]').val();
+			var email = $(formElement).find('input[name=auth_email]').val().toLowerCase();
 			var displayName = $(formElement).find('input[name=auth_displayName]').val();
 			var passwordConfirm = $(formElement).find('input[name=auth_confirmPassword]').val();
 

@@ -1,8 +1,17 @@
 <!-- ko if: auth.currentUser -->
-<div id="header" class="screen">
-	<div class="logout">
-		<h1 data-bind="event: { touchend: auth.scrollTop }">allocate</h1>
-		<button class="btn btn-default navbar-btn" data-bind="event: { touchend: auth.logout }">Log out</button>
-	</div>
+<div id="header" class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle fa fa-bars" data-toggle="collapse" data-target=".navbar-collapse"></button>
+			<span class="logo" data-bind="event: { touchend: auth.scrollTop }">allocate</span>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="./">My time</a></li>
+				<li><a href="./">People</a></li>
+				<li><button class="btn btn-default navbar-btn" data-bind="event: { touchend: auth.logout }">Log out</button></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container-fluid -->
 </div>
 <!-- /ko -->

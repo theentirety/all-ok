@@ -25,6 +25,10 @@
     <description>
         Let's make sure all the right people are in all the right places.
     </description>
+    <name>allocate</name>
+    <description>
+        Let's make sure all the right people are in all the right places.
+    </description>
     <author email="amartlage@intuitivecompany.com" href="http://www.intuitivecompany.com">
         Intuitive Company
     </author>
@@ -94,4 +98,5 @@
     <access origin="http://127.0.0.1*" />
     <access origin="https://api.parse.com*" />
     <access origin="https://allocate.parseapp.com*" />
+    <access origin="http://netdna.bootstrapcdn.com*" />
 </widget>

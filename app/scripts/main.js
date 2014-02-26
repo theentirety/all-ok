@@ -12,6 +12,7 @@ var Auth = require('./auth.js');
 var Steps = require('./steps.js');
 var SelectProject = require('./select-project.js');
 var Header = require('./header.js');
+var RateProject = require('./rate-project.js');
 
 // initialize parse
 Parse.initialize("JkYNfPBw2aPgcc7PeTGHMAU2XKvjzeqVIkyClVuo", "45OMU3ZS3o5c168lQxa0ilxQu4FdMVHT1NVTkORl");
@@ -24,6 +25,7 @@ var auth = new Auth(app);
 var steps = new Steps(app);
 var selectProject = new SelectProject(app);
 var header = new Header(app);
+var rateProject = new RateProject(app);
 
 
 // Custom knockout extneders
@@ -41,6 +43,6 @@ ko.bindingHandlers.fadeVisible = {
         var value = valueAccessor();
         ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
     }
-};
+}
 
 app.initialize();

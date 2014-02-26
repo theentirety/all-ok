@@ -34,7 +34,14 @@ function Steps(app) {
 
 	steps.changeStep = function(item) {
 		steps.currentStep(item.stepNumber);
+		app.myViewModel.rateProject.initProject();
 	}
+
+	steps.nextStep = function(direction) {
+		steps.currentStep(steps.currentStep() + direction);
+		app.myViewModel.rateProject.initProject();
+	}
+
 	return self;
 }
 

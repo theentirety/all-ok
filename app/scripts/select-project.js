@@ -14,61 +14,102 @@ function SelectProject(app) {
 
 	selectProject.allProjects = ko.observableArray([
 		{
-			name: 'test 1',
-			active: ko.observable(false)
+			name: 'Vacation/Time off',
+			active: ko.observable(false),
+			type: 'internal',
+			increments: {
+				type: 'day',
+				value: 0.5
+			},
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 2',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
-			name: 'test 3',
-			active: ko.observable(false)
+			name: 'test 3 with a much longer name',
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 4',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 5',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 6',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 7',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 8',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 9',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 10',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 11',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 12',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		},
 		{
 			name: 'test 13',
-			active: ko.observable(false)
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
+		},
+		{
+			name: 'test 14',
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
+		},
+		{
+			name: 'test 15',
+			active: ko.observable(false),
+			type: 'client',
+			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
 		}
 	]);
 
-	selectProject.toggleProject = function(item, event) {
-		console.log(item)
+		selectProject.toggleProject = function(item, event) {
 		if (item.active()) {
 			item.active(false);
 		} else {
