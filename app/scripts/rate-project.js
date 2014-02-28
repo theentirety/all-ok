@@ -21,15 +21,45 @@ function RateProject(app) {
 	rateProject.workingColumn = ko.observable(0);
 	rateProject.today = moment(new Date()).startOf('isoweek');
 
-	rateProject.dates = ko.observableArray([
-		{ 
-			date: ko.observable(moment(rateProject.today).format('MMM D'))
+	rateProject.columns = ko.observableArray([
+		{  
+			date: ko.observable(moment(rateProject.today).format('MMM D')),
+			total: ko.computed(function() {
+				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
+					var colValue = 0;
+					if (project.active()) {
+						colValue = project.percentage()[0].value();
+					}
+					return memo + colValue; 
+				}, 0);
+				return sum;
+			})
 		},
-		{ 
-			date: ko.observable(moment(rateProject.today).add('days', 7).format('MMM D'))
+		{
+			date: ko.observable(moment(rateProject.today).add('days', 7).format('MMM D')),
+			total: ko.computed(function() {
+				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
+					var colValue = 0;
+					if (project.active()) {
+						colValue = project.percentage()[1].value();
+					}
+					return memo + colValue; 
+				}, 0);
+				return sum;
+			})
 		},
-		{ 
-			date: ko.observable(moment(rateProject.today).add('days', 14).format('MMM D'))
+		{  
+			date: ko.observable(moment(rateProject.today).add('days', 14).format('MMM D')),
+			total: ko.computed(function() {
+				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
+					var colValue = 0;
+					if (project.active()) {
+						colValue = project.percentage()[2].value();
+					}
+					return memo + colValue; 
+				}, 0);
+				return sum;
+			})
 		}
 	]);
 
@@ -57,17 +87,35 @@ function RateProject(app) {
 		// if (project.type == 'internal') {
 
 		// }
-		console.log(project)
+		// console.log(project)
 		return project;
 	});
 
+	// $('.user-projects').hammer({ drag_lock_to_axis: true }).on("swipe drag", function(event) {
+	// 	event.gesture.preventDefault();
+	// 	if(event.type == "swipe"){
+	// 		alert('swipe');
+	// 	} else {
+	// 		alert('drag');
+	// 	}
+	// });
 
 	rateProject.dragHandle = function(item, event) {
+		if (event.type == 'mousedown') {
+			rateProject.registerMouseY(event.originalEvent.clientY);
+		} else {
+			rateProject.registerMouseY(event.originalEvent.touches[0].clientY);
+		}
 		$('#rate-project .handle').addClass('dragging');
-		rateProject.registerMouseY(event.originalEvent.touches[0].clientY);
-
-		$(document).on('touchmove', function(event) {
-			var diff = rateProject.registerMouseY() - event.originalEvent.touches[0].clientY;
+		
+		$(document).on('touchmove mousemove', function(event) {
+			var clientY;
+			if (event.originalEvent.type == 'mousemove') {
+				clientY = event.originalEvent.clientY;
+			} else {
+				clientY = event.originalEvent.touches[0].clientY;
+			}
+			var diff = rateProject.registerMouseY() - clientY;
 			var degrees = rateProject.registerStartPercentage() + (diff / 1.25);
 			var percentage = Math.floor(((degrees - 180) / 1.8) / rateProject.dialSettings().interval) * rateProject.dialSettings().interval;
 			if (percentage < 1) {
@@ -84,11 +132,11 @@ function RateProject(app) {
 			rateProject.rotateDial(degrees);
 		});
 
-		$(document).one('touchend', function(event) {
+		$(document).one('touchend mouseup', function(event) {
 			var endingPercentage = rateProject.workingPercentage() * 1.8;
 			rateProject.registerStartPercentage(180 + endingPercentage);
 			$('#rate-project .handle').removeClass('dragging');
-			$(document).off('touchmove');
+			$(document).off('touchmove mousemove');
 		});
 
 	}

@@ -18,7 +18,7 @@
 <div id="auth">
 	<div>
 		<h1>allocate</h1>
-		<div class="alert alert-danger" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
+		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
 		<form data-bind="submit: auth.signInUp">
 			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode">
 			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode">
@@ -35,7 +35,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle fa fa-bars" data-toggle="collapse" data-target=".navbar-collapse"></button>
-			<span class="logo" data-bind="event: { touchend: auth.scrollTop }">allocate</span>
+			<span class="logo" data-bind="event: { touchend: auth.scrollTop }"><img src="svg/logo.svg" /></span>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -48,17 +48,37 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser -->
-<div id="rate-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 1">
+<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 3">
+	<h1>Any notes about the projects?</h1>
+	<div id="notes-accordion" class="panel-group container" data-bind="foreach: selectProject.allProjects">
+		<!-- ko if: $data.active() -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#notes-accordion" data-bind="attr: { href: '#notes-collapse-' + $index() }, text: name"></a>
+				</h4>
+			</div>
+			<div class="panel-collapse collapse" data-bind="attr: { id: 'notes-collapse-' + $index() }">
+				<div class="panel-body" onClick="this.contentEditable='true';">
+				</div>
+			</div>
+		</div>
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->
+<!-- ko if: auth.currentUser -->
+<div id="rate-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 2">
 	<div class="project-number"><span data-bind="text: rateProject.activeDomIndex() + 1"></span> of <span data-bind="text: rateProject.projectDomLength"></span></div>
 	<ol data-bind="foreach: selectProject.allProjects" class="user-projects">
 		<!-- ko if: $data.active() -->
-		<li data-bind="click: function() { $parent.rateProject.goToProject($index(), this, event) }, css: { active: ($parent.rateProject.activeProject() == $index() && $parent.rateProject.activeIndex() == -1) || ($parent.rateProject.activeIndex() == $index()), 'internal': $data.type == 'internal' }, text: $data.name"></li>
+		<li data-bind="tap: function() { $parent.rateProject.goToProject($index(), this, event) }, css: { active: ($parent.rateProject.activeProject() == $index() && $parent.rateProject.activeIndex() == -1) || ($parent.rateProject.activeIndex() == $index()), 'internal': $data.type == 'internal' }, text: $data.name"></li>
 		<!-- /ko -->
 	</ol>
 	<div class="project-fader"></div>
 	<div data-bind="text: rateProject.workingPercentage() + '%'" class="working"></div>
 	<div class="dial">
-		<div class="handle" data-bind="event: { touchstart: rateProject.dragHandle }"></div>
+		<div class="handle" data-bind="event: { touchstart: rateProject.dragHandle, mousedown: rateProject.dragHandle }"></div>
 		<div class="track background">
 			<div class="ring"></div>
 		</div>
@@ -66,14 +86,41 @@
 			<div class="ring"></div>
 		</div>
 	</div>
-	<div class="row chart" data-bind="foreach: rateProject.dates">
+	<div class="row chart" data-bind="foreach: rateProject.columns">
 		<!-- ko if: $parent.rateProject.activeProject -->
 		<div class="col-xs-4 bar" data-bind="style: { height: ($parent.rateProject.activeProject().percentage()[$index()].value() * 2) + 75 + 'px' }, tap: function() { $parent.rateProject.setColumn($index()) }, css: { active: $parent.rateProject.workingColumn() == $index(), zero: $parent.rateProject.activeProject().percentage()[$index()].value() == 0 }">
+			<div class="total" data-bind="style: { height: ($data.total() * 2) + 75 + 'px' }, text: total() + '%', css: { over: $data.total() > 100 }"></div>
 			<div class="value" data-bind="text: $parent.rateProject.activeProject().percentage()[$index()].value() + $parent.rateProject.dialSettings().value"></div>
-			<div class="date" data-bind="text: date"></div>
+			<div class="date">Week of <span data-bind="text: date"></span></div>
 		</div>
 		<!-- /ko -->
 	</div>
+</div>
+<!-- /ko -->
+<!-- ko if: auth.currentUser -->
+<div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1">
+	<div class="page-header">
+		<h1>Week of</h1>
+		<div class="btn-group" data-bind="foreach: rateWeek.weeks">
+			<button type="button" class="btn btn-default" data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index() }">
+				<span data-bind="text: date"></span>
+				<div class="total" data-bind="text: total() + '%', css: { over: $data.total() > 100 }"></div>
+			</button>
+		</div>
+	</div>
+	<ol data-bind="foreach: selectProject.allProjects, swipe: rateWeek.scroll" class="projects">
+		<!-- ko if: $data.active() -->
+		<li class="project" data-bind="css: { 'internal': $data.type == 'internal', zero: $data.percentage()[$parent.rateWeek.activeWeek()].value() == 0 }, drag: $parent.rateWeek.drag">
+			<div class="name">
+				<span class="percent" data-bind="text: percentage()[$parent.rateWeek.activeWeek()].value() + '%'"></span>
+				<span data-bind="text: name"></span>
+			</div>
+			<div class="percentage-container">
+				<div class="percentage" data-bind="style: { width: $data.percentage()[$parent.rateWeek.activeWeek()].value() + '%' }"></div>
+			</div>
+		</li>
+		<!-- /ko -->
+	</ol>
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser -->

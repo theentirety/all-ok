@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Rate Week Stylesheet
+   rate-week.less
+   ========================================================================== */
+
+#rate-week {
+	.page-header {
+		position: fixed;
+		height: 100px;
+		overflow: hidden;
+		z-index: 2;
+		background-color: fade(#FFF, 90%);
+		width: 100%;
+		margin: 0;
+		h1 {
+			font-family: @_font-helvetica-light;
+			font-size: 21px;
+			width: 100%;
+			margin: 10px 10px 0 10px;
+		}
+		button {
+			font-family: @_font-helvetica;
+			font-size: 14px;
+			min-width: 95px;
+			width: 32%;
+		}
+		.btn-group {
+			width: 100%;
+			.position-center-center;
+		}
+		.total {
+			font-size: 21px;
+			padding: 5px 0;
+			line-height: 25px;
+			overflow: hidden;
+			height: 30px;
+			&.over {
+				background-color: red;
+				color: #FFF;
+				width: auto;
+				display: block;
+				border-radius: 5px;
+				padding: 5px;
+
+			}
+		}
+	}
+	.projects {
+		list-style: none;
+		margin: 0 10px;
+		padding: 0;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		z-index: 1;
+		padding-top: 110px;
+		li {
+			background-color: fade(#000, 5%);
+			margin-bottom: 2px;
+			position: relative;
+			height: 50px;
+			overflow: hidden;
+			span {
+				line-height: 55px;
+			}
+			&.zero {
+				.percent {
+					color: fade(#000, 20%);
+				}
+				.percentage {
+					margin-left: 0;
+				}
+				.percentage-container {
+					background-color: fade(#000, 5%);
+				}
+			}
+		}
+		.name {
+			font-family: @_font-helvetica-light;
+			font-size: 21px;
+			position: absolute;
+			z-index: 2;
+			padding-left: 10px;
+			z-index: 1;
+			.percent {
+				width: 60px;
+				display: inline-block;
+			}
+		}
+		.percentage {
+			height: 100%;
+			background-color: fade(#D0D102, 100%);
+			border-left: 1px solid #FFF;
+		}
+		.percentage-container {
+			width: 100%;
+			padding-left: 70px;
+			height: 100%;
+			position: relative;
+			background-color: fade(#D0D102, 10%);
+		}
+	}
+}

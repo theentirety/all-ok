@@ -1,0 +1,20 @@
+<!-- ko if: auth.currentUser -->
+<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 3">
+	<h1>Any notes about the projects?</h1>
+	<div id="notes-accordion" class="panel-group container" data-bind="foreach: selectProject.allProjects">
+		<!-- ko if: $data.active() -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#notes-accordion" data-bind="attr: { href: '#notes-collapse-' + $index() }, text: name"></a>
+				</h4>
+			</div>
+			<div class="panel-collapse collapse" data-bind="attr: { id: 'notes-collapse-' + $index() }">
+				<div class="panel-body" onClick="this.contentEditable='true';">
+				</div>
+			</div>
+		</div>
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->

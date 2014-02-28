@@ -13,6 +13,8 @@ var Steps = require('./steps.js');
 var SelectProject = require('./select-project.js');
 var Header = require('./header.js');
 var RateProject = require('./rate-project.js');
+var RateWeek = require('./rate-week.js');
+var Notes = require('./notes.js');
 
 // initialize parse
 Parse.initialize("JkYNfPBw2aPgcc7PeTGHMAU2XKvjzeqVIkyClVuo", "45OMU3ZS3o5c168lQxa0ilxQu4FdMVHT1NVTkORl");
@@ -26,6 +28,8 @@ var steps = new Steps(app);
 var selectProject = new SelectProject(app);
 var header = new Header(app);
 var rateProject = new RateProject(app);
+var rateWeek = new RateWeek(app);
+var notes = new Notes(app);
 
 
 // Custom knockout extneders

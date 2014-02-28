@@ -79,6 +79,15 @@ gulp.task('templates', function () {
     .pipe(gulp.dest(rootFolder))
 });
 
+// SVG
+gulp.task('svg', function () {
+  return gulp.src([
+    'app/svg/*.svg',
+    'app/svg/*.svgz'
+    ])
+    .pipe(gulp.dest(rootFolder + '/svg'))
+});
+
 // Lint
 gulp.task('lint', function () {
   return gulp.src('app/scripts/**/*.js')
@@ -100,16 +109,16 @@ gulp.task('images', function () {
 
 // Clean
 gulp.task('clean', function () {
-    return gulp.src([rootFolder + '/styles', rootFolder + '/scripts', rootFolder + '/images'], {read: false}).pipe($.clean());
+    return gulp.src([rootFolder + '/styles', rootFolder + '/scripts', rootFolder + '/images', rootFolder + '/svg'], {read: false}).pipe($.clean());
 });
 
 // Build
 
-gulp.task('build', ['html', 'styles', 'scripts', 'vendor', 'images']);
+gulp.task('build', ['html', 'styles', 'scripts', 'vendor', 'images', 'svg']);
 
 // Dev Server
 
-gulp.task('dev', ['html', 'styles', 'scripts', 'vendor', 'images', 'connect', 'watch']);
+gulp.task('dev', ['html', 'styles', 'scripts', 'vendor', 'images', 'connect', 'watch', 'svg']);
 
 // Default task
 gulp.task('default', ['clean'], function () {
@@ -136,7 +145,8 @@ gulp.task('watch', ['connect'], function () {
         'app/less/**/*.less',
         'app/scripts/**/*.js',
         'app/images/**/*',
-        'app/templates/**/*.html'
+        'app/templates/**/*.html',
+        'app/svg/**/*.svg*'
     ], $.connect.reload);
 
     
@@ -151,4 +161,7 @@ gulp.task('watch', ['connect'], function () {
     
     // Watch .html files
     gulp.watch('app/**/*.html', ['html']);
+
+    // Watch .svg* files
+    gulp.watch('app/svg/**/*', ['svg']);
 });

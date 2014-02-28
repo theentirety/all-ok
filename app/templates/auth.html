@@ -2,7 +2,7 @@
 <div id="auth">
 	<div>
 		<h1>allocate</h1>
-		<div class="alert alert-danger" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
+		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
 		<form data-bind="submit: auth.signInUp">
 			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode">
 			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode">

@@ -1,0 +1,26 @@
+<!-- ko if: auth.currentUser -->
+<div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1">
+	<div class="page-header">
+		<h1>Week of</h1>
+		<div class="btn-group" data-bind="foreach: rateWeek.weeks">
+			<button type="button" class="btn btn-default" data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index() }">
+				<span data-bind="text: date"></span>
+				<div class="total" data-bind="text: total() + '%', css: { over: $data.total() > 100 }"></div>
+			</button>
+		</div>
+	</div>
+	<ol data-bind="foreach: selectProject.allProjects, swipe: rateWeek.scroll" class="projects">
+		<!-- ko if: $data.active() -->
+		<li class="project" data-bind="css: { 'internal': $data.type == 'internal', zero: $data.percentage()[$parent.rateWeek.activeWeek()].value() == 0 }, drag: $parent.rateWeek.drag">
+			<div class="name">
+				<span class="percent" data-bind="text: percentage()[$parent.rateWeek.activeWeek()].value() + '%'"></span>
+				<span data-bind="text: name"></span>
+			</div>
+			<div class="percentage-container">
+				<div class="percentage" data-bind="style: { width: $data.percentage()[$parent.rateWeek.activeWeek()].value() + '%' }"></div>
+			</div>
+		</li>
+		<!-- /ko -->
+	</ol>
+</div>
+<!-- /ko -->

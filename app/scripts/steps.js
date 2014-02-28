@@ -32,6 +32,10 @@ function Steps(app) {
 		}
 	]);
 
+	// $(document).on('swipe', function() {
+	// 	alert('swipe')
+	// });
+
 	steps.changeStep = function(item) {
 		steps.currentStep(item.stepNumber);
 		app.myViewModel.rateProject.initProject();
