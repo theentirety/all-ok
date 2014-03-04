@@ -1,17 +1,53 @@
-<!-- ko if: auth.currentUser -->
+<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
 <div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
+	<div class="page-header">
+		<h1>Select projects</h1>
+		<div class="group-type btn-group btn-group-xs">
+			<button class="add btn btn-default" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"> Add</span></button>
+		</div>
+		<div class="group-type btn-group btn-group-xs" data-bind="tap: selectProject.toggleView">
+			<button type="button" class="btn btn-default" data-bind="css: { active: selectProject.viewType() == 'all' }">all</button>
+			<button type="button" class="btn btn-default" data-bind="css: { active: selectProject.viewType() == 'selected' }"><span class="fa fa-check"></span></button>
+		</div>
+	</div>
 	<div class="row">
-		<div class="col-xs-6">
-			<ul data-bind="foreach: selectProject.allProjects" class="user-projects">
-				<!-- ko if: $data.active() -->
-				<li data-bind="text: name, tap: $parent.selectProject.toggleProject, css: { 'internal': $data.type == 'internal' }"></li>
+		<div class="col-xs-12">
+			<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
+				<!-- ko if: ($data.attributes.active() || $parent.selectProject.viewType() == 'all') && !$data.attributes.archived -->
+				<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'Internal' }, tap: $parent.selectProject.toggleProject">
+					<span class="name" data-bind="text: (attributes.company == 'Internal' ? 'Internal' : attributes.company) + ':'"></span>
+					<span class="name" data-bind="text: attributes.name"></span>
+					<span class="check fa fa-check" data-bind="visible: attributes.active"></span>
+				</li>
 				<!-- /ko -->
 			</ul>
 		</div>
-		<div class="col-xs-6">
-			<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
-				<li data-bind="text: name, tap: $parent.selectProject.toggleProject, css: { active: $data.active(), 'internal': $data.type == 'internal' }"></li>
-			</ul>
+	</div>
+</div>
+<div class="modal add-project" data-bind="fadeVisible: selectProject.isAddMode">
+	<div class="container">
+		<div class="title">
+			<h2>Add Project</h2>
+			<button data-bind="tap: selectProject.toggleAddMode"><span class="fa fa-times"></span></button>
+		</div>
+		<div class="content">
+			<div class="typeahead">
+				<div class="input-group input-group-lg">
+					<!-- <span class="input-group-addon">Company</span> -->
+					<input class="project-typeahead-field form-control" type="text" data-bind="event: { keyup: selectProject.showTypeaheadResults }" autocapitalize="on" autocorrect="off" placeholder="Company">
+				</div>
+				<ul class="project-typeahead" data-bind="foreach: selectProject.filteredProjectList, visible: selectProject.filteredProjectList().length > 0">
+					<li data-bind="text: $data, tap: $parent.selectProject.selectProjectTypeahead"></li>
+				</ul>
+			</div>
+			<div class="input-group input-group-lg">
+				<!-- <span class="input-group-addon">Project</span> -->
+				<input class="project-name-field form-control" type="text" autocapitalize="on" autocorrect="on" placeholder="Project">
+			</div>
+		</div>
+		<div class="footer">
+			<button class="btn btn-default" data-bind="tap: selectProject.saveNewProject">Save</button>
+			<span data-bind="tap: selectProject.toggleAddMode">Cancel</span>
 		</div>
 	</div>
 </div>

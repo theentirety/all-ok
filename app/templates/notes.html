@@ -1,8 +1,8 @@
-<!-- ko if: auth.currentUser -->
+<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
 <div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 3">
 	<h1>Any notes about the projects?</h1>
 	<div id="notes-accordion" class="panel-group container" data-bind="foreach: selectProject.allProjects">
-		<!-- ko if: $data.active() -->
+		<!-- ko if: $data.attributes.active() -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">

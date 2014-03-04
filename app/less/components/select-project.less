@@ -4,6 +4,42 @@
    ========================================================================== */
 
 #select-project {
+	.page-header {
+		position: fixed;
+		overflow: hidden;
+		z-index: 2;
+		background-color: fade(#FFF, 90%);
+		width: 100%;
+		margin: 0;
+		border-bottom: 0;
+		padding-bottom: 0;
+		h1 {
+			font-family: @_font-helvetica-light;
+			font-size: 21px;
+			margin: 15px 0 0 10px;
+			float: left;
+		}
+		.add {
+			float: right;
+		}
+	}
+	.group-type {
+		float: right;
+		margin: 10px;
+		button {
+			background-color: #FFF;
+			border-color: fade(#000, 10%);
+			color: fade(#000, 30%);
+			min-width: 30px;
+			overflow: hidden;
+			line-height: 12px;
+			height: 25px;
+			&.active {
+				background-color: fade(#00A1CB, 100%);
+				color: fade(#FFF, 80%);
+			}
+		}
+	}
 	.row {
 		margin: 0;
 		> div {
@@ -23,19 +59,21 @@
 		font-size: 14px;
 		font-family: @_font-helvetica-light;
 	}
-	.user-projects {
-		position: fixed;
-		width: 49.5%;
-		li {
-			background-color: #616161;
-		}
-	}
 	.all-projects {
+		padding-top: 45px;
 		li {
 			background-color: #D70060;
+			font-size: 18px;
+			height: 50px;
 			&.active {
 				background-color: #D0D102;
 				color: fade(#000, 90%);
+			}
+			.check {
+				color: white;
+				float: right;
+				margin-right: 5px;
+				font-size: 20px;
 			}
 		}
 	}
@@ -43,5 +81,37 @@
 		background: url(
 			data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIUlEQVQIW2NkQAL///9PY4TxwRxGxllgARgHxGZE5oAEAPm3D2gneMVNAAAAAElFTkSuQmCC
 		) repeat;
+	}
+}
+.add-project {
+	.typeahead {
+		position: relative;
+	}
+	.input-group-addon {
+		min-width: 115px;
+	}
+	.input-group {
+		width: 100%;
+		margin-bottom: 10px;
+		input {
+			width: 100%;
+		}
+	}
+	.project-typeahead {
+		display: block;
+		border: 1px solid gray;
+		background-color: #FFF;
+		padding: 0;
+		list-style: none;
+		margin: 5px;
+		position: fixed;
+		z-index: 5000;
+		li {
+			height: 45px;
+			font-size: 14px;
+			line-height: 45px;
+			border-bottom: 1px solid fade(#000, 10%);
+			padding: 0 10px;
+		}
 	}
 }

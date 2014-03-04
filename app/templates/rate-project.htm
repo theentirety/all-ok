@@ -2,7 +2,7 @@
 <div id="rate-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 2">
 	<div class="project-number"><span data-bind="text: rateProject.activeDomIndex() + 1"></span> of <span data-bind="text: rateProject.projectDomLength"></span></div>
 	<ol data-bind="foreach: selectProject.allProjects" class="user-projects">
-		<!-- ko if: $data.active() -->
+		<!-- ko if: $data.attributes.active() -->
 		<li data-bind="tap: function() { $parent.rateProject.goToProject($index(), this, event) }, css: { active: ($parent.rateProject.activeProject() == $index() && $parent.rateProject.activeIndex() == -1) || ($parent.rateProject.activeIndex() == $index()), 'internal': $data.type == 'internal' }, text: $data.name"></li>
 		<!-- /ko -->
 	</ol>

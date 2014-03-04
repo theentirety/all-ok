@@ -1,0 +1,27 @@
+<!-- ko if: auth.currentUser() && header.activePage() == 1 -->
+<div id="people" class="screen" data-bind="fadeVisible: !people.showDetails()">
+	<div class="page-header">
+		<h1>Week starting</h1>
+		<div class="group-type btn-group btn-group-xs" data-bind="tap: people.toggleView">
+			<button type="button" class="btn btn-default" data-bind="css: { active: people.viewType() == 'hours' }">h</button>
+			<button type="button" class="btn btn-default" data-bind="css: { active: people.viewType() == 'percent' }">%</button>
+		</div>
+		<div class="group-weeks btn-group" data-bind="foreach: people.weeks">
+			<button type="button" class="btn btn-default" data-bind="tap: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index() }">
+				<span data-bind="text: date"></span>
+			</button>
+		</div>
+	</div>
+	<ol data-bind="foreach: people.all" class="people">
+		<li class="person" data-bind="tap: $parent.people.goToPerson">
+			<div class="bar">
+				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1) + ($parent.people.viewType() == 'hours' ? 'h' : '%')"></span>
+				<span class="name" data-bind="text: name"></span>
+			</div>
+			<div class="percentage-container" data-bind="foreach: percentages">
+				<div class="percentage" data-bind="style: { width: $data + '%' }"></div>
+			</div>
+		</li>
+	</ol>
+</div>
+<!-- /ko -->

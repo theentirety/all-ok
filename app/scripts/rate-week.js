@@ -17,6 +17,7 @@ function RateWeek(app) {
 	rateWeek.today = moment(new Date()).startOf('isoweek');
 	rateWeek.registerRatio = ko.observable($(document).width() - 20);
 	rateWeek.activeWeek = ko.observable(0);
+	rateWeek.viewType = ko.observable('hours');
 
 	rateWeek.weeks = ko.observableArray([
 		{
@@ -24,8 +25,8 @@ function RateWeek(app) {
 			total: ko.computed(function() {
 				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
 					var colValue = 0;
-					if (project.active()) {
-						colValue = project.percentage()[0].value();
+					if (project.attributes.active()) {
+						colValue = project.attributes.percentage()[0].value();
 					}
 					return memo + colValue; 
 				}, 0);
@@ -37,8 +38,8 @@ function RateWeek(app) {
 			total: ko.computed(function() {
 				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
 					var colValue = 0;
-					if (project.active()) {
-						colValue = project.percentage()[1].value();
+					if (project.attributes.active()) {
+						colValue = project.attributes.percentage()[1].value();
 					}
 					return memo + colValue; 
 				}, 0);
@@ -50,8 +51,8 @@ function RateWeek(app) {
 			total: ko.computed(function() {
 				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
 					var colValue = 0;
-					if (project.active()) {
-						colValue = project.percentage()[2].value();
+					if (project.attributes.active()) {
+						colValue = project.attributes.percentage()[2].value();
 					}
 					return memo + colValue; 
 				}, 0);
@@ -64,23 +65,37 @@ function RateWeek(app) {
 		var startX = event.gesture.startEvent.center.pageX;
 		if (rateWeek.registerMouseX() != startX) {
 			rateWeek.registerMouseX(startX);
-			rateWeek.registerStartPercentage(item.percentage()[rateWeek.activeWeek()].value());
+			rateWeek.registerStartPercentage(item.attributes.percentage()[rateWeek.activeWeek()].value());
 		}
 		var diff = (event.gesture.deltaX / rateWeek.registerRatio()) * 100;
 		var newPercentage = Math.floor((diff + rateWeek.registerStartPercentage()) / 5) * 5;
 
 		if (newPercentage > 0 && newPercentage <= 100) {
-			item.percentage()[rateWeek.activeWeek()].value(newPercentage);
+			item.attributes.percentage()[rateWeek.activeWeek()].value(newPercentage);
 		} else if (newPercentage > 100) {
-			item.percentage()[rateWeek.activeWeek()].value(100);
+			item.attributes.percentage()[rateWeek.activeWeek()].value(100);
 		} else {
-			item.percentage()[rateWeek.activeWeek()].value(0);
+			item.attributes.percentage()[rateWeek.activeWeek()].value(0);
 		}
 
 	}
 
 	rateWeek.selectWeek = function(index) {
 		rateWeek.activeWeek(index);
+	}
+
+	rateWeek.toggleView = function() {
+		if (rateWeek.viewType() == 'hours') {
+			rateWeek.viewType('percent');
+		} else {
+			rateWeek.viewType('hours');
+		}
+	}
+
+	rateWeek.goBack = function() {
+		console.log('go back')
+		app.myViewModel.people.showDetails(false);
+		app.myViewModel.header.goToPage(1);
 	}
 
 	return self;

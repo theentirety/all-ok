@@ -12,122 +12,108 @@ function SelectProject(app) {
 
 	var selectProject = app.myViewModel.selectProject = {};
 
-	selectProject.allProjects = ko.observableArray([
-		{
-			name: 'DriveScribe: Sprint',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Liason: CAS',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Internal: Allocate',
-			active: ko.observable(false),
-			type: 'internal',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Internal: Playbook',
-			active: ko.observable(false),
-			type: 'internal',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'MetTel: Retainer',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Regions: Regions.com',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'SunTrust: On-boarding',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'SunTrust: Online Banking',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'SunTrust: SunTrust.com',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Vacation/Time off',
-			active: ko.observable(false),
-			type: 'internal',
-			increments: {
-				type: 'day',
-				value: 0.5
-			},
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 1',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 2',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 3',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 4',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 5',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 6',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		},
-		{
-			name: 'Z Client: Some project 7',
-			active: ko.observable(false),
-			type: 'client',
-			percentage: ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }])
-		}
-	]);
+	selectProject.viewType = ko.observable('all');
+	selectProject.allProjects = ko.observableArray();
+	selectProject.isAddMode = ko.observable(false);
+	selectProject.uniqueCompanyNames = ko.observableArray();
+	selectProject.filteredProjectList = ko.observableArray();
 
-		selectProject.toggleProject = function(item, event) {
-		if (item.active()) {
-			item.active(false);
+	selectProject.getProjects = function() {
+		Parse.Cloud.run('getProjects', {}, {
+			success: function(projects) {
+				selectProject.allProjects([]);
+				for (var i = 0; i < projects.length; i++) {
+					projects[i].attributes.active = ko.observable(false);
+					projects[i].attributes.percentage = ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }]);
+					selectProject.allProjects.push(projects[i]);
+				}
+			}, error: function(error) {
+				console.log(error);
+			}
+		});
+
+		Parse.Cloud.run('getUniqueCompanyNames', {}, {
+			success: function(projects) {
+				selectProject.uniqueCompanyNames(projects);
+			}, error: function(error) {
+				console.log(error);
+			}
+		});
+	}
+
+	selectProject.init = function() {
+		selectProject.getProjects();
+	}
+
+	selectProject.toggleProject = function(item, event) {
+		if (item.attributes.active()) {
+			item.attributes.active(false);
 		} else {
-			item.active(true);
+			item.attributes.active(true);
 		}
 	}
+
+	selectProject.toggleAddMode = function() {
+		if (selectProject.isAddMode()) {
+			app.myViewModel.header.isModal(false);
+			selectProject.isAddMode(false);
+		} else {
+			app.myViewModel.header.isModal(true);
+			$('.project-typeahead-field').val('');
+			$('.project-name-field').val('');
+			selectProject.filteredProjectList([]);
+			selectProject.isAddMode(true);
+		}
+	}
+
+	selectProject.toggleView = function() {
+		if (selectProject.viewType() == 'all') {
+			selectProject.viewType('selected');
+		} else {
+			selectProject.viewType('all');
+		}
+	}
+
+	selectProject.selectProjectTypeahead = function(item) {
+		$('.project-typeahead-field').val(item);
+		selectProject.filteredProjectList([]);
+	}
+
+	selectProject.showTypeaheadResults = function(item, event) {
+		var needle = event.target.value.toLowerCase().replace(/[^\w\d]/gi, '');
+
+		if (needle.length > 0) {
+			var filteredProjects = _.filter(selectProject.uniqueCompanyNames(), function(obj) {
+				var haystack = obj.toLowerCase().replace(/[^\w\d]/gi, '');
+				return haystack.indexOf(needle) >= 0; 
+			});
+			var fieldPosition = $('.project-typeahead-field').offset();
+			$('.project-typeahead').css('left', fieldPosition.left).css('top', fieldPosition.top + $('.project-typeahead-field').height()+20);
+			selectProject.filteredProjectList(filteredProjects);
+		} else {
+			selectProject.filteredProjectList([]);
+		}
+	}
+
+	selectProject.saveNewProject = function() {
+		var data = {
+			company: $('.project-typeahead-field').val(),
+			project: $('.project-name-field').val(),
+		}
+		Parse.Cloud.run('saveProject', data, {
+			success: function(project) {
+				alert('"' + project.attributes.company + ': ' + project.attributes.name + '" created successfully.');
+				selectProject.toggleAddMode();
+				selectProject.getProjects();
+			}, error: function(error) {
+				// alert(error)
+				console.log(error);
+			}
+		});
+		
+	}
+
+	selectProject.init();
 
 	return self;
 }

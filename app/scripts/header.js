@@ -12,6 +12,32 @@ function Header(app) {
 
 	var header = app.myViewModel.header = {};
 
+	header.activePage = ko.observable(0);
+	header.isModal = ko.observable(false);
+	header.pages = ko.observableArray([
+		{
+			display: 'My Time',
+			link: 'mytime'
+		},
+		{
+			display: 'People',
+			link: 'people'
+		}
+	]);
+
+	header.goToPage = function(index) {
+		header.activePage(index);
+		$('#header .navbar-collapse').removeClass('in');
+		app.myViewModel.steps.currentStep(0);
+		if (index != 1) {
+			app.myViewModel.people.showDetails(false);
+		}
+	}
+
+	header.logout = function() {
+		app.myViewModel.auth.logout();
+	}
+
 	return self;
 }
 

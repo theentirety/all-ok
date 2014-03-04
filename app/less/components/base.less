@@ -26,6 +26,19 @@ html, body {
 		outline: none;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	}
+	&.root-modal {
+		overflow: hidden;
+		-webkit-overflow-scrolling: auto;
+		ul, div {
+			overflow: hidden;
+			-webkit-overflow-scrolling: auto;
+		}
+		.screen {
+			bottom: 0;
+			-webkit-overflow-scrolling: auto;
+			overflow: hidden;
+		}
+	}
 }
 
 .screen {
@@ -35,4 +48,80 @@ html, body {
 	width: 100%;
 	z-index: 1;
 	-webkit-overflow-scrolling: touch;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	background-color: fade(#000, 70%);
+	overflow: hidden;
+	.position-center-center;
+	.container {
+		width: 80%;
+		max-width: 500px;
+		min-height: 200px;
+		height: auto;
+		border-radius: 3px;
+		background-color: #FFF;
+		border: 10px solid fade(#000, 40%);
+		box-shadow: 0 5px 10px fade(#000, 30%);
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		padding: 0;
+		margin: 0;
+		position: relative;
+	}
+	.title {
+		position: relative;
+		h2 {
+			width: 100%;
+			background-color: fade(#000, 10%);
+			padding: 10px;
+			margin: 0;
+			font-family: @_font-helvetica;
+			font-size: 18px;
+		}
+		button {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 45px;
+			height: 45px;
+			border: 0px none;
+			background-color: transparent;
+			font-size: 24px;
+		}
+	}
+	.content {
+		margin-bottom: 45px;
+		width: 100%;
+		-webkit-overflow-scrolling: touch;
+		overflow: visible;
+		padding: 10px;
+	}
+	.footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 55px;
+		width: 100%;
+		padding: 10px;
+		button, span {
+			float: right;
+			display: block;
+		}
+		button {
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		span {
+			line-height: 35px;
+			margin: 0 20px;
+			font-size: 12px;
+		}
+	}
 }

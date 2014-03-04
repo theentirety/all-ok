@@ -15,10 +15,21 @@ function Auth(app) {
 	auth.currentUser = ko.observable();
 	auth.errorMessage = ko.observable('');
 	auth.signUpMode = ko.observable(false);
+	auth.isAdmin = ko.observable(false);
 
 	var currentUser = Parse.User.current();
 	if (currentUser) {
 		auth.currentUser(currentUser);
+	}
+
+	auth.init = function() {
+		Parse.Cloud.run('checkAdminStatus', {}, {
+			success: function(isAdmin) {
+				auth.isAdmin(isAdmin);
+			}, error: function(error) {
+				console.log(error);
+			}
+		});
 	}
 
 	auth.resetError = function() {
@@ -84,6 +95,10 @@ function Auth(app) {
 			Parse.User.logIn(username, password, {
 				success: function(user) {
 					auth.currentUser(user);
+					app.myViewModel.selectProject.init();
+					if (user.attributes.isAdmin) {
+						auth.isAdmin(true);
+					}
 				},
 				error: function(user, error) {
 					// The login failed. Check error to see why.
@@ -100,7 +115,6 @@ function Auth(app) {
 	}
 
 	auth.showSignUp = function() {
-		console.log('asdf')
 		auth.errorMessage('');
 		if (auth.signUpMode()) {
 			auth.signUpMode(false);
@@ -120,6 +134,8 @@ function Auth(app) {
 				return error.message.charAt(0).toUpperCase() + error.message.slice(1) + '.';
 		}
 	}
+
+	auth.init();
 
 	return self;
 }

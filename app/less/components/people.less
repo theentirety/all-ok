@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Rate Week Stylesheet
-   rate-week.less
+   People Stylesheet
+   people.less
    ========================================================================== */
 
-#rate-week {
+#people {
 	.page-header {
 		position: fixed;
 		overflow: hidden;
@@ -34,14 +34,6 @@
 				padding: 5px;
 
 			}
-		}
-		.back-button {
-			width: 45px;
-			height: 45px;
-			border: 0px none;
-			background-color: transparent;
-			float: left;
-			font-size: 30px;
 		}
 	}
 	.group-type {
@@ -77,14 +69,14 @@
 			}
 		}
 	}
-	.projects {
+	.people {
 		list-style: none;
 		margin: 0 10px;
 		padding: 0;
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
 		z-index: 1;
-		padding-top: 120px;
+		padding-top: 85px;
 		li {
 			margin-bottom: 1px;
 			position: relative;
@@ -93,19 +85,8 @@
 			span {
 				line-height: 55px;
 			}
-			&.zero {
-				.percent {
-					color: fade(#000, 20%);
-				}
-				.percentage {
-					margin-left: 0;
-				}
-				.percentage-container {
-					background-color: fade(#000, 5%);
-				}
-			}
 		}
-		.name {
+		.bar {
 			font-family: @_font-helvetica-light;
 			position: absolute;
 			z-index: 1;
@@ -115,15 +96,50 @@
 				font-size: 21px;
 				text-align: center;
 			}
-			.project {
+			.name {
 				padding-left: 10px;
 				font-size: 18px;
 			}
 		}
 		.percentage {
 			height: 100%;
-			background-color: fade(#D0D102, 100%);
-			border-left: 1px solid #FFF;
+			float: left;
+			.projectColor(@percent) {
+				background-color: fade(#D0D102, @percent);
+			}
+			&:nth-child(0) {
+				.projectColor(100);
+			}
+			&:nth-child(1) {
+				.projectColor(90);
+			}
+			&:nth-child(2) {
+				.projectColor(80);
+			}
+			&:nth-child(3) {
+				.projectColor(70);
+			}
+			&:nth-child(4) {
+				.projectColor(60);
+			}
+			&:nth-child(5) {
+				.projectColor(50);
+			}
+			&:nth-child(6) {
+				.projectColor(40);
+			}
+			&:nth-child(7) {
+				.projectColor(30);
+			}
+			&:nth-child(8) {
+				.projectColor(20);
+			}
+			&:nth-child(9) {
+				.projectColor(30);
+			}
+			&:nth-child(10) {
+				.projectColor(20);
+			}
 		}
 		.percentage-container {
 			width: 100%;
@@ -132,10 +148,5 @@
 			position: relative;
 			background-color: fade(#D0D102, 20%);
 		}
-	}
-	.internal {
-		background: url(
-			data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIUlEQVQIW2NkQAL///9PY4TxwRxGxllgARgHxGZE5oAEAPm3D2gneMVNAAAAAElFTkSuQmCC
-		) repeat;
 	}
 }

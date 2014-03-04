@@ -1,0 +1,73 @@
+var _ = require('underscore');
+
+// getProjects retrieves the list of projects from the database
+Parse.Cloud.define('getProjects', function(request, response) {
+	var currentUser = Parse.User.current();
+	if (currentUser) {
+		var query = new Parse.Query('Projects');
+		query.ascending('company', 'name');
+		query.find({
+			success: function(projects) {
+				response.success(projects);
+			},
+			error: function(error) {
+				response.error(error);
+			}
+		});
+	} else {
+		response.error('You must be logged in with admin permissions to add projects.');
+	}
+});
+
+// getUniqueCompanyNames retrieves the sorted list of project names from the database
+Parse.Cloud.define('getUniqueCompanyNames', function(request, response) {
+	var currentUser = Parse.User.current();
+	if (currentUser) {
+		var query = new Parse.Query('Projects');
+		query.ascending('company');
+		query.find({
+			success: function(projects) {
+				var justNames = [];
+				var projectsLength = projects.length;
+				for (var i = 0; i < projectsLength; i++) {
+					justNames.push(projects[i].attributes.company);
+				}
+				var uniques = _.uniq(justNames, true);
+				response.success(uniques);
+			},
+			error: function(error) {
+				response.error(error);
+			}
+		});
+	} else {
+		response.error('You must be logged in with admin permissions to add projects.');
+	}
+});
+
+// saveProject adds a new project to the database
+Parse.Cloud.define('saveProject', function(request, response) {
+	var data = request.params;
+	if (data.company.length <= 0 || data.project.length <=0) {
+		response.error('Please enter a company and project.');
+	}
+	var currentUser = Parse.User.current();
+	if (currentUser) {
+		var Projects = Parse.Object.extend("Projects");
+		var project = new Projects();
+
+		project.set("company", data.company);
+		project.set("name", data.project);
+		project.set("archived", false);
+
+		project.save(null, {
+			success: function(project) {
+				response.success(project);
+			},
+			error: function(error) {
+				response.error(error);
+			}
+		});
+	} else {
+		response.error('You must be logged in with admin permissions to add projects.');
+	}
+});

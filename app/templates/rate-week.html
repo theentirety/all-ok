@@ -1,23 +1,30 @@
-<!-- ko if: auth.currentUser -->
-<div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1">
+<!-- ko if: auth.currentUser() && (header.activePage() == 0 || header.activePage() == 1) -->
+<div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
 	<div class="page-header">
-		<h1>Week of</h1>
-		<div class="btn-group" data-bind="foreach: rateWeek.weeks">
+		<!-- ko if: people.showDetails -->
+		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
+		<!-- /ko -->
+		<h1 data-bind="text: people.showDetails() ? people.activePerson().name : 'Week starting'"></h1>
+		<div class="group-type btn-group btn-group-xs" data-bind="tap: rateWeek.toggleView">
+			<button type="button" class="btn btn-default" data-bind="css: { active: rateWeek.viewType() == 'hours' }">h</button>
+			<button type="button" class="btn btn-default" data-bind="css: { active: rateWeek.viewType() == 'percent' }">%</button>
+		</div>
+		<div class="group-weeks btn-group" data-bind="foreach: rateWeek.weeks">
 			<button type="button" class="btn btn-default" data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index() }">
 				<span data-bind="text: date"></span>
-				<div class="total" data-bind="text: total() + '%', css: { over: $data.total() > 100 }"></div>
+				<div class="total" data-bind="text: total() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1) + ($parent.rateWeek.viewType() == 'hours' ? 'h' : '%'), css: { over: $data.total() > 100 }"></div>
 			</button>
 		</div>
 	</div>
-	<ol data-bind="foreach: selectProject.allProjects, swipe: rateWeek.scroll" class="projects">
-		<!-- ko if: $data.active() -->
-		<li class="project" data-bind="css: { 'internal': $data.type == 'internal', zero: $data.percentage()[$parent.rateWeek.activeWeek()].value() == 0 }, drag: $parent.rateWeek.drag">
+	<ol data-bind="foreach: selectProject.allProjects" class="projects">
+		<!-- ko if: $data.attributes.active() -->
+		<li class="project" data-bind="css: { 'internal': $data.attributes.company == 'Internal', zero: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() == 0 }, drag: $parent.rateWeek.drag">
 			<div class="name">
-				<span class="percent" data-bind="text: percentage()[$parent.rateWeek.activeWeek()].value() + '%'"></span>
-				<span data-bind="text: name"></span>
+				<span class="percent" data-bind="text: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1) + ($parent.rateWeek.viewType() == 'hours' ? 'h' : '%')"></span>
+				<span class="project" data-bind="text: attributes.name"></span>
 			</div>
 			<div class="percentage-container">
-				<div class="percentage" data-bind="style: { width: $data.percentage()[$parent.rateWeek.activeWeek()].value() + '%' }"></div>
+				<div class="percentage" data-bind="style: { width: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() + '%' }"></div>
 			</div>
 		</li>
 		<!-- /ko -->
