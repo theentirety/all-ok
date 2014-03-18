@@ -2,27 +2,22 @@
 <div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
 	<div class="page-header">
 		<h1>Select projects</h1>
-		<div class="group-type btn-group btn-group-xs">
-			<button class="add btn btn-default" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"> Add</span></button>
-		</div>
-		<div class="group-type btn-group btn-group-xs" data-bind="tap: selectProject.toggleView">
-			<button type="button" class="btn btn-default" data-bind="css: { active: selectProject.viewType() == 'all' }">all</button>
-			<button type="button" class="btn btn-default" data-bind="css: { active: selectProject.viewType() == 'selected' }"><span class="fa fa-check"></span></button>
-		</div>
+		<button class="add" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"></span></button>
+		<!-- <div class="toggle" data-bind="tap: selectProject.toggleView">
+			<button data-bind="css: { active: selectProject.viewType() == 'all' }">all</button>
+			<button data-bind="css: { active: selectProject.viewType() == 'selected' }"><span class="fa fa-check"></span></button>
+		</div> -->
 	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
-				<!-- ko if: ($data.attributes.active() || $parent.selectProject.viewType() == 'all') && !$data.attributes.archived -->
-				<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'Internal' }, tap: $parent.selectProject.toggleProject">
-					<span class="name" data-bind="text: (attributes.company == 'Internal' ? 'Internal' : attributes.company) + ':'"></span>
-					<span class="name" data-bind="text: attributes.name"></span>
-					<span class="check fa fa-check" data-bind="visible: attributes.active"></span>
-				</li>
-				<!-- /ko -->
-			</ul>
-		</div>
-	</div>
+	<ul data-bind="foreach: selectProject.allProjects, dragdown: selectProject.dragRefresh, drag: selectProject.startRefreshDrag" class="all-projects">
+		<!-- ko if: ($data.attributes.active() || $parent.selectProject.viewType() == 'all') && !$data.attributes.archived -->
+		<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'Internal' }, tap: $parent.selectProject.toggleProject">
+			<span class="company" data-bind="text: (attributes.company == 'Internal' ? 'Internal' : attributes.company) + ':'"></span>
+			<span class="project" data-bind="text: attributes.name"></span>
+			<span class="check fa fa-check" data-bind="visible: attributes.active"></span>
+		</li>
+		<!-- /ko -->
+	</ul>
+	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 </div>
 <div class="modal add-project" data-bind="fadeVisible: selectProject.isAddMode">
 	<div class="container">
@@ -51,4 +46,4 @@
 		</div>
 	</div>
 </div>
-<!-- /ko -->
+<!-- /ko

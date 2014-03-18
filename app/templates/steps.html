@@ -5,5 +5,8 @@
 		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
 	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-chevron-right right"></button>
+	<div class="group-type btn-group btn-group" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1, tap: steps.save">
+		<button type="button" class="save btn btn-default">Done</button>
+	</div>
 </div>
 <!-- /ko -->

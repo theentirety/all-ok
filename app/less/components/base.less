@@ -22,32 +22,36 @@ html, body {
 	-webkit-tap-highlight-color: transparent;
 
 	outline: none;
-	button, input {
+	button, input, textarea {
 		outline: none;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		-webkit-appearance: none;
 	}
-	&.root-modal {
+	&.root-modal, &.root-menu {
 		overflow: hidden;
 		-webkit-overflow-scrolling: auto;
-		ul, div {
-			overflow: hidden;
-			-webkit-overflow-scrolling: auto;
-		}
 		.screen {
 			bottom: 0;
 			-webkit-overflow-scrolling: auto;
 			overflow: hidden;
+			ul, div {
+				overflow: hidden;
+				-webkit-overflow-scrolling: auto;
+			}
 		}
 	}
 }
 
 .screen {
 	position: absolute;
-	top: 50px;
+	top: 65px;
 	padding-bottom: 50px;
 	width: 100%;
 	z-index: 1;
 	-webkit-overflow-scrolling: touch;
+	// -webkit-transition: all 0.25s ease-in-out;
+	// -moz-transition: all 0.25s ease-in-out;
+	// transition: all 0.25s ease-in-out;
 }
 
 .modal {
@@ -122,6 +126,50 @@ html, body {
 			line-height: 35px;
 			margin: 0 20px;
 			font-size: 12px;
+		}
+	}
+}
+
+.toggle {
+	background-color: #1a1d1f;
+	color: #31363a;
+	border-radius: 5px;
+	padding: 3px;
+	margin: 5px;
+	button {
+		min-width: 40px;
+		overflow: hidden;
+		line-height: 18px;
+		font-family: Arial;
+		height: 28px;
+		margin: 0;
+		border: 0px none;
+		font-size: 18px;
+		float: left;
+		border-radius: 3px;
+		background-color: transparent;
+		-webkit-transition: all 0.25s ease-in-out;
+		-moz-transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;
+		&.active {
+			background-color: #31363a;
+			color: #b0b5ba;
+		}
+	}
+}
+
+.toggle-weeks {
+	width: 102%;
+	margin-left: -1%;
+	button {
+		background-color: #31363a;
+		margin: 0;
+		border: 0px none;
+		width: 33%;
+		float: left;
+		padding: 0;
+		&.active {
+			background-color: #FFF;
 		}
 	}
 }

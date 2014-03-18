@@ -62,26 +62,58 @@ function RateWeek(app) {
 	]);
 
 	rateWeek.drag = function(item, event) {
-		var startX = event.gesture.startEvent.center.pageX;
-		if (rateWeek.registerMouseX() != startX) {
-			rateWeek.registerMouseX(startX);
-			rateWeek.registerStartPercentage(item.attributes.percentage()[rateWeek.activeWeek()].value());
-		}
-		var diff = (event.gesture.deltaX / rateWeek.registerRatio()) * 100;
-		var newPercentage = Math.floor((diff + rateWeek.registerStartPercentage()) / 5) * 5;
+		var direction = event.gesture.direction;
+		if (!app.myViewModel.people.showDetails() && (direction == 'left' || direction == 'right')) {
+			var startX = event.gesture.startEvent.center.pageX;
+			if (rateWeek.registerMouseX() != startX) {
+				rateWeek.registerMouseX(startX);
+				rateWeek.registerStartPercentage(item.attributes.percentage()[rateWeek.activeWeek()].value());
+			}
+			var diff = (event.gesture.deltaX / rateWeek.registerRatio()) * 150;
+			var newPercentage = Math.floor((diff + rateWeek.registerStartPercentage()) / 5) * 5;
 
-		if (newPercentage > 0 && newPercentage <= 100) {
-			item.attributes.percentage()[rateWeek.activeWeek()].value(newPercentage);
-		} else if (newPercentage > 100) {
-			item.attributes.percentage()[rateWeek.activeWeek()].value(100);
-		} else {
-			item.attributes.percentage()[rateWeek.activeWeek()].value(0);
+			if (newPercentage > 0 && newPercentage <= 150) {
+				item.attributes.percentage()[rateWeek.activeWeek()].value(newPercentage);
+			} else if (newPercentage > 150) {
+				item.attributes.percentage()[rateWeek.activeWeek()].value(150);
+			} else {
+				item.attributes.percentage()[rateWeek.activeWeek()].value(0);
+			}
 		}
-
 	}
 
 	rateWeek.selectWeek = function(index) {
 		rateWeek.activeWeek(index);
+	}
+
+	rateWeek.takePicture = function() {
+		navigator.camera.getPicture(rateWeek.setPicture, function() {
+			// fail
+			alert('Oops. We couldn\'t access your camera.');
+		}, { 
+			quality: 100, 
+			allowEdit: true, 
+			destinationType: navigator.camera.DestinationType.DATA_URL,
+			encodingType: Camera.EncodingType.PNG,
+			targetWidth: 100,
+			targetHeight: 100,
+			correctOrientation: true,
+			cameraDirection: Camera.Direction.FRONT
+		});
+	}
+
+	rateWeek.setPicture = function(imageData) {
+		$('.avatar').removeClass('fa-camera').css('background-image', 'url(data:image/png;base64,' + imageData + ')');
+		Parse.Cloud.run('updateAvatar', {
+			avatar: imageData
+		}, {
+			success: function(user) {
+				alert('Avatar successfully saved.')
+			}, error: function(error) {
+				$('.avatar').addClass('fa-camera');
+				console.log('Oops. We messed up. Please try again.');
+			}
+		});
 	}
 
 	rateWeek.toggleView = function() {

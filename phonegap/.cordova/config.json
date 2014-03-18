@@ -1,1 +1,14 @@
-{"lib":{"www":{"id":"phonegap","version":"3.3.0","uri":"https://github.com/phonegap/phonegap-app-hello-world/archive/3.3.0.tar.gz"}},"id":"com.intuitivecompany.allocate","name":"allocate","phonegap":{"id":792004}}
+{
+    "lib": {
+        "www": {
+            "id": "phonegap",
+            "version": "3.4.0",
+            "uri": "https://github.com/phonegap/phonegap-app-hello-world/archive/3.4.0.tar.gz"
+        }
+    },
+    "id": "com.intuitivecompany.allocate",
+    "name": "allocate",
+    "phonegap": {
+        "id": 792004
+    }
+}

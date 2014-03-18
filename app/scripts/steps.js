@@ -20,12 +20,12 @@ function Steps(app) {
 		},
 		{
 			stepNumber: 1,
-			stepName: 'selectProject'
+			stepName: 'rateWeek'
+		},
+		{
+			stepNumber: 2,
+			stepName: 'notes'
 		}
-		// {
-		// 	stepNumber: 2,
-		// 	stepName: 'selectProject'
-		// },
 		// {
 		// 	stepNumber: 3,
 		// 	stepName: 'selectProject'
@@ -37,11 +37,13 @@ function Steps(app) {
 	// });
 
 	steps.changeStep = function(item) {
+		app.myViewModel.header.close();
 		steps.currentStep(item.stepNumber);
 		// app.myViewModel.rateProject.initProject();
 	}
 
 	steps.nextStep = function(direction) {
+		app.myViewModel.header.close();
 		steps.currentStep(steps.currentStep() + direction);
 		// app.myViewModel.rateProject.initProject();
 	}

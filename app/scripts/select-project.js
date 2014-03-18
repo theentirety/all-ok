@@ -17,6 +17,7 @@ function SelectProject(app) {
 	selectProject.isAddMode = ko.observable(false);
 	selectProject.uniqueCompanyNames = ko.observableArray();
 	selectProject.filteredProjectList = ko.observableArray();
+	selectProject.isRefreshDragging = ko.observable(false);
 
 	selectProject.getProjects = function() {
 		Parse.Cloud.run('getProjects', {}, {
@@ -27,6 +28,11 @@ function SelectProject(app) {
 					projects[i].attributes.percentage = ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }]);
 					selectProject.allProjects.push(projects[i]);
 				}
+
+				$('#select-project .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
+				$('#select-project .all-projects').animate({
+					marginTop: 0
+				}, 100);
 			}, error: function(error) {
 				console.log(error);
 			}
@@ -109,8 +115,41 @@ function SelectProject(app) {
 				// alert(error)
 				console.log(error);
 			}
-		});
-		
+		});	
+	}
+
+	selectProject.dragRefresh = function(item, event) {
+		if (selectProject.isRefreshDragging()) {
+			var top = $(document).scrollTop();
+			var delta = Math.floor(event.gesture.distance);
+			if (top == 0 && delta > 30) {
+				if (delta > 100) delta = 100;
+				$('#select-project .all-projects').css('margin-top', delta - 30);
+				if (delta >= 100) {
+					$('#select-project .refresh').html('<span class="fa fa-arrow-circle-up"></span>Release to refresh');
+				}
+			}
+		}
+	}
+
+	selectProject.startRefreshDrag = function(item, event) {
+		if (!selectProject.isRefreshDragging() && !app.myViewModel.header.isOpen()) {
+			selectProject.isRefreshDragging(true);
+			$(event.gesture.target).one('dragend', function(event) {
+				selectProject.isRefreshDragging(false);
+				var delta = parseInt($('#select-project .all-projects').css('margin-top'));
+
+				if (delta >= 70) {
+					selectProject.getProjects();
+					$('#select-project .refresh').html('<span class="fa fa-refresh fa-spin"></span>Refreshing...');
+				} else {
+					$('#select-project .all-projects').animate({
+						marginTop: 0
+					}, 100);
+				}
+			})
+		}
+
 	}
 
 	selectProject.init();

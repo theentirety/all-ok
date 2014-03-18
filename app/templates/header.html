@@ -1,18 +1,18 @@
 <!-- ko if: auth.currentUser -->
-<div id="header" class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle fa fa-bars" data-toggle="collapse" data-target=".navbar-collapse"></button>
-			<span class="logo" data-bind="event: { touchend: auth.scrollTop }"><img src="svg/logo.svg" /></span>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right" data-bind="foreach: header.pages">
-				<li data-bind="css: { active: $parent.header.activePage() == $index() }, tap: function() { $parent.header.goToPage($index()) }"><a href="#" data-bind="text: display"></a></li>
-				<!-- ko if: ($index() + 1) == $parent.header.pages().length -->
-				<li><button class="btn btn-default navbar-btn" data-bind="tap: $parent.header.logout">Log out</button></li>
-				<!-- /ko -->
-			</ul>
-		</div><!--/.nav-collapse -->
-	</div><!--/.container-fluid -->
+<div id="header" role="navigation" data-bind="drag: header.dragMenuStart, dragdown: header.dragMenu, dragup: header.dragMenu">
+	<div class="logo">
+		<div class="handle"></div>
+	</div>
+	<div class="menu">
+		<button class="logout" data-bind="tap: header.logout">Log out</button>
+		<ul class="nav" data-bind="foreach: header.pages">
+			<li data-bind="css: { active: $parent.header.activePage() == $index() }, tap: function() { $parent.header.goToPage($index()) }">
+				<button>
+					<span data-bind="attr: { class: 'icon ' + $data.icon }"></span>
+					<span data-bind="text: display"></span>
+				</button>
+			</li>
+		</ul>
+	</div>
 </div>
 <!-- /ko -->

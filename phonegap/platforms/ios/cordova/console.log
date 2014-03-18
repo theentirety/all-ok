@@ -335,3 +335,180 @@ Mar  3 15:48:26 Macintosh-2.local allocate[4284] <Error>: CGContextSetBlendMode:
 2014-03-03 16:05:37.680 allocate[9649:80b] Unlimited access to network resources
 2014-03-03 16:05:37.800 allocate[9649:80b] Resetting plugins due to page load.
 2014-03-03 16:05:38.085 allocate[9649:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-04 10:17:37.411 allocate[14231:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-04 10:17:37.421 allocate[14231:80b] Unlimited access to network resources
+2014-03-04 10:17:37.521 allocate[14231:80b] Resetting plugins due to page load.
+2014-03-04 10:17:37.875 allocate[14231:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-07 15:45:06.244 allocate[35828:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-07 15:45:06.252 allocate[35828:80b] Unlimited access to network resources
+2014-03-07 15:45:06.368 allocate[35828:80b] Resetting plugins due to page load.
+2014-03-07 15:45:06.801 allocate[35828:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-07 15:54:08.278 allocate[36611:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-07 15:54:08.288 allocate[36611:80b] Unlimited access to network resources
+2014-03-07 15:54:08.404 allocate[36611:80b] Resetting plugins due to page load.
+2014-03-07 15:54:08.825 allocate[36611:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+Terminating in response to SpringBoard's termination.
+2014-03-09 16:20:21.010 allocate[40323:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:20:21.021 allocate[40323:80b] Unlimited access to network resources
+2014-03-09 16:20:21.130 allocate[40323:80b] Resetting plugins due to page load.
+2014-03-09 16:20:21.516 allocate[40323:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 16:23:33.817 allocate[41095:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:23:33.827 allocate[41095:80b] Unlimited access to network resources
+2014-03-09 16:23:33.942 allocate[41095:80b] Resetting plugins due to page load.
+2014-03-09 16:23:34.234 allocate[41095:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 16:32:59.094 allocate[41885:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:32:59.101 allocate[41885:80b] Unlimited access to network resources
+2014-03-09 16:32:59.236 allocate[41885:80b] Resetting plugins due to page load.
+2014-03-09 16:32:59.470 allocate[41885:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 16:34:23.435 allocate[42647:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:34:23.446 allocate[42647:80b] Unlimited access to network resources
+2014-03-09 16:34:23.578 allocate[42647:80b] Resetting plugins due to page load.
+2014-03-09 16:34:23.824 allocate[42647:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 16:38:42.081 allocate[43420:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:38:42.089 allocate[43420:80b] Unlimited access to network resources
+2014-03-09 16:38:42.229 allocate[43420:80b] Resetting plugins due to page load.
+2014-03-09 16:38:42.491 allocate[43420:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 16:40:45.767 allocate[44180:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:40:45.774 allocate[44180:80b] Unlimited access to network resources
+2014-03-09 16:40:45.882 allocate[44180:80b] Resetting plugins due to page load.
+2014-03-09 16:40:46.149 allocate[44180:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 16:49:32.672 allocate[44966:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 16:49:32.682 allocate[44966:80b] Unlimited access to network resources
+2014-03-09 16:49:32.814 allocate[44966:80b] Resetting plugins due to page load.
+2014-03-09 16:49:33.063 allocate[44966:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 17:19:39.345 allocate[45845:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 17:19:39.352 allocate[45845:80b] Unlimited access to network resources
+2014-03-09 17:19:39.470 allocate[45845:80b] Resetting plugins due to page load.
+2014-03-09 17:19:39.770 allocate[45845:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 18:19:53.127 allocate[46783:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 18:19:53.134 allocate[46783:80b] Unlimited access to network resources
+2014-03-09 18:19:53.256 allocate[46783:80b] Resetting plugins due to page load.
+2014-03-09 18:19:53.544 allocate[46783:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 18:20:47.420 allocate[47539:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 18:20:47.430 allocate[47539:80b] Unlimited access to network resources
+2014-03-09 18:20:47.541 allocate[47539:80b] Resetting plugins due to page load.
+2014-03-09 18:20:47.776 allocate[47539:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 18:44:15.602 allocate[48366:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 18:44:15.609 allocate[48366:80b] Unlimited access to network resources
+2014-03-09 18:44:15.713 allocate[48366:80b] Resetting plugins due to page load.
+2014-03-09 18:44:15.954 allocate[48366:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 19:09:17.670 allocate[49192:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 19:09:17.677 allocate[49192:80b] Unlimited access to network resources
+2014-03-09 19:09:17.806 allocate[49192:80b] Resetting plugins due to page load.
+2014-03-09 19:09:17.969 allocate[49192:2c07] ERROR: unable to get the receiver data from the DB!
+2014-03-09 19:09:18.141 allocate[49192:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 19:10:33.463 allocate[49956:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 19:10:33.473 allocate[49956:80b] Unlimited access to network resources
+2014-03-09 19:10:33.609 allocate[49956:80b] Resetting plugins due to page load.
+2014-03-09 19:10:33.791 allocate[49956:5e03] ERROR: unable to get the receiver data from the DB!
+2014-03-09 19:10:33.890 allocate[49956:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+2014-03-09 19:11:37.650 allocate[51867:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-09 19:11:37.660 allocate[51867:80b] Unlimited access to network resources
+2014-03-09 19:11:37.786 allocate[51867:80b] Resetting plugins due to page load.
+2014-03-09 19:11:37.963 allocate[51867:4a13] ERROR: unable to get the receiver data from the DB!
+2014-03-09 19:11:38.056 allocate[51867:80b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C0B0E59F-4EAC-410E-A317-146CEE0B14C6/allocate.app/www/index.html
+Terminating in response to SpringBoard's termination.
+2014-03-12 09:56:45.116 allocate[10217:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 09:56:45.126 allocate[10217:70b] Unlimited access to network resources
+2014-03-12 09:56:45.248 allocate[10217:70b] Resetting plugins due to page load.
+2014-03-12 09:56:45.598 allocate[10217:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/CD346EBD-0E06-4AAE-8E9B-88B8B304D3C9/allocate.app/www/index.html
+2014-03-12 11:26:36.891 allocate[11179:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:26:36.897 allocate[11179:70b] Unlimited access to network resources
+2014-03-12 11:26:36.940 allocate[11179:70b] Resetting plugins due to page load.
+2014-03-12 11:26:37.174 allocate[11179:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/CD346EBD-0E06-4AAE-8E9B-88B8B304D3C9/allocate.app/www/index.html
+2014-03-12 11:27:31.120 allocate[11947:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:27:31.128 allocate[11947:70b] Unlimited access to network resources
+2014-03-12 11:27:31.238 allocate[11947:70b] Resetting plugins due to page load.
+2014-03-12 11:27:31.543 allocate[11947:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/CD346EBD-0E06-4AAE-8E9B-88B8B304D3C9/allocate.app/www/index.html
+2014-03-12 11:27:58.523 allocate[12727:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:27:58.531 allocate[12727:70b] Unlimited access to network resources
+2014-03-12 11:27:58.652 allocate[12727:70b] Resetting plugins due to page load.
+2014-03-12 11:27:59.014 allocate[12727:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/CD346EBD-0E06-4AAE-8E9B-88B8B304D3C9/allocate.app/www/index.html
+2014-03-12 11:30:07.199 allocate[13467:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:30:07.205 allocate[13467:70b] Unlimited access to network resources
+2014-03-12 11:30:07.249 allocate[13467:70b] Resetting plugins due to page load.
+2014-03-12 11:30:07.497 allocate[13467:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/CD346EBD-0E06-4AAE-8E9B-88B8B304D3C9/allocate.app/www/index.html
+2014-03-12 11:30:56.068 allocate[14183:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:30:56.074 allocate[14183:70b] Unlimited access to network resources
+2014-03-12 11:30:56.119 allocate[14183:70b] Resetting plugins due to page load.
+2014-03-12 11:30:56.371 allocate[14183:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/CD346EBD-0E06-4AAE-8E9B-88B8B304D3C9/allocate.app/www/index.html
+2014-03-12 11:31:46.360 allocate[14901:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:31:46.368 allocate[14901:70b] Unlimited access to network resources
+2014-03-12 11:31:46.496 allocate[14901:70b] Resetting plugins due to page load.
+2014-03-12 11:31:46.813 allocate[14901:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-12 11:34:15.898 allocate[15630:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:34:15.904 allocate[15630:70b] Unlimited access to network resources
+2014-03-12 11:34:15.948 allocate[15630:70b] Resetting plugins due to page load.
+2014-03-12 11:34:16.228 allocate[15630:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-12 11:34:41.306 allocate[16349:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:34:41.312 allocate[16349:70b] Unlimited access to network resources
+2014-03-12 11:34:41.393 allocate[16349:70b] Resetting plugins due to page load.
+2014-03-12 11:34:41.690 allocate[16349:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-12 11:35:53.632 allocate[17066:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-12 11:35:53.639 allocate[17066:70b] Unlimited access to network resources
+2014-03-12 11:35:53.722 allocate[17066:70b] Resetting plugins due to page load.
+2014-03-12 11:35:53.988 allocate[17066:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-13 17:35:52.565 allocate[37204:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-13 17:35:52.572 allocate[37204:70b] Unlimited access to network resources
+2014-03-13 17:35:52.645 allocate[37204:70b] Resetting plugins due to page load.
+2014-03-13 17:35:52.980 allocate[37204:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-13 17:36:31.302 allocate[37923:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-13 17:36:31.308 allocate[37923:70b] Unlimited access to network resources
+2014-03-13 17:36:31.388 allocate[37923:70b] Resetting plugins due to page load.
+2014-03-13 17:36:31.595 allocate[37923:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:46:44.962 allocate[65537:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:46:44.969 allocate[65537:70b] Unlimited access to network resources
+2014-03-15 10:46:45.058 allocate[65537:70b] Resetting plugins due to page load.
+2014-03-15 10:46:45.325 allocate[65537:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:47:04.331 allocate[66256:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:47:04.338 allocate[66256:70b] Unlimited access to network resources
+2014-03-15 10:47:04.419 allocate[66256:70b] Resetting plugins due to page load.
+2014-03-15 10:47:04.609 allocate[66256:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:48:08.908 allocate[66977:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:48:08.915 allocate[66977:70b] Unlimited access to network resources
+2014-03-15 10:48:09.003 allocate[66977:70b] Resetting plugins due to page load.
+2014-03-15 10:48:09.211 allocate[66977:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:50:07.765 allocate[67704:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:50:07.772 allocate[67704:70b] Unlimited access to network resources
+2014-03-15 10:50:07.853 allocate[67704:70b] Resetting plugins due to page load.
+2014-03-15 10:50:08.050 allocate[67704:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:52:25.377 allocate[68439:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:52:25.384 allocate[68439:70b] Unlimited access to network resources
+2014-03-15 10:52:25.466 allocate[68439:70b] Resetting plugins due to page load.
+2014-03-15 10:52:25.664 allocate[68439:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:54:16.934 allocate[69165:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:54:16.941 allocate[69165:70b] Unlimited access to network resources
+2014-03-15 10:54:17.022 allocate[69165:70b] Resetting plugins due to page load.
+2014-03-15 10:54:17.215 allocate[69165:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:56:32.965 allocate[69897:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:56:32.971 allocate[69897:70b] Unlimited access to network resources
+2014-03-15 10:56:33.052 allocate[69897:70b] Resetting plugins due to page load.
+2014-03-15 10:56:33.253 allocate[69897:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:58:11.619 allocate[70619:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:58:11.626 allocate[70619:70b] Unlimited access to network resources
+2014-03-15 10:58:11.707 allocate[70619:70b] Resetting plugins due to page load.
+2014-03-15 10:58:11.902 allocate[70619:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 10:59:46.164 allocate[71344:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 10:59:46.170 allocate[71344:70b] Unlimited access to network resources
+2014-03-15 10:59:46.254 allocate[71344:70b] Resetting plugins due to page load.
+2014-03-15 10:59:46.448 allocate[71344:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 11:03:49.671 allocate[72085:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 11:03:49.678 allocate[72085:70b] Unlimited access to network resources
+2014-03-15 11:03:49.760 allocate[72085:70b] Resetting plugins due to page load.
+2014-03-15 11:03:49.958 allocate[72085:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 11:04:54.059 allocate[72806:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 11:04:54.066 allocate[72806:70b] Unlimited access to network resources
+2014-03-15 11:04:54.148 allocate[72806:70b] Resetting plugins due to page load.
+2014-03-15 11:04:54.363 allocate[72806:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 11:08:28.823 allocate[73546:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 11:08:28.830 allocate[73546:70b] Unlimited access to network resources
+2014-03-15 11:08:28.910 allocate[73546:70b] Resetting plugins due to page load.
+2014-03-15 11:08:29.109 allocate[73546:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-15 11:09:37.484 allocate[74265:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-15 11:09:37.490 allocate[74265:70b] Unlimited access to network resources
+2014-03-15 11:09:37.572 allocate[74265:70b] Resetting plugins due to page load.
+2014-03-15 11:09:37.764 allocate[74265:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E0D9ADD9-0D57-4F0B-88B5-C4E3091593B9/allocate.app/www/index.html
+2014-03-17 17:11:59.146 all-ok[15091:70b] Multi-tasking -> Device: YES, App: YES
+2014-03-17 17:11:59.154 all-ok[15091:70b] Unlimited access to network resources
+2014-03-17 17:11:59.293 all-ok[15091:70b] Resetting plugins due to page load.
+2014-03-17 17:11:59.533 all-ok[15091:70b] Finished load of: file:///Users/amartlage/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/8F2D010B-1F46-4865-BB3E-282A626FAEBF/all-ok.app/www/index.html

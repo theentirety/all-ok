@@ -1,20 +1,40 @@
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
-<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 3">
-	<h1>Any notes about the projects?</h1>
-	<div id="notes-accordion" class="panel-group container" data-bind="foreach: selectProject.allProjects">
-		<!-- ko if: $data.attributes.active() -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#notes-accordion" data-bind="attr: { href: '#notes-collapse-' + $index() }, text: name"></a>
-				</h4>
-			</div>
-			<div class="panel-collapse collapse" data-bind="attr: { id: 'notes-collapse-' + $index() }">
-				<div class="panel-body" onClick="this.contentEditable='true';">
-				</div>
-			</div>
-		</div>
+<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 2">
+	<div class="page-header">
+		<!-- ko if: people.showDetails -->
+		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
 		<!-- /ko -->
+		<div class="user">
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': auth.currentUser().attributes.avatar.length <= 0 }"></div>
+			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
+		</div>
+		<div class="toggle" data-bind="tap: rateWeek.toggleView">
+			<button data-bind="css: { active: rateWeek.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
+			<button data-bind="css: { active: rateWeek.viewType() == 'percent' }">%</button>
+		</div>
+	</div>
+	<div class="toggle-weeks" data-bind="foreach: rateWeek.weeks">
+		<button data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index(), over: $data.total() > 100, zero: $data.total() == 0 }">
+			<span class="date" data-bind="text: date"></span>
+			<div class="total">
+				<span class="number" data-bind="text: total() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="label" data-bind="text: ($parent.rateWeek.viewType() == 'hours' ? 'hr' : '%')"></span>
+			</div>
+		</button>
+	</div>
+	<div class="workload">
+		<h1>How's your workload?</h1>
+		<div class="options">
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button>
+			<button>5</button>
+		</div>
+	</div>
+	<div class="comments">
+		<h1>Anything to note?</h1>
+		<textarea></textarea>
 	</div>
 </div>
 <!-- /ko -->

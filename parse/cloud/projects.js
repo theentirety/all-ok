@@ -5,6 +5,9 @@ Parse.Cloud.define('getProjects', function(request, response) {
 	var currentUser = Parse.User.current();
 	if (currentUser) {
 		var query = new Parse.Query('Projects');
+		var email = currentUser.attributes.email;
+		email = email.substring(email.lastIndexOf('@'));
+		query.endsWith('creator', email);
 		query.ascending('company', 'name');
 		query.find({
 			success: function(projects) {
@@ -24,6 +27,9 @@ Parse.Cloud.define('getUniqueCompanyNames', function(request, response) {
 	var currentUser = Parse.User.current();
 	if (currentUser) {
 		var query = new Parse.Query('Projects');
+		var email = currentUser.attributes.email;
+		email = email.substring(email.lastIndexOf('@'));
+		query.endsWith('creator', email);
 		query.ascending('company');
 		query.find({
 			success: function(projects) {
@@ -55,9 +61,12 @@ Parse.Cloud.define('saveProject', function(request, response) {
 		var Projects = Parse.Object.extend("Projects");
 		var project = new Projects();
 
+		var email = currentUser.attributes.email;
+
 		project.set("company", data.company);
 		project.set("name", data.project);
 		project.set("archived", false);
+		project.set("creator", email);
 
 		project.save(null, {
 			success: function(project) {

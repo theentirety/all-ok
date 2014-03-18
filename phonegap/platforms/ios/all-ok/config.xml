@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.intuitivecompany.allocate" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.intuitivecompany.all-ok" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Hello Cordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -25,7 +25,9 @@
     <description>
         Let's make sure all the right people are in all the right places.
     </description>
-    <name>allocate</name>
+    <preference name="fullscreen" value="false" />
+    <preference name="ios-statusbarstyle" value="white-opaque" />
+    <name>all-ok</name>
     <description>
         Let's make sure all the right people are in all the right places.
     </description>
@@ -50,11 +52,18 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    <gap:plugin name="com.phonegap.plugin.statusbar" />
+    <gap:config-file parent="UIStatusBarHidden" platform="ios">
+        <true />
+    </gap:config-file>
+    <gap:config-file parent="UIViewControllerBasedStatusBarAppearance" platform="ios">
+        <false />
+    </gap:config-file>
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.3.0" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="false" />
+    <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
@@ -69,7 +78,9 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="AllowInlineMediaPlayback" value="yes" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="ios-statusbarstyle" value="white-opaque" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="UIViewControllerBasedStatusBarAppearance" value="false" />
+    <preference name="UIStatusBarHidden" value="true" />
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
     <icon gap:density="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />

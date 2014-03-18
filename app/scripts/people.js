@@ -20,65 +20,38 @@ function People(app) {
 	people.activePerson = ko.observable();
 	people.viewType = ko.observable('hours');
 	people.showDetails = ko.observable(false);
-
-	people.all = ko.observableArray([
-		{
-			name: 'Aaron Martlage',
-			id: '1293482934',
-			percentages: ko.observableArray([
-				32, 42, 2, 12
-			])
-		},
-		{
-			name: 'John Doe',
-			id: '1293482934',
-			percentages: ko.observableArray([
-				32, 42, 2, 12
-			])
-		},
-	]);
+	people.allPeople = ko.observableArray();
 
 	people.weeks = ko.observableArray([
 		{
-			date: ko.observable(moment(people.today).format('MMM D')),
-			total: ko.computed(function() {
-				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
-					var colValue = 0;
-					if (project.attributes.active()) {
-						colValue = project.attributes.percentage()[0].value();
-					}
-					return memo + colValue; 
-				}, 0);
-				return sum;
-			})
+			date: ko.observable(moment(people.today).format('MMM D'))
 		},
 		{
-			date: ko.observable(moment(people.today).add('days', 7).format('MMM D')),
-			total: ko.computed(function() {
-				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
-					var colValue = 0;
-					if (project.attributes.active()) {
-						colValue = project.attributes.percentage()[1].value();
-					}
-					return memo + colValue; 
-				}, 0);
-				return sum;
-			})
+			date: ko.observable(moment(people.today).add('days', 7).format('MMM D'))
 		},
 		{  
-			date: ko.observable(moment(people.today).add('days', 14).format('MMM D')),
-			total: ko.computed(function() {
-				var sum = _.reduce(app.myViewModel.selectProject.allProjects(), function(memo, project) {
-					var colValue = 0;
-					if (project.attributes.active()) {
-						colValue = project.attributes.percentage()[2].value();
-					}
-					return memo + colValue; 
-				}, 0);
-				return sum;
-			})
+			date: ko.observable(moment(people.today).add('days', 14).format('MMM D'))
 		}
 	]);
+
+	people.getPeople = function() {
+		Parse.Cloud.run('getPeople', {}, {
+			success: function(peopleList) {
+				people.allPeople([]);
+				var peopleLength = peopleList.length;
+				for (var i = 0; i < peopleLength; i++) {
+					peopleList[i].percentages = ko.observableArray();
+					people.allPeople.push(peopleList[i]);
+				}
+			}, error: function(error) {
+				console.log(error);
+			}
+		});
+	}
+
+	people.init = function() {
+		people.getPeople();
+	}
 
 	people.selectWeek = function(index) {
 		people.activeWeek(index);
@@ -97,6 +70,12 @@ function People(app) {
 		people.activePerson(item);
 		people.showDetails(true);
 	}
+
+	people.refresh = function() {
+		people.getPeople();
+	}
+
+	people.init();
 
 	return self;
 }

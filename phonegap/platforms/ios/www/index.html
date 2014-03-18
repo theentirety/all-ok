@@ -12,17 +12,17 @@
     <link rel="shortcut icon" href="favicon.png" />
   </head>
 
-  <body data-bind="css: { 'root-modal': $root.header.isModal }">
+  <body data-bind="css: { 'root-modal': $root.header.isModal, 'root-menu': $root.header.isOpen() || $root.header.isDragging() }">
     <!-- Gulp compiled html templates -->
     <!-- ko if: !auth.currentUser() -->
 <div id="auth">
 	<div>
-		<h1>allocate</h1>
+		<img src="svg/logo.svg" />
 		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
 		<form data-bind="submit: auth.signInUp">
-			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode">
-			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode">
-			<input name="auth_username" type="text" class="form-control" placeholder="Username" autocapitalize="off">
+			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode" autocapitalize="off" autocorrect="off">
+			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode" autocapitalize="on" autocorrect="off">
+			<input name="auth_username" type="text" class="form-control" placeholder="Username" autocapitalize="off" autocorrect="off">
 			<input name="auth_password" type="password" class="form-control" placeholder="Password">
 			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="fadeVisible: auth.signUpMode">
 			<button type="submit" class="btn btn-default navbar-btn" data-bind="text: (auth.signUpMode() ? 'Sign up' : 'Sign in')">Sign in</button> or <a data-bind="event: { touchend: auth.showSignUp }, text: (auth.signUpMode() ? 'sign in' : 'sign up')">Sign up</a>
@@ -31,97 +31,145 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser -->
-<div id="header" class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle fa fa-bars" data-toggle="collapse" data-target=".navbar-collapse"></button>
-			<span class="logo" data-bind="event: { touchend: auth.scrollTop }"><img src="svg/logo.svg" /></span>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right" data-bind="foreach: header.pages">
-				<li data-bind="css: { active: $parent.header.activePage() == $index() }, tap: function() { $parent.header.goToPage($index()) }"><a href="#" data-bind="text: display"></a></li>
-				<!-- ko if: ($index() + 1) == $parent.header.pages().length -->
-				<li><button class="btn btn-default navbar-btn" data-bind="tap: $parent.header.logout">Log out</button></li>
-				<!-- /ko -->
-			</ul>
-		</div><!--/.nav-collapse -->
-	</div><!--/.container-fluid -->
+<div id="header" role="navigation" data-bind="drag: header.dragMenuStart, dragdown: header.dragMenu, dragup: header.dragMenu">
+	<div class="logo">
+		<div class="handle"></div>
+	</div>
+	<div class="menu">
+		<button class="logout" data-bind="tap: header.logout">Log out</button>
+		<ul class="nav" data-bind="foreach: header.pages">
+			<li data-bind="css: { active: $parent.header.activePage() == $index() }, tap: function() { $parent.header.goToPage($index()) }">
+				<button>
+					<span data-bind="attr: { class: 'icon ' + $data.icon }"></span>
+					<span data-bind="text: display"></span>
+				</button>
+			</li>
+		</ul>
+	</div>
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
-<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 3">
-	<h1>Any notes about the projects?</h1>
-	<div id="notes-accordion" class="panel-group container" data-bind="foreach: selectProject.allProjects">
-		<!-- ko if: $data.attributes.active() -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#notes-accordion" data-bind="attr: { href: '#notes-collapse-' + $index() }, text: name"></a>
-				</h4>
-			</div>
-			<div class="panel-collapse collapse" data-bind="attr: { id: 'notes-collapse-' + $index() }">
-				<div class="panel-body" onClick="this.contentEditable='true';">
-				</div>
-			</div>
-		</div>
+<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 2">
+	<div class="page-header">
+		<!-- ko if: people.showDetails -->
+		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
 		<!-- /ko -->
+		<div class="user">
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': auth.currentUser().attributes.avatar.length <= 0 }"></div>
+			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
+		</div>
+		<div class="toggle" data-bind="tap: rateWeek.toggleView">
+			<button data-bind="css: { active: rateWeek.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
+			<button data-bind="css: { active: rateWeek.viewType() == 'percent' }">%</button>
+		</div>
+	</div>
+	<div class="toggle-weeks" data-bind="foreach: rateWeek.weeks">
+		<button data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index(), over: $data.total() > 100, zero: $data.total() == 0 }">
+			<span class="date" data-bind="text: date"></span>
+			<div class="total">
+				<span class="number" data-bind="text: total() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="label" data-bind="text: ($parent.rateWeek.viewType() == 'hours' ? 'hr' : '%')"></span>
+			</div>
+		</button>
+	</div>
+	<div class="workload">
+		<h1>How's your workload this week?</h1>
+		<div class="options">
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button>
+			<button>5</button>
+		</div>
+	</div>
+	<div class="comments">
+		<h1>Anything to note?</h1>
+		<textarea></textarea>
 	</div>
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && header.activePage() == 1 -->
 <div id="people" class="screen" data-bind="fadeVisible: !people.showDetails()">
 	<div class="page-header">
-		<h1>Week starting</h1>
-		<div class="group-type btn-group btn-group-xs" data-bind="tap: people.toggleView">
-			<button type="button" class="btn btn-default" data-bind="css: { active: people.viewType() == 'hours' }">h</button>
-			<button type="button" class="btn btn-default" data-bind="css: { active: people.viewType() == 'percent' }">%</button>
-		</div>
-		<div class="group-weeks btn-group" data-bind="foreach: people.weeks">
-			<button type="button" class="btn btn-default" data-bind="tap: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index() }">
-				<span data-bind="text: date"></span>
-			</button>
+		<h1>All People</h1>
+		<div class="toggle" data-bind="tap: people.toggleView">
+			<button data-bind="css: { active: people.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
+			<button data-bind="css: { active: people.viewType() == 'percent' }">%</button>
 		</div>
 	</div>
-	<ol data-bind="foreach: people.all" class="people">
+
+
+	<div class="toggle-weeks" data-bind="foreach: people.weeks">
+		<button data-bind="tap: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index() }">
+			<span class="date" data-bind="text: date"></span>
+		</button>
+	</div>
+
+
+	<ol data-bind="foreach: people.allPeople" class="people">
 		<li class="person" data-bind="tap: $parent.people.goToPerson">
+			<div class="name">
+				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
+				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.avatar + ')' }, css: { 'fa fa-user': typeof $data.attributes.avatar !== 'string' }"></div>
+				<span class="person" data-bind="text: attributes.displayName"></span>
+			</div>
+			<div class="percentage-container" data-bind="foreach: $data.percentages()">
+				<div class="percentage" data-bind="style: { width: $data + '%' }, text: $data"></div>
+			</div>
+
+
+
+
+
+<!-- 
 			<div class="bar">
-				<span class="percent" data-bind="text: _.reduce($data.attributes.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1) + ($parent.people.viewType() == 'hours' ? 'h' : '%')"></span>
-				<span class="name" data-bind="text: name"></span>
+				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1) + ($parent.people.viewType() == 'hours' ? 'h' : '%')"></span>
+				<span class="name" data-bind="text: attributes.displayName"></span>
 			</div>
 			<div class="percentage-container" data-bind="foreach: percentages">
 				<div class="percentage" data-bind="style: { width: $data + '%' }"></div>
-			</div>
+			</div> -->
 		</li>
 	</ol>
+	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && (header.activePage() == 0 || header.activePage() == 1) -->
 <div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
 	<div class="page-header">
 		<!-- ko if: people.showDetails -->
-		<button data-bind="tap: rateWeek.goBack">Back</button>
+		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
 		<!-- /ko -->
-		<h1>Week starting</h1>
-		<div class="group-type btn-group btn-group-xs" data-bind="tap: rateWeek.toggleView">
-			<button type="button" class="btn btn-default" data-bind="css: { active: rateWeek.viewType() == 'hours' }">h</button>
-			<button type="button" class="btn btn-default" data-bind="css: { active: rateWeek.viewType() == 'percent' }">%</button>
+		<div class="user">
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': auth.currentUser().attributes.avatar.length <= 0 }"></div>
+			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 		</div>
-		<div class="group-weeks btn-group" data-bind="foreach: rateWeek.weeks">
-			<button type="button" class="btn btn-default" data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index() }">
-				<span data-bind="text: date"></span>
-				<div class="total" data-bind="text: total() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1) + ($parent.rateWeek.viewType() == 'hours' ? 'h' : '%'), css: { over: $data.total() > 100 }"></div>
-			</button>
+		<div class="toggle" data-bind="tap: rateWeek.toggleView">
+			<button data-bind="css: { active: rateWeek.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
+			<button data-bind="css: { active: rateWeek.viewType() == 'percent' }">%</button>
 		</div>
+	</div>
+	<div class="toggle-weeks" data-bind="foreach: rateWeek.weeks">
+		<button data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index(), over: $data.total() > 100, zero: $data.total() == 0 }">
+			<span class="date" data-bind="text: date"></span>
+			<div class="total">
+				<span class="number" data-bind="text: total() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="label" data-bind="text: ($parent.rateWeek.viewType() == 'hours' ? 'hr' : '%')"></span>
+			</div>
+		</button>
 	</div>
 	<ol data-bind="foreach: selectProject.allProjects" class="projects">
 		<!-- ko if: $data.attributes.active() -->
-		<li class="project" data-bind="css: { 'internal': $data.attributes.company == 'intuitivecompany', zero: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() == 0 }, drag: $parent.rateWeek.drag">
+		<li class="project" data-bind="css: { 'internal': $data.attributes.company == 'Internal', zero: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() == 0 }, drag: $parent.rateWeek.drag">
 			<div class="name">
-				<span class="percent" data-bind="text: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1) + ($parent.rateWeek.viewType() == 'hours' ? 'h' : '%')"></span>
-				<span class="project" data-bind="text: attributes.name"></span>
+				<span class="percent" data-bind="text: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="label" data-bind="text: ($parent.rateWeek.viewType() == 'hours' ? 'hr' : '%')"></span>
+				<span class="company" data-bind="text: $data.attributes.company + ':'"></span>
+				<span class="project" data-bind="text: $data.attributes.name"></span>
 			</div>
-			<div class="percentage-container">
-				<div class="percentage" data-bind="style: { width: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() + '%' }"></div>
+			<div class="percentage" data-bind="style: { width: $data.attributes.percentage()[$parent.rateWeek.activeWeek()].value() * .666 + '%' }">
+				<div class="handle"></div>
 			</div>
 		</li>
 		<!-- /ko -->
@@ -132,27 +180,22 @@
 <div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
 	<div class="page-header">
 		<h1>Select projects</h1>
-		<div class="group-type btn-group btn-group-xs">
-			<button class="add btn btn-default" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"> Add</span></button>
-		</div>
-		<div class="group-type btn-group btn-group-xs" data-bind="tap: selectProject.toggleView">
-			<button type="button" class="btn btn-default" data-bind="css: { active: selectProject.viewType() == 'all' }">all</button>
-			<button type="button" class="btn btn-default" data-bind="css: { active: selectProject.viewType() == 'selected' }"><span class="fa fa-check"></span></button>
-		</div>
+		<button class="add" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"></span></button>
+		<!-- <div class="toggle" data-bind="tap: selectProject.toggleView">
+			<button data-bind="css: { active: selectProject.viewType() == 'all' }">all</button>
+			<button data-bind="css: { active: selectProject.viewType() == 'selected' }"><span class="fa fa-check"></span></button>
+		</div> -->
 	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<ul data-bind="foreach: selectProject.allProjects" class="all-projects">
-				<!-- ko if: $data.attributes.active() || $parent.selectProject.viewType() == 'all' -->
-				<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'intuitivecompany' }, tap: $parent.selectProject.toggleProject">
-					<span class="name" data-bind="text: (attributes.company == 'intuitivecompany' ? 'Internal' : attributes.company) + ':'"></span>
-					<span class="name" data-bind="text: attributes.name"></span>
-					<span class="check fa fa-check" data-bind="visible: attributes.active"></span>
-				</li>
-				<!-- /ko -->
-			</ul>
-		</div>
-	</div>
+	<ul data-bind="foreach: selectProject.allProjects, dragdown: selectProject.dragRefresh, drag: selectProject.startRefreshDrag" class="all-projects">
+		<!-- ko if: ($data.attributes.active() || $parent.selectProject.viewType() == 'all') && !$data.attributes.archived -->
+		<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'Internal' }, tap: $parent.selectProject.toggleProject">
+			<span class="company" data-bind="text: (attributes.company == 'Internal' ? 'Internal' : attributes.company) + ':'"></span>
+			<span class="project" data-bind="text: attributes.name"></span>
+			<span class="check fa fa-check" data-bind="visible: attributes.active"></span>
+		</li>
+		<!-- /ko -->
+	</ul>
+	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 </div>
 <div class="modal add-project" data-bind="fadeVisible: selectProject.isAddMode">
 	<div class="container">
@@ -164,7 +207,7 @@
 			<div class="typeahead">
 				<div class="input-group input-group-lg">
 					<!-- <span class="input-group-addon">Company</span> -->
-					<input class="project-typeahead-field form-control" type="text" data-bind="event: { keyup: selectProject.showTypeaheadResults }" autocapitalize="off" autocorrect="off" placeholder="Company">
+					<input class="project-typeahead-field form-control" type="text" data-bind="event: { keyup: selectProject.showTypeaheadResults }" autocapitalize="on" autocorrect="off" placeholder="Company">
 				</div>
 				<ul class="project-typeahead" data-bind="foreach: selectProject.filteredProjectList, visible: selectProject.filteredProjectList().length > 0">
 					<li data-bind="text: $data, tap: $parent.selectProject.selectProjectTypeahead"></li>
@@ -172,7 +215,7 @@
 			</div>
 			<div class="input-group input-group-lg">
 				<!-- <span class="input-group-addon">Project</span> -->
-				<input class="project-name-field form-control" type="text" autocorrect="off" placeholder="Project">
+				<input class="project-name-field form-control" type="text" autocapitalize="on" autocorrect="on" placeholder="Project">
 			</div>
 		</div>
 		<div class="footer">
@@ -181,7 +224,7 @@
 		</div>
 	</div>
 </div>
-<!-- /ko -->
+<!-- /ko
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
 <div id="steps">
 	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-chevron-left left"></button>
@@ -189,6 +232,9 @@
 		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
 	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-chevron-right right"></button>
+	<div class="group-type btn-group btn-group" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1, tap: steps.save">
+		<button type="button" class="save btn btn-default">Done</button>
+	</div>
 </div>
 <!-- /ko -->
 
