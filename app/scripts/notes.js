@@ -43,7 +43,6 @@ function Notes(app) {
 		app.myViewModel.rateWeek.weeks()[app.myViewModel.rateWeek.activeWeek()].rating(item.value);
 	}
 
-
 	return self;
 }
 
