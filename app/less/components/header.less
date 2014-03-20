@@ -55,12 +55,21 @@
 			float: left;
 			width: 50%;
 			padding: 0 5px;
+			&.active {
+				button {
+					color: #FFF;
+					background-color: fade(#FFF, 15%);
+					.icon {
+						color: #FFF;
+					}
+				}
+			}
 		}
 		button {
 			background-color: #31363a;
 			width: 100%;
 			border-radius: 5px;
-			color: #FFF;
+			color: #24282a;
 			border: 0px none;
 			border-bottom: 2px solid #24282a;
 			height: 70px;

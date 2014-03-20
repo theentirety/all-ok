@@ -1,5 +1,5 @@
 <!-- ko if: auth.currentUser() && (header.activePage() == 0 || header.activePage() == 1) -->
-<div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
+<div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
 	<div class="page-header">
 		<!-- ko if: people.showDetails -->
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>

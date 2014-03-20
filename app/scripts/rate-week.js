@@ -31,7 +31,9 @@ function RateWeek(app) {
 					return memo + colValue; 
 				}, 0);
 				return sum;
-			})
+			}),
+			rating: ko.observable(2),
+			notes: ko.observable(null)
 		},
 		{
 			date: ko.observable(moment(rateWeek.today).add('days', 7).format('MMM D')),
@@ -44,7 +46,9 @@ function RateWeek(app) {
 					return memo + colValue; 
 				}, 0);
 				return sum;
-			})
+			}),
+			rating: ko.observable(2),
+			notes: ko.observable(null)
 		},
 		{  
 			date: ko.observable(moment(rateWeek.today).add('days', 14).format('MMM D')),
@@ -57,7 +61,9 @@ function RateWeek(app) {
 					return memo + colValue; 
 				}, 0);
 				return sum;
-			})
+			}),
+			rating: ko.observable(2),
+			notes: ko.observable(null)
 		}
 	]);
 

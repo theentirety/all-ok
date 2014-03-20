@@ -1,5 +1,5 @@
 <!-- ko if: auth.currentUser() && header.activePage() == 1 -->
-<div id="people" class="screen" data-bind="fadeVisible: !people.showDetails()">
+<div id="people" class="screen" data-bind="visible: !people.showDetails()">
 	<div class="page-header">
 		<h1>All People</h1>
 		<div class="toggle" data-bind="tap: people.toggleView">

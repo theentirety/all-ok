@@ -124,9 +124,22 @@
 			width: 45px;
 			margin-right: 1%;
 			height: 45px;
-			border: 1px solid #dfdfdf;
+			border: 2px solid #dfdfdf;
 			border-radius: 3px;
+			color: #a1cc3b;
 			background-color: transparent;
+			&.active {
+				background-color: #a1cc3b;
+				border-color: #8cb42f;
+				color: #FFF;
+			}
+		}
+		.label {
+			font-size: 18px;
+			font-family: @_font-helvetica-light;
+			color: #a1cc3b;
+			vertical-align: bottom;
+			line-height: 40px;
 		}
 	}
 	.comments {
@@ -134,7 +147,7 @@
 		display: block;
 		padding: 10px;
 		clear: both;
-		padding-top: 30px;
+		padding-top: 20px;
 		h1 {
 			font-family: @_font-helvetica-bold;
 			font-size: 21px;

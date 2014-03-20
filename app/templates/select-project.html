@@ -1,5 +1,5 @@
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
-<div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
+<div id="select-project" class="screen" data-bind="visible: steps.currentStep() == 0">
 	<div class="page-header">
 		<h1>Select projects</h1>
 		<button class="add" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"></span></button>

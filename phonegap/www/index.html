@@ -49,7 +49,7 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
-<div id="notes" class="screen" data-bind="fadeVisible: steps.currentStep() == 2">
+<div id="notes" class="screen" data-bind="visible: steps.currentStep() == 2">
 	<div class="page-header">
 		<!-- ko if: people.showDetails -->
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
@@ -74,13 +74,12 @@
 	</div>
 	<div class="workload">
 		<h1>How's your workload?</h1>
-		<div class="options">
-			<button>1</button>
-			<button>2</button>
-			<button>3</button>
-			<button>4</button>
-			<button>5</button>
+		<div class="options" data-bind="foreach: notes.statusOptions">
+			<button data-bind="css: { 'active': $parent.rateWeek.weeks()[$parent.rateWeek.activeWeek()].rating() == $index() }, tap: $parent.notes.selectStatus">
+				<span data-bind="css: icon"></span>
+			</button>
 		</div>
+		<div class="label" data-bind="text: notes.statusOptions()[rateWeek.weeks()[rateWeek.activeWeek()].rating()].label"></div>
 	</div>
 	<div class="comments">
 		<h1>Anything to note?</h1>
@@ -89,7 +88,7 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && header.activePage() == 1 -->
-<div id="people" class="screen" data-bind="fadeVisible: !people.showDetails()">
+<div id="people" class="screen" data-bind="visible: !people.showDetails()">
 	<div class="page-header">
 		<h1>All People</h1>
 		<div class="toggle" data-bind="tap: people.toggleView">
@@ -136,7 +135,7 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && (header.activePage() == 0 || header.activePage() == 1) -->
-<div id="rate-week" class="screen" data-bind="fadeVisible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
+<div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
 	<div class="page-header">
 		<!-- ko if: people.showDetails -->
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
@@ -177,7 +176,7 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
-<div id="select-project" class="screen" data-bind="fadeVisible: steps.currentStep() == 0">
+<div id="select-project" class="screen" data-bind="visible: steps.currentStep() == 0">
 	<div class="page-header">
 		<h1>Select projects</h1>
 		<button class="add" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"></span></button>
