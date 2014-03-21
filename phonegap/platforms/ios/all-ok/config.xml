@@ -27,6 +27,7 @@
     </description>
     <preference name="fullscreen" value="false" />
     <preference name="ios-statusbarstyle" value="white-opaque" />
+    <access origin="https://allocate.parseapp.com*" />
     <name>all-ok</name>
     <description>
         Let's make sure all the right people are in all the right places.
@@ -108,6 +109,6 @@
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="http://127.0.0.1*" />
     <access origin="https://api.parse.com*" />
-    <access origin="https://allocate.parseapp.com*" />
+    <access origin="https://all-ok.parseapp.com*" />
     <access origin="http://netdna.bootstrapcdn.com*" />
 </widget>

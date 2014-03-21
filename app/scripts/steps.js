@@ -13,6 +13,7 @@ function Steps(app) {
 	var steps = app.myViewModel.steps = {};
 
 	steps.currentStep = ko.observable(0);
+	steps.changing = ko.observable(false);
 	steps.steps = ko.observableArray([
 		{
 			stepNumber: 0,
@@ -26,26 +27,28 @@ function Steps(app) {
 			stepNumber: 2,
 			stepName: 'notes'
 		}
-		// {
-		// 	stepNumber: 3,
-		// 	stepName: 'selectProject'
-		// }
 	]);
 
-	// $(document).on('swipe', function() {
-	// 	alert('swipe')
-	// });
-
 	steps.changeStep = function(item) {
-		app.myViewModel.header.close();
-		steps.currentStep(item.stepNumber);
-		// app.myViewModel.rateProject.initProject();
+		if (!steps.changing()) {
+			steps.changing(true);
+			app.myViewModel.header.close();
+			steps.currentStep(item.stepNumber);
+			setTimeout(function() {
+				steps.changing(false);
+			}, 500);
+		}
 	}
 
 	steps.nextStep = function(direction) {
-		app.myViewModel.header.close();
-		steps.currentStep(steps.currentStep() + direction);
-		// app.myViewModel.rateProject.initProject();
+		if (!steps.changing()) {
+			steps.changing(true);
+			app.myViewModel.header.close();
+			steps.currentStep(steps.currentStep() + direction);
+			setTimeout(function() {
+				steps.changing(false);
+			}, 500);
+		}
 	}
 
 	return self;

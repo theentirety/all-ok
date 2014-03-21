@@ -15,6 +15,7 @@ var Header = require('./header.js');
 var RateWeek = require('./rate-week.js');
 var Notes = require('./notes.js');
 var People = require('./people.js');
+var Save = require('./save.js');
 
 // initialize parse
 Parse.initialize("JkYNfPBw2aPgcc7PeTGHMAU2XKvjzeqVIkyClVuo", "45OMU3ZS3o5c168lQxa0ilxQu4FdMVHT1NVTkORl");
@@ -30,6 +31,7 @@ var header = new Header(app);
 var rateWeek = new RateWeek(app);
 var notes = new Notes(app);
 var people = new People(app);
+var save = new Save(app);
 
 
 // Custom knockout extneders

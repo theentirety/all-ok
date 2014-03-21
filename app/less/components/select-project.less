@@ -15,7 +15,10 @@
 		border-bottom: 0;
 		padding-bottom: 0;
 		z-index: 3;
-		border-bottom: 2px solid fade(#000, 20%);
+		border-bottom: 2px solid fade(#272b2e, 50%);
+		-moz-background-clip: padding;     /* Firefox 3.6 */
+		-webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
+		background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
 		h1 {
 			font-family: @_font-helvetica-bold;
 			font-size: 21px;
@@ -90,17 +93,15 @@
 		}
 	}
 	.internal {
-		background: url(
-			data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIUlEQVQIW2NkQAL///9PY4TxwRxGxllgARgHxGZE5oAEAPm3D2gneMVNAAAAAElFTkSuQmCC
-		) repeat;
+		.diagonal-background-lines(fade(#FFF, 10%), transparent, 10px);
 	}
 	.refresh {
 		width: 100%;
-		height: 70px;
+		height: 500px;
 		background-color: #272b2e;
 		text-align: center;
 		position: fixed;
-		top: 111px;
+		top: 109px;
 		color: #CCC;
 		border-top: 2px solid #24282a;
 		border-bottom: 2px solid #24282a;

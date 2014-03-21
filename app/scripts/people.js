@@ -12,37 +12,52 @@ function People(app) {
 
 	var people = app.myViewModel.people = {};
 
-	people.registerMouseX = ko.observable();
-	people.registerStartPercentage = ko.observable(0);
+	people.numWeeks = 3;
 	people.today = moment(new Date()).startOf('isoweek');
-	people.registerRatio = ko.observable($(document).width() - 20);
 	people.activeWeek = ko.observable(0);
 	people.activePerson = ko.observable();
 	people.viewType = ko.observable('hours');
 	people.showDetails = ko.observable(false);
-	people.allPeople = ko.observableArray();
+	people.times = ko.observableArray();
+	people.weeks = ko.observableArray();
+	people.isRefreshDragging = ko.observable(false);
+	people.dragStart = ko.observable(0);
 
-	people.weeks = ko.observableArray([
-		{
-			date: ko.observable(moment(people.today).format('MMM D'))
-		},
-		{
-			date: ko.observable(moment(people.today).add('days', 7).format('MMM D'))
-		},
-		{  
-			date: ko.observable(moment(people.today).add('days', 14).format('MMM D'))
+	people.getTimes = function() {
+		var dates = [];
+		for (var i = 0; i < people.numWeeks; i++) {
+			dates.push(moment(people.today).add('days', (i * 7)).format('YYYY, M, D'));
+			people.weeks()[i].date(moment(people.today).add('days', (i * 7)).format('MMM D'));
 		}
-	]);
-
-	people.getPeople = function() {
-		Parse.Cloud.run('getPeople', {}, {
-			success: function(peopleList) {
-				people.allPeople([]);
-				var peopleLength = peopleList.length;
-				for (var i = 0; i < peopleLength; i++) {
-					peopleList[i].percentages = ko.observableArray();
-					people.allPeople.push(peopleList[i]);
+		Parse.Cloud.run('getTimes', {
+			dates: dates
+		}, {
+			success: function(times) {
+				people.times([]);
+				for (var j = 0; j < times.length; j++) {
+					times[j].attributes.data = $.parseJSON(times[j].attributes.data);
+					var total = _(times[j].attributes.data.projects).reduce(function(acc, obj) {
+						_(obj).each(function(value, key) { acc[key] = (acc[key] ? acc[key] : 0) + value });
+						return acc;
+					}, {});
+					times[j].attributes.total = ko.observable(total.percentage);
 				}
+				for (var i = 0; i < people.numWeeks; i++) {
+					var weekDate = moment(people.today).add('days', (i * 7)).format('YYYY, M, D');
+					var week = _.filter(times, function(obj) {
+						return obj.attributes.data.date == weekDate;
+					});
+
+					_.sortBy(week, function(obj){ return obj.attributes.total; });
+
+					people.times.push(week);
+				}
+				$('#people .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
+				people.isRefreshDragging(false);
+				people.dragStart(0);
+				$('#people .people').animate({
+					marginTop: 0
+				}, 100);
 			}, error: function(error) {
 				console.log(error);
 			}
@@ -50,7 +65,13 @@ function People(app) {
 	}
 
 	people.init = function() {
-		people.getPeople();
+		for (var i = 0; i < people.numWeeks; i++) {
+			var week = {
+				date: ko.observable(moment(people.today).add('days', (i * 7)).format('MMM D'))
+			}
+			people.weeks.push(week);
+		}
+		people.getTimes();
 	}
 
 	people.selectWeek = function(index) {
@@ -71,8 +92,41 @@ function People(app) {
 		people.showDetails(true);
 	}
 
-	people.refresh = function() {
-		people.getPeople();
+	people.dragRefresh = function(item, event) {
+		if (people.isRefreshDragging() && people.dragStart() == 0) {
+			var top = $(document).scrollTop();
+			var delta = Math.floor(event.gesture.distance);
+			if (top == 0 && delta > 30) {
+				if (delta > 150) delta = 150;
+				$('#people .people').css('margin-top', delta - 30);
+				if (delta >= 100) {
+					$('#people .refresh').html('<span class="fa fa-arrow-circle-up"></span>Release to refresh');
+				} else {
+					$('#people .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
+				}
+			}
+		}
+	}
+
+	people.startRefreshDrag = function(item, event) {
+		if (!people.isRefreshDragging() && !app.myViewModel.header.isOpen() && people.dragStart() == 0) {
+			people.dragStart($(document).scrollTop());
+			people.isRefreshDragging(true);
+			$(event.gesture.target).one('dragend', function(event) {
+				people.isRefreshDragging(false);
+				var delta = parseInt($('#people .people').css('margin-top'));
+				if (delta >= 70) {
+					people.getTimes();
+					$('#people .refresh').html('<span class="fa fa-refresh fa-spin"></span>Refreshing...');
+				} else {
+					$('#people .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
+					$('#people .people').animate({
+						marginTop: 0
+					}, 100);
+				}
+			})
+		}
+
 	}
 
 	people.init();

@@ -3,8 +3,9 @@ var _ = require('underscore');
 // getPeople retrieves the list of people from the database matching the email address of the user
 Parse.Cloud.define('getPeople', function(request, response) {
 	var currentUser = Parse.User.current();
+	var dates = request.params.dates;
 	if (currentUser) {
-		var query = new Parse.Query('_User');
+		var query = new Parse.Query('Users');
 		var email = currentUser.attributes.email;
 		email = email.substring(email.lastIndexOf('@'));
 		query.endsWith('email', email);
@@ -18,7 +19,30 @@ Parse.Cloud.define('getPeople', function(request, response) {
 			}
 		});
 	} else {
-		response.error('You must be logged in with admin permissions to add projects.');
+		response.error('You must be logged in.');
+	}
+});
+
+// getTimes retrieves the list of people from the database matching the email address of the user
+Parse.Cloud.define('getTimes', function(request, response) {
+	var currentUser = Parse.User.current();
+	var dates = request.params.dates;
+	if (currentUser) {
+		var query = new Parse.Query('Times');
+		var email = currentUser.attributes.email;
+		email = email.substring(email.lastIndexOf('@'));
+		query.endsWith('email', email);
+		query.include('user');
+		query.find({
+			success: function(times) {
+				response.success(times);
+			},
+			error: function(error) {
+				response.error(error);
+			}
+		});
+	} else {
+		response.error('You must be logged in.');
 	}
 });
 

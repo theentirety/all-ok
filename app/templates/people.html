@@ -7,39 +7,22 @@
 			<button data-bind="css: { active: people.viewType() == 'percent' }">%</button>
 		</div>
 	</div>
-
-
 	<div class="toggle-weeks" data-bind="foreach: people.weeks">
 		<button data-bind="tap: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index() }">
 			<span class="date" data-bind="text: date"></span>
 		</button>
 	</div>
-
-
-	<ol data-bind="foreach: people.allPeople" class="people">
+	<ol data-bind="foreach: people.times()[people.activeWeek()], dragdown: people.dragRefresh, drag: people.startRefreshDrag" class="people">
 		<li class="person" data-bind="tap: $parent.people.goToPerson">
 			<div class="name">
-				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 				<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
-				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.avatar + ')' }, css: { 'fa fa-user': typeof $data.attributes.avatar !== 'string' }"></div>
-				<span class="person" data-bind="text: attributes.displayName"></span>
+ 				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }, css: { 'fa fa-user': typeof $data.attributes.user.attributes.avatar !== 'string' }"></div>
+				<span class="person" data-bind="text: $data.attributes.user.attributes.displayName"></span>
 			</div>
-			<div class="percentage-container" data-bind="foreach: $data.percentages()">
-				<div class="percentage" data-bind="style: { width: $data + '%' }, text: $data"></div>
+			<div class="percentage-container" data-bind="foreach: $data.attributes.data.projects">
+				<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
 			</div>
-
-
-
-
-
-<!-- 
-			<div class="bar">
-				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1) + ($parent.people.viewType() == 'hours' ? 'h' : '%')"></span>
-				<span class="name" data-bind="text: attributes.displayName"></span>
-			</div>
-			<div class="percentage-container" data-bind="foreach: percentages">
-				<div class="percentage" data-bind="style: { width: $data + '%' }"></div>
-			</div> -->
 		</li>
 	</ol>
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>

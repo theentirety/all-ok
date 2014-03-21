@@ -3,13 +3,19 @@
 	<div>
 		<img src="svg/logo.svg" />
 		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
-		<form data-bind="submit: auth.signInUp">
+		<form data-bind="submit: auth.signInUp, visible: !auth.forgotMode()">
 			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode" autocapitalize="off" autocorrect="off">
 			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode" autocapitalize="on" autocorrect="off">
 			<input name="auth_username" type="text" class="form-control" placeholder="Username" autocapitalize="off" autocorrect="off">
 			<input name="auth_password" type="password" class="form-control" placeholder="Password">
 			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="fadeVisible: auth.signUpMode">
-			<button type="submit" class="btn btn-default navbar-btn" data-bind="text: (auth.signUpMode() ? 'Sign up' : 'Sign in')">Sign in</button> or <a data-bind="event: { touchend: auth.showSignUp }, text: (auth.signUpMode() ? 'sign in' : 'sign up')">Sign up</a>
+			<button type="submit" class="btn btn-default navbar-btn" data-bind="text: (auth.signUpMode() ? 'Sign up' : 'Sign in')">Sign in</button> or <a data-bind="tap: auth.showSignUp, text: (auth.signUpMode() ? 'sign in' : 'sign up')">Sign up</a>
+		</form>
+		<div class="forgot" data-bind="tap: auth.toggleForgotMode, fadeVisible: !auth.forgotMode()">Forgot your password?</div>
+		<form data-bind="submit: auth.forgot, visible: auth.forgotMode">
+			<input name="auth_forgot" type="text" class="form-control" placeholder="Email" autocapitalize="off" autocorrect="off">
+			<button type="submit" class="btn btn-default navbar-btn">Reset Password</button>
+			<a data-bind="tap: auth.toggleForgotMode">Cancel</a>
 		</form>
 	</div>
 </div>
@@ -80,39 +86,22 @@
 			<button data-bind="css: { active: people.viewType() == 'percent' }">%</button>
 		</div>
 	</div>
-
-
 	<div class="toggle-weeks" data-bind="foreach: people.weeks">
 		<button data-bind="tap: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index() }">
 			<span class="date" data-bind="text: date"></span>
 		</button>
 	</div>
-
-
-	<ol data-bind="foreach: people.allPeople" class="people">
+	<ol data-bind="foreach: people.times()[people.activeWeek()], dragdown: people.dragRefresh, drag: people.startRefreshDrag" class="people">
 		<li class="person" data-bind="tap: $parent.people.goToPerson">
 			<div class="name">
-				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+				<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 				<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
-				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.avatar + ')' }, css: { 'fa fa-user': typeof $data.attributes.avatar !== 'string' }"></div>
-				<span class="person" data-bind="text: attributes.displayName"></span>
+ 				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }, css: { 'fa fa-user': typeof $data.attributes.user.attributes.avatar !== 'string' }"></div>
+				<span class="person" data-bind="text: $data.attributes.user.attributes.displayName"></span>
 			</div>
-			<div class="percentage-container" data-bind="foreach: $data.percentages()">
-				<div class="percentage" data-bind="style: { width: $data + '%' }, text: $data"></div>
+			<div class="percentage-container" data-bind="foreach: $data.attributes.data.projects">
+				<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
 			</div>
-
-
-
-
-
-<!-- 
-			<div class="bar">
-				<span class="percent" data-bind="text: _.reduce($data.percentages(), function(memo, num){ return memo + num; }, 0) * ($parent.people.viewType() == 'hours' ? 0.4 : 1) + ($parent.people.viewType() == 'hours' ? 'h' : '%')"></span>
-				<span class="name" data-bind="text: attributes.displayName"></span>
-			</div>
-			<div class="percentage-container" data-bind="foreach: percentages">
-				<div class="percentage" data-bind="style: { width: $data + '%' }"></div>
-			</div> -->
 		</li>
 	</ol>
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
@@ -157,6 +146,22 @@
 		</li>
 		<!-- /ko -->
 	</ol>
+</div>
+<!-- /ko -->
+<!-- ko if: auth.currentUser -->
+<div id="save" data-bind="fadeVisible: save.saveMode">
+	<!-- ko if: save.saving() && !save.success() && !save.error() -->
+	<h1><span class="fa fa-refresh fa-spin"></span> Saving</h1>
+	<button data-bind="tap: save.reset">Cancel</button>
+	<!-- /ko -->
+	<!-- ko if: save.saving() && !save.success() && save.error() -->
+	<h1><span class="fa fa-times"></span> Ooops. Please try again.</h1>
+	<button data-bind="tap: save.tryAgain">Try again</button>
+	<!-- /ko -->
+	<!-- ko if: save.saving() && save.success() && !save.error() -->
+	<h1><span class="fa fa-check"></span> Saved.</h1>
+	<button data-bind="tap: save.reset">OK</button>
+	<!-- /ko -->
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
@@ -210,13 +215,13 @@
 <!-- /ko
 <!-- ko if: auth.currentUser() && header.activePage() == 0 -->
 <div id="steps">
-	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-chevron-left left"></button>
+	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-arrow-left left"></button>
 	<ul data-bind="foreach: steps.steps">
 		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
-	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-chevron-right right"></button>
-	<div class="group-type btn-group btn-group" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1, tap: steps.save">
-		<button type="button" class="save btn btn-default">Done</button>
+	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-arrow-right right"></button>
+	<div class="done" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1">
+		<button type="button" class="save fa fa-check right" data-bind="tap: save.submit"></button>
 	</div>
 </div>
 <!-- /ko -->

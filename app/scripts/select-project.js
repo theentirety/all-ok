@@ -18,6 +18,7 @@ function SelectProject(app) {
 	selectProject.uniqueCompanyNames = ko.observableArray();
 	selectProject.filteredProjectList = ko.observableArray();
 	selectProject.isRefreshDragging = ko.observable(false);
+	selectProject.dragStart = ko.observable(0);
 
 	selectProject.getProjects = function() {
 		Parse.Cloud.run('getProjects', {}, {
@@ -30,6 +31,8 @@ function SelectProject(app) {
 				}
 
 				$('#select-project .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
+				selectProject.isRefreshDragging(false);
+				selectProject.dragStart(0);
 				$('#select-project .all-projects').animate({
 					marginTop: 0
 				}, 100);
@@ -119,30 +122,35 @@ function SelectProject(app) {
 	}
 
 	selectProject.dragRefresh = function(item, event) {
-		if (selectProject.isRefreshDragging()) {
+		if (selectProject.isRefreshDragging() && selectProject.dragStart() == 0) {
 			var top = $(document).scrollTop();
 			var delta = Math.floor(event.gesture.distance);
 			if (top == 0 && delta > 30) {
-				if (delta > 100) delta = 100;
+				if (delta > 150) delta = 150;
 				$('#select-project .all-projects').css('margin-top', delta - 30);
 				if (delta >= 100) {
 					$('#select-project .refresh').html('<span class="fa fa-arrow-circle-up"></span>Release to refresh');
+				} else {
+					$('#select-project .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
 				}
 			}
 		}
 	}
 
 	selectProject.startRefreshDrag = function(item, event) {
-		if (!selectProject.isRefreshDragging() && !app.myViewModel.header.isOpen()) {
+		if (!selectProject.isRefreshDragging() && !app.myViewModel.header.isOpen() && selectProject.dragStart() == 0) {
+			selectProject.dragStart($(document).scrollTop());
 			selectProject.isRefreshDragging(true);
 			$(event.gesture.target).one('dragend', function(event) {
-				selectProject.isRefreshDragging(false);
 				var delta = parseInt($('#select-project .all-projects').css('margin-top'));
 
 				if (delta >= 70) {
 					selectProject.getProjects();
 					$('#select-project .refresh').html('<span class="fa fa-refresh fa-spin"></span>Refreshing...');
 				} else {
+					$('#select-project .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
+					selectProject.isRefreshDragging(false);
+					selectProject.dragStart(0);
 					$('#select-project .all-projects').animate({
 						marginTop: 0
 					}, 100);

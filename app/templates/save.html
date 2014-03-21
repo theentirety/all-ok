@@ -1,0 +1,16 @@
+<!-- ko if: auth.currentUser -->
+<div id="save" data-bind="fadeVisible: save.saveMode">
+	<!-- ko if: save.saving() && !save.success() && !save.error() -->
+	<h1><span class="fa fa-refresh fa-spin"></span> Saving</h1>
+	<button data-bind="tap: save.reset">Cancel</button>
+	<!-- /ko -->
+	<!-- ko if: save.saving() && !save.success() && save.error() -->
+	<h1><span class="fa fa-times"></span> Ooops. Please try again.</h1>
+	<button data-bind="tap: save.tryAgain">Try again</button>
+	<!-- /ko -->
+	<!-- ko if: save.saving() && save.success() && !save.error() -->
+	<h1><span class="fa fa-check"></span> Saved.</h1>
+	<button data-bind="tap: save.reset">OK</button>
+	<!-- /ko -->
+</div>
+<!-- /ko -->

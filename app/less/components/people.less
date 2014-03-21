@@ -30,11 +30,11 @@
 	}
 	.refresh {
 		width: 100%;
-		height: 70px;
+		height: 500px;
 		background-color: #272b2e;
 		text-align: center;
 		position: fixed;
-		top: 111px;
+		top: 171px;
 		color: #CCC;
 		border-top: 2px solid #24282a;
 		border-bottom: 2px solid #24282a;
@@ -49,6 +49,8 @@
 		.position-center-center;
 		z-index: 5;
 		margin-top: 46px;
+		padding-bottom: 16px;
+		background-color: #FFF;
 		button {
 			height: 44px;
 			&.active {
@@ -77,19 +79,19 @@
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
 		z-index: 1;
-		margin-top: 90px;
-		padding: 0;
+		padding-top: 106px;
 		position: relative;
+		min-height: 300px;
 		li {
 			position: relative;
-			height: 63px;
-			overflow: visible;
+			height: 87px;
+			overflow: hidden;
 			border-bottom: 1px solid #deedbb;
 			background-color: #d0e59d;
 		}
 		.avatar {
-			width: 34px;
-			height: 34px;
+			width: 40px;
+			height: 40px;
 			border-radius: 3px;
 			background-color: #FFF;
 			font-size: 24px;
@@ -114,7 +116,7 @@
 			width: 100%;
 			text-overflow: ellipsis;
 			span {
-				line-height: 66px;
+				line-height: 90px;
 				vertical-align: sub;
 			}
 			.percent {
@@ -129,8 +131,11 @@
 				font-size: 12px;
 				padding-left: 0;
 				padding-right: 10px;
-				width: 30px;
+				width: 20px;
 				text-align: left;
+				display: inline-block;
+				color: fade(#FFF, 50%);
+				font-family: @_font-helvetica-light;
 			}
 			.person {
 				font-size: 20px;
@@ -138,12 +143,16 @@
 				font-family: @_font-helvetica-light;
 			}
 		}
+		.percentage-container {
+			white-space: nowrap;
+		}
 		.percentage {
 			height: 87px;
 			background-color: #a1cc3b;
-			min-width: 10px;
 			position: relative;
 			border-bottom: 1px solid #bddb76;
+			display: inline-block;
+			margin-left: -3px;
 		}
 	}
 }

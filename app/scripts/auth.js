@@ -16,6 +16,7 @@ function Auth(app) {
 	auth.errorMessage = ko.observable('');
 	auth.signUpMode = ko.observable(false);
 	auth.isAdmin = ko.observable(false);
+	auth.forgotMode = ko.observable(false);
 
 	var currentUser = Parse.User.current();
 	if (currentUser) {
@@ -109,6 +110,21 @@ function Auth(app) {
 		}
 	}
 
+	auth.forgot = function(formElement) {
+		var email = $(formElement).find('input[name=auth_forgot]').val();
+
+		Parse.User.requestPasswordReset(email, {
+			success: function() {
+				auth.forgotMode(false);
+				$(formElement).find('input[name=auth_forgot]').val('');
+				auth.errorMessage('Please check your email for instructions on resetting your password.');
+			},
+			error: function(error) {
+				auth.errorMessage(auth.sanitizeErrors(error));
+			}
+		});
+	}
+
 	auth.logout = function() {
 		Parse.User.logOut();
 		auth.currentUser(null);
@@ -120,6 +136,14 @@ function Auth(app) {
 			auth.signUpMode(false);
 		} else {
 			auth.signUpMode(true);
+		}
+	}
+
+	auth.toggleForgotMode = function() {
+		if (auth.forgotMode()) {
+			auth.forgotMode(false);
+		} else {
+			auth.forgotMode(true);
 		}
 	}
 
