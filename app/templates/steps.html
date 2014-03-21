@@ -4,7 +4,7 @@
 	<ul data-bind="foreach: steps.steps">
 		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
-	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-arrow-right right"></button>
+	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }, css: { disabled: selectProject.count() <= 0 }" class="fa fa-arrow-right right"></button>
 	<div class="done" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1">
 		<button type="button" class="save fa fa-check right" data-bind="tap: save.submit"></button>
 	</div>

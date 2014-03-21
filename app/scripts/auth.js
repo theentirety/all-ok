@@ -126,6 +126,8 @@ function Auth(app) {
 	}
 
 	auth.logout = function() {
+		app.myViewModel.steps.currentStep(0);
+		app.myViewModel.rateWeek.activeWeek(0);
 		Parse.User.logOut();
 		auth.currentUser(null);
 	}

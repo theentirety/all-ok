@@ -61,7 +61,7 @@
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
 		<!-- /ko -->
 		<div class="user">
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': auth.currentUser().attributes.avatar.length <= 0 }"></div>
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': typeof auth.currentUser().attributes.avatar !== 'string' }"></div>
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 		</div>
 		<div class="toggle" data-bind="tap: rateWeek.toggleView">
@@ -130,7 +130,7 @@
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
 		<!-- /ko -->
 		<div class="user">
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': auth.currentUser().attributes.avatar.length <= 0 }"></div>
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': typeof auth.currentUser().attributes.avatar !== 'string' }"></div>
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 		</div>
 		<div class="toggle" data-bind="tap: rateWeek.toggleView">
@@ -235,7 +235,7 @@
 	<ul data-bind="foreach: steps.steps">
 		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
 	</ul>
-	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }" class="fa fa-arrow-right right"></button>
+	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }, css: { disabled: selectProject.count() <= 0 }" class="fa fa-arrow-right right"></button>
 	<div class="done" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1">
 		<button type="button" class="save fa fa-check right" data-bind="tap: save.submit"></button>
 	</div>

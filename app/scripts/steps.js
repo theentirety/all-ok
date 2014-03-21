@@ -30,7 +30,7 @@ function Steps(app) {
 	]);
 
 	steps.changeStep = function(item) {
-		if (!steps.changing()) {
+		if (!steps.changing() && app.myViewModel.selectProject.count() > 0) {
 			steps.changing(true);
 			app.myViewModel.header.close();
 			steps.currentStep(item.stepNumber);
@@ -41,7 +41,7 @@ function Steps(app) {
 	}
 
 	steps.nextStep = function(direction) {
-		if (!steps.changing()) {
+		if (!steps.changing() && app.myViewModel.selectProject.count() > 0) {
 			steps.changing(true);
 			app.myViewModel.header.close();
 			steps.currentStep(steps.currentStep() + direction);

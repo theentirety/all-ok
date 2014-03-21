@@ -19,6 +19,7 @@ function SelectProject(app) {
 	selectProject.filteredProjectList = ko.observableArray();
 	selectProject.isRefreshDragging = ko.observable(false);
 	selectProject.dragStart = ko.observable(0);
+	selectProject.count = ko.observable(0);
 
 	selectProject.getProjects = function() {
 		Parse.Cloud.run('getProjects', {}, {
@@ -57,8 +58,10 @@ function SelectProject(app) {
 	selectProject.toggleProject = function(item, event) {
 		if (item.attributes.active()) {
 			item.attributes.active(false);
+			selectProject.count(selectProject.count() - 1);
 		} else {
 			item.attributes.active(true);
+			selectProject.count(selectProject.count() + 1);
 		}
 	}
 
