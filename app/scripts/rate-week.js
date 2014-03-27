@@ -69,7 +69,7 @@ function RateWeek(app) {
 
 	rateWeek.drag = function(item, event) {
 		var direction = event.gesture.direction;
-		if (!app.myViewModel.people.showDetails() && (direction == 'left' || direction == 'right')) {
+		if (direction == 'left' || direction == 'right') {
 			var startX = event.gesture.startEvent.center.pageX;
 			if (rateWeek.registerMouseX() != startX) {
 				rateWeek.registerMouseX(startX);
@@ -128,12 +128,6 @@ function RateWeek(app) {
 		} else {
 			rateWeek.viewType('hours');
 		}
-	}
-
-	rateWeek.goBack = function() {
-		console.log('go back')
-		app.myViewModel.people.showDetails(false);
-		app.myViewModel.header.goToPage(1);
 	}
 
 	return self;

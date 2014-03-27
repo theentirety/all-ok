@@ -17,7 +17,6 @@ function People(app) {
 	people.activeWeek = ko.observable(0);
 	people.activePerson = ko.observable();
 	people.viewType = ko.observable('hours');
-	people.showDetails = ko.observable(false);
 	people.times = ko.observableArray();
 	people.weeks = ko.observableArray();
 	people.isRefreshDragging = ko.observable(false);
@@ -40,6 +39,7 @@ function People(app) {
 						_(obj).each(function(value, key) { acc[key] = (acc[key] ? acc[key] : 0) + value });
 						return acc;
 					}, {});
+
 					times[j].attributes.total = ko.observable(total.percentage);
 				}
 				for (var i = 0; i < people.numWeeks; i++) {
@@ -48,9 +48,11 @@ function People(app) {
 						return obj.attributes.data.date == weekDate;
 					});
 
-					_.sortBy(week, function(obj){ return obj.attributes.total; });
+					var sorted = _.sortBy(week, function(obj){ 
+						return -obj.attributes.total();
+					});
 
-					people.times.push(week);
+					people.times.push(sorted);
 				}
 				$('#people .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
 				people.isRefreshDragging(false);
@@ -88,8 +90,8 @@ function People(app) {
 	}
 
 	people.goToPerson = function(item) {
-		people.activePerson(item);
-		people.showDetails(true);
+		app.myViewModel.peopleDetails.getPerson(item);
+		app.goToView('people-details');
 	}
 
 	people.dragRefresh = function(item, event) {

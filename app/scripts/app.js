@@ -13,7 +13,21 @@ function App() {
 	// initialize knockout
 	self.myViewModel = {};
 
-	self.myViewModel.currentUser = ko.observable(null);
+	self.myViewModel.activeView = ko.observable(0);
+	self.myViewModel.views = [
+		'auth',
+		'select-project',
+		'rate-week',
+		'notes',
+		'people',
+		'people-details',
+		'save'
+	];
+
+	self.goToView = function(view) {
+		var index = self.myViewModel.views.indexOf(view);
+		self.myViewModel.activeView(index);
+	}
 
 	self.initialize = function() {
 		document.addEventListener('deviceready', self.onDeviceReady, false);

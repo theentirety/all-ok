@@ -1,11 +1,13 @@
-<!-- ko if: auth.currentUser() && (header.activePage() == 0 || header.activePage() == 1) -->
-<div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
+<!-- ko if: auth.currentUser() && views[activeView()] == 'rate-week' -->
+<div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || header.activePage() == 1">
 	<div class="page-header">
-		<!-- ko if: people.showDetails -->
-		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
-		<!-- /ko -->
 		<div class="user">
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': typeof auth.currentUser().attributes.avatar !== 'string' }"></div>
+			<!-- ko if: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }"></div>
+			<!-- /ko -->
+			<!-- ko ifnot: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
+			<!-- /ko -->
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 		</div>
 		<div class="toggle" data-bind="tap: rateWeek.toggleView">

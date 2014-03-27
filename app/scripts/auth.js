@@ -24,6 +24,11 @@ function Auth(app) {
 	}
 
 	auth.init = function() {
+		if (auth.currentUser()) {
+			app.goToView('select-project');
+		} else {
+			app.goToView('auth');
+		}
 		Parse.Cloud.run('checkAdminStatus', {}, {
 			success: function(isAdmin) {
 				auth.isAdmin(isAdmin);
@@ -85,6 +90,11 @@ function Auth(app) {
 			user.signUp(null, {
 				success: function(user) {
 					auth.currentUser(user);
+					app.goToView('select-project');
+					app.myViewModel.selectProject.init();
+					if (user.attributes.isAdmin) {
+						auth.isAdmin(true);
+					}
 				},
 				error: function(user, error) {
 					auth.errorMessage(auth.sanitizeErrors(error));
@@ -96,6 +106,7 @@ function Auth(app) {
 			Parse.User.logIn(username, password, {
 				success: function(user) {
 					auth.currentUser(user);
+					app.goToView('select-project');
 					app.myViewModel.selectProject.init();
 					if (user.attributes.isAdmin) {
 						auth.isAdmin(true);
@@ -128,6 +139,7 @@ function Auth(app) {
 	auth.logout = function() {
 		app.myViewModel.steps.currentStep(0);
 		app.myViewModel.rateWeek.activeWeek(0);
+		app.goToView('auth');
 		Parse.User.logOut();
 		auth.currentUser(null);
 	}

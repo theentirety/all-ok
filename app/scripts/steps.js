@@ -17,34 +17,24 @@ function Steps(app) {
 	steps.steps = ko.observableArray([
 		{
 			stepNumber: 0,
-			stepName: 'selectProject'
+			link: 'select-project'
 		},
 		{
 			stepNumber: 1,
-			stepName: 'rateWeek'
+			link: 'rate-week'
 		},
 		{
 			stepNumber: 2,
-			stepName: 'notes'
+			link: 'notes'
 		}
 	]);
-
-	steps.changeStep = function(item) {
-		if (!steps.changing() && app.myViewModel.selectProject.count() > 0) {
-			steps.changing(true);
-			app.myViewModel.header.close();
-			steps.currentStep(item.stepNumber);
-			setTimeout(function() {
-				steps.changing(false);
-			}, 500);
-		}
-	}
 
 	steps.nextStep = function(direction) {
 		if (!steps.changing() && app.myViewModel.selectProject.count() > 0) {
 			steps.changing(true);
 			app.myViewModel.header.close();
 			steps.currentStep(steps.currentStep() + direction);
+			app.goToView(steps.steps()[steps.currentStep()].link);
 			setTimeout(function() {
 				steps.changing(false);
 			}, 500);

@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Rate Week Stylesheet
-   rate-week.less
+   People Details Stylesheet
+   people-details.less
    ========================================================================== */
 
-#rate-week {
+#people-details {
 	.page-header {
 		position: fixed;
 		overflow: hidden;
@@ -40,6 +40,9 @@
 					.label {
 						color: #cccccc;
 					}
+					&.notavailable {
+						color: fade(#8c9195, 20%);
+					}
 				}
 			}
 			&.zero {
@@ -64,6 +67,9 @@
 				color: #a1cc3b;
 				font-family: @_font-helvetica-bold;
 				.position-center-center;
+				&.notavailable {
+					color: fade(#FFF, 10%);
+				}
 				span {
 					padding: 0;
 					display: inline-block;
@@ -78,9 +84,22 @@
 			}
 		}
 	}
+	.back-button {
+		width: 45px;
+		height: 45px;
+		border: 0px none;
+		background-color: transparent;
+		float: left;
+		font-size: 30px;
+		margin: 0;
+		color: #FFF;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+	}
 	.user {
 		float: left;
-		margin: 5px;
+		margin: 5px 5px 5px 0;
 		white-space: nowrap;
 		.avatar {
 			width: 34px;
@@ -124,6 +143,17 @@
 			overflow: visible;
 			border-bottom: 1px solid #deedbb;
 			background-color: #d0e59d;
+			&.over {
+				border-bottom: 1px solid fade(#ffa2cd, 50%);
+				background-color: #f56fae;
+				.percentage {
+					background-color: #b91f67;
+					border-bottom: 1px solid #f56fae;
+				}
+				.company, .project {
+					color: #FFF;
+				}
+			}
 		}
 		.name {
 			position: absolute;
@@ -168,21 +198,8 @@
 		.percentage {
 			height: 87px;
 			background-color: #a1cc3b;
-			min-width: 10px;
 			position: relative;
 			border-bottom: 1px solid #bddb76;
-			.handle {
-				position: absolute;
-				background-image: url(../svg/dot.svg);
-				background-repeat: repeat-y;
-				background-size: 4px;
-				background-position: right 3px;
-				height: 80px;
-				width: 5px;
-				padding: 5px;
-				top: 4px;
-				right: 3px;
-			}
 		}
 	}
 	.internal {

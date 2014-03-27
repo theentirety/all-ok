@@ -54,14 +54,16 @@
 	</div>
 </div>
 <!-- /ko -->
-<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
+<!-- ko if: auth.currentUser() && views[activeView()] == 'notes' -->
 <div id="notes" class="screen" data-bind="visible: steps.currentStep() == 2">
 	<div class="page-header">
-		<!-- ko if: people.showDetails -->
-		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
-		<!-- /ko -->
 		<div class="user">
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': typeof auth.currentUser().attributes.avatar !== 'string' }"></div>
+			<!-- ko if: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }"></div>
+			<!-- /ko -->
+			<!-- ko ifnot: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
+			<!-- /ko -->
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 		</div>
 		<div class="toggle" data-bind="tap: rateWeek.toggleView">
@@ -93,8 +95,62 @@
 	</div>
 </div>
 <!-- /ko -->
-<!-- ko if: auth.currentUser() && header.activePage() == 1 -->
-<div id="people" class="screen" data-bind="visible: !people.showDetails()">
+<!-- ko if: auth.currentUser() && views[activeView()] == 'people-details' -->
+<div id="people-details" class="screen">
+	<div class="page-header">
+		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: peopleDetails.goBack"></button>
+		<div class="user">
+			<!-- ko if: typeof peopleDetails.person().attributes.user.attributes.avatar === 'string' -->
+			<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + peopleDetails.person().attributes.user.attributes.avatar + ')' }"></div>
+			<!-- /ko -->
+			<!-- ko ifnot: typeof peopleDetails.person().attributes.user.attributes.avatar === 'string' -->
+			<div class="avatar fa fa-user"></div>
+			<!-- /ko -->
+			<span data-bind="text: peopleDetails.person().attributes.user.attributes.displayName"></span>
+		</div>
+		<div class="toggle" data-bind="tap: people.toggleView">
+			<button data-bind="css: { active: people.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
+			<button data-bind="css: { active: people.viewType() == 'percent' }">%</button>
+		</div>
+	</div>
+	<div class="toggle-weeks" data-bind="foreach: people.weeks">
+		<button data-bind="tap: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index() }">
+			<span class="date" data-bind="text: date"></span>
+			<!-- ko if: $root.peopleDetails.person() -->
+				<!-- ko if: $root.peopleDetails.totals()[$index()] -->
+				<div class="total">
+					<span class="number" data-bind="text: $root.peopleDetails.totals()[$index()].attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+					<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
+				</div>
+				<!-- /ko -->
+				<!-- ko ifnot: $root.peopleDetails.totals()[$index()] -->
+				<div class="total notavailable">
+					<span class="number">NA</span>
+				</div>
+				<!-- /ko -->
+			<!-- /ko -->
+
+		</button>
+	</div>
+	<ol data-bind="foreach: people.times()[people.activeWeek()]" class="projects">
+		<!-- ko if: $data.attributes.user.id == $parent.peopleDetails.person().attributes.user.id -->
+			<!-- ko foreach: $data.attributes.data.projects -->
+			<li class="percentage-container" data-bind="css: { over: percentage > 100 }">
+				<div class="name">
+					<span class="percent" data-bind="text: percentage * ($root.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+					<span class="label" data-bind="text: ($root.people.viewType() == 'hours' ? 'hr' : '%')"></span>
+					<span class="company" data-bind="text: $root.peopleDetails.getCompanyName(id) + ':'"></span>
+					<span class="project" data-bind="text: $root.peopleDetails.getProjectName(id)"></span>
+				</div>
+				<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
+			</li>
+			<!-- /ko -->
+		<!-- /ko -->
+	</ol>
+</div>
+<!-- /ko -->
+<!-- ko if: auth.currentUser() && views[activeView()] == 'people' -->
+<div id="people" class="screen">
 	<div class="page-header">
 		<h1>All People</h1>
 		<div class="toggle" data-bind="tap: people.toggleView">
@@ -108,11 +164,16 @@
 		</button>
 	</div>
 	<ol data-bind="foreach: people.times()[people.activeWeek()], dragdown: people.dragRefresh, drag: people.startRefreshDrag" class="people">
-		<li class="person" data-bind="tap: $parent.people.goToPerson">
+		<li class="person" data-bind="tap: $parent.people.goToPerson, css: { over: attributes.total() > 100 }">
 			<div class="name">
 				<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 				<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
- 				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }, css: { 'fa fa-user': typeof $data.attributes.user.attributes.avatar !== 'string' }"></div>
+				<!-- ko if: typeof attributes.user.attributes.avatar === 'string' -->
+				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }"></div>
+				<!-- /ko -->
+				<!-- ko ifnot: typeof attributes.user.attributes.avatar === 'string' -->
+				<div class="avatar fa fa-user"></div>
+				<!-- /ko -->
 				<span class="person" data-bind="text: $data.attributes.user.attributes.displayName"></span>
 			</div>
 			<div class="percentage-container" data-bind="foreach: $data.attributes.data.projects">
@@ -123,14 +184,16 @@
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 </div>
 <!-- /ko -->
-<!-- ko if: auth.currentUser() && (header.activePage() == 0 || header.activePage() == 1) -->
-<div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || (header.activePage() == 1 && people.showDetails())">
+<!-- ko if: auth.currentUser() && views[activeView()] == 'rate-week' -->
+<div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || header.activePage() == 1">
 	<div class="page-header">
-		<!-- ko if: people.showDetails -->
-		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: rateWeek.goBack"></button>
-		<!-- /ko -->
 		<div class="user">
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }, css: { 'fa fa-camera': typeof auth.currentUser().attributes.avatar !== 'string' }"></div>
+			<!-- ko if: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }"></div>
+			<!-- /ko -->
+			<!-- ko ifnot: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
+			<!-- /ko -->
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 		</div>
 		<div class="toggle" data-bind="tap: rateWeek.toggleView">
@@ -164,7 +227,7 @@
 	</ol>
 </div>
 <!-- /ko -->
-<!-- ko if: auth.currentUser -->
+<!-- ko if: auth.currentUser() && views[activeView()] == 'save' -->
 <div id="save" data-bind="fadeVisible: save.saveMode">
 	<!-- ko if: save.saving() && !save.success() && !save.error() -->
 	<h1><span class="fa fa-refresh fa-spin"></span> Saving</h1>
@@ -180,7 +243,7 @@
 	<!-- /ko -->
 </div>
 <!-- /ko -->
-<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
+<!-- ko if: auth.currentUser() && views[activeView()] == 'select-project' -->
 <div id="select-project" class="screen" data-bind="visible: steps.currentStep() == 0">
 	<div class="page-header">
 		<h1>Select projects</h1>
@@ -228,8 +291,8 @@
 		</div>
 	</div>
 </div>
-<!-- /ko
-<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
+<!-- /ko -->
+<!-- ko if: auth.currentUser() && (views[activeView()] == 'select-project' || views[activeView()] == 'rate-week' || views[activeView()] == 'notes') -->
 <div id="steps">
 	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-arrow-left left"></button>
 	<ul data-bind="foreach: steps.steps">

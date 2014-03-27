@@ -27,6 +27,7 @@ function Save(app) {
 	});
 
 	save.submit = function() {
+		app.goToView('save');
 		save.saveMode(true);
 		save.saving(true);
 		var temp = {};
@@ -87,6 +88,8 @@ function Save(app) {
 		save.saveMode(false);
 		save.error(false);
 		save.success(false);
+		app.myViewModel.steps.currentStep(0);
+		app.goToView('select-project');
 	}
 
 	return self;

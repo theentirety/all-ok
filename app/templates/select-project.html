@@ -1,4 +1,4 @@
-<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
+<!-- ko if: auth.currentUser() && views[activeView()] == 'select-project' -->
 <div id="select-project" class="screen" data-bind="visible: steps.currentStep() == 0">
 	<div class="page-header">
 		<h1>Select projects</h1>
@@ -46,4 +46,4 @@
 		</div>
 	</div>
 </div>
-<!-- /ko
+<!-- /ko -->

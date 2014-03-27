@@ -1,4 +1,4 @@
-<!-- ko if: auth.currentUser() && header.activePage() == 0 -->
+<!-- ko if: auth.currentUser() && (views[activeView()] == 'select-project' || views[activeView()] == 'rate-week' || views[activeView()] == 'notes') -->
 <div id="steps">
 	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-arrow-left left"></button>
 	<ul data-bind="foreach: steps.steps">

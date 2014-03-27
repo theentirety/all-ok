@@ -21,7 +21,7 @@ function Header(app) {
 	header.pages = ko.observableArray([
 		{
 			display: 'My Time',
-			link: 'mytime',
+			link: 'select-project',
 			icon: 'fa fa-clock-o'
 		},
 		{
@@ -34,9 +34,7 @@ function Header(app) {
 	header.goToPage = function(index) {
 		header.activePage(index);
 		app.myViewModel.steps.currentStep(0);
-		if (index != 1) {
-			app.myViewModel.people.showDetails(false);
-		}
+		app.goToView(header.pages()[index].link);
 		header.close();
 	}
 
