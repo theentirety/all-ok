@@ -21,7 +21,7 @@
 			<span class="date" data-bind="text: date"></span>
 			<!-- ko if: $root.peopleDetails.person() -->
 				<!-- ko if: $root.peopleDetails.totals()[$index()] -->
-				<div class="total">
+				<div class="total" data-bind="css: { 'over': $root.peopleDetails.totals()[$index()].attributes.total() > 100 }">
 					<span class="number" data-bind="text: $root.peopleDetails.totals()[$index()].attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 					<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
 				</div>

@@ -8,7 +8,7 @@
 		position: fixed;
 		overflow: hidden;
 		z-index: 2;
-		background-color: #272b2e;
+		background-color: #202426;
 		width: 100%;
 		height: 46px;
 		margin: 0;
@@ -50,11 +50,6 @@
 					color: #FFF;
 				}
 			}
-			&.over {
-				.total {
-					color: #b91f67;
-				}
-			}
 			.date {
 				text-transform: uppercase;
 				color: #8c9195;
@@ -69,6 +64,11 @@
 				.position-center-center;
 				&.notavailable {
 					color: fade(#FFF, 10%);
+				}
+				&.over {
+					.number {
+						color: #b91f67;
+					}
 				}
 				span {
 					padding: 0;

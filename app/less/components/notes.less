@@ -8,7 +8,7 @@
 		position: fixed;
 		overflow: hidden;
 		z-index: 2;
-		background-color: #272b2e;
+		background-color: #202426;
 		width: 100%;
 		height: 46px;
 		margin: 0;
@@ -121,17 +121,31 @@
 			color: #656a6e;
 		}
 		button {
-			width: 45px;
+			width: 50px;
 			margin-right: 1%;
-			height: 45px;
+			height: 50px;
 			border: 2px solid #dfdfdf;
-			border-radius: 3px;
+			border-radius: 5px;
 			color: #a1cc3b;
 			background-color: transparent;
+			overflow: hidden;
+			padding: 0;
 			&.active {
 				background-color: #a1cc3b;
 				border-color: #8cb42f;
 				color: #FFF;
+				div {
+					background-position: bottom center;
+				}
+			}
+			div {
+				width: 100%;
+				height: 100%;
+				display: block;
+				background-position: top center;
+				background-repeat: no-repeat;
+				background-size: 46px;
+
 			}
 		}
 		.label {

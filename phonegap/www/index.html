@@ -42,7 +42,7 @@
 		<div class="handle"></div>
 	</div>
 	<div class="menu">
-		<button class="logout" data-bind="tap: header.logout">Log out</button>
+		<button class="logout" data-bind="tap: header.logout">Sign out</button>
 		<ul class="nav" data-bind="foreach: header.pages">
 			<li data-bind="css: { active: $parent.header.activePage() == $index() }, tap: function() { $parent.header.goToPage($index()) }">
 				<button>
@@ -84,7 +84,7 @@
 		<h1>How's your workload?</h1>
 		<div class="options" data-bind="foreach: notes.statusOptions">
 			<button data-bind="css: { 'active': $parent.rateWeek.weeks()[$parent.rateWeek.activeWeek()].rating() == $index() }, tap: $parent.notes.selectStatus">
-				<span data-bind="css: icon"></span>
+				<div data-bind="style: { 'background-image': 'url(svg/' + $data.icon + ')' }"></div>
 			</button>
 		</div>
 		<div class="label" data-bind="text: notes.statusOptions()[rateWeek.weeks()[rateWeek.activeWeek()].rating()].label"></div>
@@ -118,7 +118,7 @@
 			<span class="date" data-bind="text: date"></span>
 			<!-- ko if: $root.peopleDetails.person() -->
 				<!-- ko if: $root.peopleDetails.totals()[$index()] -->
-				<div class="total">
+				<div class="total" data-bind="css: { 'over': $root.peopleDetails.totals()[$index()].attributes.total() > 100 }">
 					<span class="number" data-bind="text: $root.peopleDetails.totals()[$index()].attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 					<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
 				</div>

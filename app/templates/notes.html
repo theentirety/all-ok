@@ -28,7 +28,7 @@
 		<h1>How's your workload?</h1>
 		<div class="options" data-bind="foreach: notes.statusOptions">
 			<button data-bind="css: { 'active': $parent.rateWeek.weeks()[$parent.rateWeek.activeWeek()].rating() == $index() }, tap: $parent.notes.selectStatus">
-				<span data-bind="css: icon"></span>
+				<div data-bind="style: { 'background-image': 'url(svg/' + $data.icon + ')' }"></div>
 			</button>
 		</div>
 		<div class="label" data-bind="text: notes.statusOptions()[rateWeek.weeks()[rateWeek.activeWeek()].rating()].label"></div>

@@ -4,7 +4,7 @@
 		<div class="handle"></div>
 	</div>
 	<div class="menu">
-		<button class="logout" data-bind="tap: header.logout">Log out</button>
+		<button class="logout" data-bind="tap: header.logout">Sign out</button>
 		<ul class="nav" data-bind="foreach: header.pages">
 			<li data-bind="css: { active: $parent.header.activePage() == $index() }, tap: function() { $parent.header.goToPage($index()) }">
 				<button>

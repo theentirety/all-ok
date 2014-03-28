@@ -15,27 +15,27 @@ function Notes(app) {
 		{
 			label: 'Bring on the work',
 			value: 0,
-			icon: 'fa fa-arrow-down'
+			icon: 'emoji-1.svg'
 		},
 		{
 			label: 'I\'m a little light',
 			value: 1,
-			icon: 'fa fa-minus'
+			icon: 'emoji-2.svg'
 		},
 		{
-			label: 'I\'m good',
+			label: 'Life is good',
 			value: 2,
-			icon: 'fa fa-arrow-right'
+			icon: 'emoji-3.svg'
 		},
 		{
 			label: 'I\'m a bit overwhelmed',
 			value: 3,
-			icon: 'fa fa-minus'
+			icon: 'emoji-4.svg'
 		},
 		{
 			label: 'Stop the madness!',
 			value: 4,
-			icon: 'fa fa-arrow-up'
+			icon: 'emoji-5.svg'
 		}
 	]);
 
