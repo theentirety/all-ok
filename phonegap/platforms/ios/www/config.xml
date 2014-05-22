@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.intuitivecompany.all-ok" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.intuitivecompany.all-ok" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>all-ok</name>
     <description>
         Let's make sure all the right people are in all the right places.
@@ -44,7 +44,7 @@
     <preference name="permissions"                value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="3.3.0" />          <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version"           value="3.4.0" />          <!-- all: current version of PhoneGap -->
     <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
@@ -93,8 +93,8 @@
     <gap:splash                               gap:platform="ios"                 src="res/screen/ios/screen-iphone-portrait-568h-2x.png" height="1136"  width="640" />
     <gap:splash                               gap:platform="winphone"            src="res/screen/windows-phone/screen-portrait.jpg" />
 
-    <access origin="http://127.0.0.1*" />
-    <access origin="https://api.parse.com*" />
-    <access origin="https://all-ok.parseapp.com*" />
-    <access origin="http://netdna.bootstrapcdn.com*" />
+    <access origin="*://127.0.0.1/*" subdomains="true" />
+    <access origin="*://*.parse.com/*" subdomains="true" />
+    <access origin="*://*.parseapp.com/*" subdomains="true" />
+    <access origin="*://*.bootstrapcdn.com/*" subdomains="true" />
 </widget>

@@ -4,32 +4,100 @@
 		"selected_items":
 		[
 			[
+				"bac",
+				"background-size"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"ko",
+				"koProject"
+			],
+			[
+				"peopl",
+				"peopleDetails"
+			],
+			[
+				"peop",
+				"peopleDetails"
+			],
+			[
+				"percent",
+				"percentage"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"drag",
+				"dragStart"
+			],
+			[
+				"sav",
+				"saving"
+			],
+			[
+				"mode",
+				"saveMode"
+			],
+			[
+				"tempPr",
+				"tempProjects"
+			],
+			[
+				"tempPro",
+				"tempProject"
+			],
+			[
+				"temp",
+				"tempProject"
+			],
+			[
+				"nu",
+				"numProjects"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"for",
+				"forgotMode"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"_",
+				"_font-helvetica"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"ma",
+				"maxHeight"
+			],
+			[
+				"is",
+				"isDragging"
+			],
+			[
 				"_h",
 				"_font-helvetica-bold"
 			],
 			[
-				"font",
-				"font-size"
-			],
-			[
 				"bor",
 				"border-radius"
-			],
-			[
-				"is",
-				"isOpen"
-			],
-			[
-				"border",
-				"border-bottom"
-			],
-			[
-				"bac",
-				"background-color"
-			],
-			[
-				"back",
-				"background-color"
 			],
 			[
 				"sig",
@@ -60,16 +128,8 @@
 				"text-align"
 			],
 			[
-				"_",
-				"_font-helvetica-bold"
-			],
-			[
 				"_fon",
 				"_font-helvetica-bold"
-			],
-			[
-				"font-",
-				"font-size"
 			],
 			[
 				"bord",
@@ -279,38 +339,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/templates/select-project.html",
-			"settings":
-			{
-				"buffer_size": 2812,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/select-project.js",
-			"settings":
-			{
-				"buffer_size": 4653,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/less/components/select-project.less",
-			"settings":
-			{
-				"buffer_size": 2638,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/less/components/base.less",
-			"settings":
-			{
-				"buffer_size": 3284,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -340,45 +368,51 @@
 	},
 	"file_history":
 	[
-		"/Users/amartlage/allocate/app/scripts/rate-week.js",
-		"/Users/amartlage/allocate/app/less/components/rate-week.less",
-		"/Users/amartlage/allocate/app/templates/rate-week.html",
-		"/Users/amartlage/allocate/app/less/components/header.less",
-		"/Users/amartlage/allocate/app/templates/header.html",
-		"/Users/amartlage/allocate/app/scripts/header.js",
-		"/Users/amartlage/allocate/app/scripts/auth.js",
+		"/Users/amartlage/allocate/app/templates/people-details.html",
+		"/Users/amartlage/allocate/app/scripts/people-details.js",
+		"/Users/amartlage/allocate/app/less/components/people-details.less",
 		"/Users/amartlage/allocate/app/scripts/main.js",
-		"/Users/amartlage/allocate/app/templates/auth.html",
+		"/Users/amartlage/allocate/app/scripts/app.js",
 		"/Users/amartlage/allocate/app/templates/notes.html",
 		"/Users/amartlage/allocate/app/templates/people.html",
-		"/Users/amartlage/allocate/app/templates/rate-project.htm",
-		"/Users/amartlage/allocate/app/index.html",
-		"/Users/amartlage/allocate/app/less/components/base.less",
-		"/Users/amartlage/allocate/app/less/components/auth.less",
-		"/Users/amartlage/allocate/app/less/components/select-project.less",
-		"/Users/amartlage/allocate/app/scripts/select-project.js",
-		"/Users/amartlage/allocate/app/scripts/people.js",
+		"/Users/amartlage/allocate/app/templates/rate-week.html",
+		"/Users/amartlage/allocate/app/templates/save.html",
 		"/Users/amartlage/allocate/app/templates/select-project.html",
-		"/Users/amartlage/allocate/app/scripts/steps.js",
-		"/Users/amartlage/allocate/app/less/components/notes.less",
 		"/Users/amartlage/allocate/app/templates/steps.html",
-		"/Users/amartlage/allocate/app/less/components/steps.less",
+		"/Users/amartlage/allocate/app/scripts/header.js",
+		"/Users/amartlage/allocate/app/scripts/steps.js",
+		"/Users/amartlage/allocate/app/scripts/people.js",
+		"/Users/amartlage/allocate/app/less/components/rate-week.less",
+		"/Users/amartlage/allocate/app/scripts/select-project.js",
+		"/Users/amartlage/allocate/app/scripts/save.js",
+		"/Users/amartlage/allocate/app/scripts/auth.js",
 		"/Users/amartlage/allocate/app/less/app.less",
-		"/Users/amartlage/allocate/app/less/mixins/fonts.less",
+		"/Users/amartlage/allocate/app/less/components/save.less",
 		"/Users/amartlage/allocate/app/less/components/people.less",
+		"/Users/amartlage/allocate/app/less/components/steps.less",
+		"/Users/amartlage/allocate/app/less/mixins/effects.less",
+		"/Users/amartlage/allocate/app/less/components/base.less",
+		"/Users/amartlage/allocate/app/less/components/select-project.less",
+		"/Users/amartlage/allocate/app/templates/auth.html",
+		"/Users/amartlage/allocate/app/less/components/notes.less",
+		"/Users/amartlage/allocate/app/less/components/auth.less",
+		"/Users/amartlage/allocate/app/scripts/notes.js",
+		"/Users/amartlage/allocate/app/scripts/rate-week.js",
+		"/Users/amartlage/allocate/app/less/components/header.less",
+		"/Users/amartlage/allocate/app/templates/header.html",
+		"/Users/amartlage/allocate/app/index.html",
+		"/Users/amartlage/allocate/app/templates/rate-project.htm",
+		"/Users/amartlage/allocate/app/less/mixins/fonts.less",
 		"/Users/amartlage/allocate/parse/cloud/projects.js",
 		"/Users/amartlage/allocate/parse/cloud/auth.js",
 		"/Users/amartlage/allocate/parse/cloud/main.js",
 		"/Users/amartlage/allocate/app/templates/rate-project.html",
 		"/Users/amartlage/allocate/app/scripts/controllers/main.js",
-		"/Users/amartlage/allocate/app/scripts/app.js",
 		"/Users/amartlage/allocate/app/scripts/controllers/auth.js",
 		"/Users/amartlage/allocate/app/views/main.html",
 		"/Users/amartlage/allocate/app/scripts/rate-project.js",
-		"/Users/amartlage/allocate/app/scripts/notes.js",
 		"/Users/amartlage/allocate/app/less/components/rate-project.less",
 		"/Users/amartlage/allocate/app/less/mixins/position.less",
-		"/Users/amartlage/allocate/app/less/mixins/effects.less",
 		"/Users/amartlage/allocate/app/less/mixins/font-awesome.less",
 		"/Users/amartlage/allocate/app/views/auth.html",
 		"/Users/amartlage/allocate/app/scripts/controllers.js",
@@ -433,6 +467,13 @@
 			"/Users/amartlage/allocate/app",
 			"/Users/amartlage/allocate/app/templates",
 			"/Users/amartlage/allocate/app/scripts",
+			"/Users/amartlage/allocate/app",
+			"/Users/amartlage/allocate/app/scripts",
+			"/Users/amartlage/allocate/app",
+			"/Users/amartlage/allocate/app/templates",
+			"/Users/amartlage/allocate/app",
+			"/Users/amartlage/allocate/app/templates",
+			"/Users/amartlage/allocate/app/scripts",
 			"/Users/amartlage/ProductMap/product-map/public"
 		]
 	},
@@ -441,6 +482,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Life",
+			"showDetails",
+			"ko.",
+			"times",
+			"$parent.people.selectWeek",
+			"showDetails",
+			"<!-- /ko",
+			"changeStep",
+			"myView",
+			"$root",
+			"takePicture",
+			"length",
+			"rateWeek.takePicture",
+			"dragstart",
+			"isRefreshDragging",
+			"alert",
+			"showDetails",
+			"registerRatio",
+			"registerStartPercentage",
+			"registerMouseX",
+			"success",
 			"event",
 			"total",
 			"auth",
@@ -526,117 +588,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/templates/select-project.html",
-					"settings":
-					{
-						"buffer_size": 2812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1215,
-								1215
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/scripts/select-project.js",
-					"settings":
-					{
-						"buffer_size": 4653,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3879,
-								3879
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1333.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/less/components/select-project.less",
-					"settings":
-					{
-						"buffer_size": 2638,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1085,
-								1085
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 581.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/less/components/base.less",
-					"settings":
-					{
-						"buffer_size": 3284,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								935,
-								935
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 112.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

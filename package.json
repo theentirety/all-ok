@@ -45,7 +45,7 @@
   "dependencies": {
     "debowerify": "~0.5.2",
     "gulp-autoprefixer": "~0.0.6",
-    "gulp": "~3.5.2",
+    "gulp": "~3.5.5",
     "gulp-cache": "~0.1.2",
     "gulp-clean": "~0.2.4",
     "gulp-browserify": "~0.4.6",
@@ -66,7 +66,9 @@
     "gulp-util": "~2.2.14",
     "twix": "~0.4.0",
     "browserify": "~3.29.1",
-    "should": "~3.1.2"
+    "should": "~3.1.2",
+    "gulp-bump": "~0.1.8",
+    "gulp-open": "~0.2.8"
   },
   "scripts": {
     "test": "mocha"
