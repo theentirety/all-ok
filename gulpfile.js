@@ -175,7 +175,6 @@ gulp.task('vendor-web', function () {
     'web/scripts/vendor/parse.min.js',
     'web/scripts/vendor/underscore-min.js',
     'web/scripts/vendor/knockout-3.0.0.js',
-    'web/scripts/vendor/knockouch.min.js',
     'web/scripts/vendor/moment.min.js'
     ])
     .pipe($.concat('vendor.js'))
@@ -186,7 +185,7 @@ gulp.task('vendor-web', function () {
 
 // Scripts
 gulp.task('scripts-web', function () {
-  return gulp.src('app/scripts/main.js')
+  return gulp.src('web/scripts/main.js')
     .pipe($.browserify({
       debug: true,
       transform: [
@@ -270,10 +269,10 @@ gulp.task('connect-web', webServer.server({
 
 // Watch
 gulp.task('watch-web', function () {
-    gulp.watch(['web/less/**/*.less'], ['styles-web']);
+    gulp.watch(['web/less/**/*.less', 'web/less/*.less'], ['styles-web']);
     gulp.watch(['web/scripts/**/*.js'], ['scripts-web']);
     gulp.watch(['web/images/**/*'], ['images-web']);
-    gulp.watch(['web/templates/**/*.html'], ['html-web']);
+    gulp.watch(['web/templates/**/*.html', 'web/templates/*.html'], ['html-web']);
     gulp.watch(['web/svg/**/*'], ['svg-web']);
 });
 

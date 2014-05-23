@@ -1,4 +1,19 @@
-<div class="bg"></div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="A simple app to allocate people to projects." />
+    <meta name="author" content="Intuitive Company" />
+    
+    <title>allocate</title>
+    <link href="styles/app.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.png" />
+  </head>
+
+  <body>
+    <!-- Gulp compiled html templates -->
+    <div class="bg"></div>
 <div id="auth" data-bind="fadeVisible: !auth.currentUser()">
 	<div class="alert" data-bind="visible: auth.errorMessage().length > 0 && (auth.signInMode() || auth.signUpMode() || auth.forgotMode())">
 		<span data-bind="text: auth.errorMessage"></span>
@@ -44,3 +59,13 @@
 <div id="auth_logout" data-bind="fadeVisible: auth.currentUser">
 	<button type="button" class="green" data-bind="click: auth.logout">Log out</button>
 </div>
+
+    <!--
+    Scripts
+    ================================================== 
+    Placed at the end of the document so the pages load faster -->
+    <!-- <script src="scripts/app.js"></script> -->
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

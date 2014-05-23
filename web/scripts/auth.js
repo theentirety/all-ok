@@ -17,6 +17,7 @@ function Auth(app) {
 	auth.signUpMode = ko.observable(false);
 	auth.isAdmin = ko.observable(false);
 	auth.forgotMode = ko.observable(false);
+	auth.signInMode = ko.observable(false);
 
 	var currentUser = Parse.User.current();
 	if (currentUser) {
@@ -24,18 +25,18 @@ function Auth(app) {
 	}
 
 	auth.init = function() {
-		if (auth.currentUser()) {
-			app.goToView('select-project');
-		} else {
-			app.goToView('auth');
-		}
-		Parse.Cloud.run('checkAdminStatus', {}, {
-			success: function(isAdmin) {
-				auth.isAdmin(isAdmin);
-			}, error: function(error) {
-				console.log(error);
-			}
-		});
+		// if (auth.currentUser()) {
+		// 	app.goToView('select-project');
+		// } else {
+		// 	app.goToView('auth');
+		// }
+		// Parse.Cloud.run('checkAdminStatus', {}, {
+		// 	success: function(isAdmin) {
+		// 		auth.isAdmin(isAdmin);
+		// 	}, error: function(error) {
+		// 		console.log(error);
+		// 	}
+		// });
 	}
 
 	auth.resetError = function() {
@@ -46,11 +47,10 @@ function Auth(app) {
 		// ko.postbox.publish('isLoading', true);
 		auth.resetError();
 
-		var username = $(formElement).find('input[name=auth_username]').val();
+		var email = $(formElement).find('input[name=auth_email]').val().toLowerCase();
 		var password = $(formElement).find('input[name=auth_password]').val();
 
 		if (auth.signUpMode()) {
-			var email = $(formElement).find('input[name=auth_email]').val().toLowerCase();
 			var displayName = $(formElement).find('input[name=auth_displayName]').val();
 			var passwordConfirm = $(formElement).find('input[name=auth_confirmPassword]').val();
 
@@ -65,36 +65,25 @@ function Auth(app) {
 				return false;
 			}
 
-			if (username.length < 1) {
-				auth.errorMessage('Please enter a username.');
-				return false;
-			}
-
 			if (password.length < 1 || passwordConfirm < 1 || password != passwordConfirm) {
 				auth.errorMessage('Please enter and confirm a password.');
 				return false;
 			}
 
 			var user = new Parse.User();
-			var scrubbedUsername = username.replace(/\s+/g,""); //remove white space
-			scrubbedUsername = scrubbedUsername.toLowerCase();
-
-			user.set('username', scrubbedUsername);
+			user.set('username', email);
 			user.set('password', password);
 			user.set('email', email);
 			user.set('displayName', displayName);
 
-			// other fields can be set just like with Parse.Object
-			// user.set("phone", "415-392-0202");
-
 			user.signUp(null, {
 				success: function(user) {
 					auth.currentUser(user);
-					app.goToView('select-project');
-					app.myViewModel.selectProject.init();
-					if (user.attributes.isAdmin) {
-						auth.isAdmin(true);
-					}
+					// app.goToView('select-project');
+					// app.myViewModel.selectProject.init();
+					// if (user.attributes.isAdmin) {
+					// 	auth.isAdmin(true);
+					// }
 				},
 				error: function(user, error) {
 					auth.errorMessage(auth.sanitizeErrors(error));
@@ -103,14 +92,15 @@ function Auth(app) {
 			});
 
 		} else {
-			Parse.User.logIn(username, password, {
+			Parse.User.logIn(email, password, {
 				success: function(user) {
 					auth.currentUser(user);
-					app.goToView('select-project');
-					app.myViewModel.selectProject.init();
-					if (user.attributes.isAdmin) {
-						auth.isAdmin(true);
-					}
+					auth.signInMode(false);
+					// app.goToView('select-project');
+					// app.myViewModel.selectProject.init();
+					// if (user.attributes.isAdmin) {
+					// 	auth.isAdmin(true);
+					// }
 				},
 				error: function(user, error) {
 					// The login failed. Check error to see why.
@@ -137,9 +127,9 @@ function Auth(app) {
 	}
 
 	auth.logout = function() {
-		app.myViewModel.steps.currentStep(0);
-		app.myViewModel.rateWeek.activeWeek(0);
-		app.goToView('auth');
+		auth.signUpMode(false);
+		auth.signInMode(false);
+		auth.forgotMode(false);
 		Parse.User.logOut();
 		auth.currentUser(null);
 	}
@@ -153,10 +143,32 @@ function Auth(app) {
 		}
 	}
 
-	auth.toggleForgotMode = function() {
+	auth.goSignIn = function() {
+		auth.resetError();
+		if (auth.signInMode()) {
+			auth.signInMode(false);
+		} else {
+			$('input').val('');
+			auth.signInMode(true);
+		}
+	}
+
+	auth.goSignUp = function() {
+		auth.resetError();
+		if (auth.signUpMode()) {
+			auth.signUpMode(false);
+		} else {
+			$('input').val('');
+			auth.signUpMode(true);
+		}
+	}
+
+	auth.goForgot = function() {
+		auth.resetError();
 		if (auth.forgotMode()) {
 			auth.forgotMode(false);
 		} else {
+			$('input').val('');
 			auth.forgotMode(true);
 		}
 	}
@@ -164,8 +176,12 @@ function Auth(app) {
 	auth.sanitizeErrors = function(error) {
 		switch(error.code)
 		{
+			case 200:
+				if (error.message == 'missing username') {
+					return error.message = 'Please enter an email address.';
+				}
 			case 101:
-				return 'Please enter a valid username and password.';
+				return 'Please enter a valid email and password.';
 			case 124:
 				return 'Oops! We messed up. Please try again.';
 			default:

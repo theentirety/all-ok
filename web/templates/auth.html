@@ -1,23 +1,46 @@
-<!-- ko if: !auth.currentUser() -->
-<div id="auth">
-	<div class="bg"></div>
-	<div class="content">
+<div class="bg"></div>
+<div id="auth" data-bind="fadeVisible: !auth.currentUser()">
+	<div class="alert" data-bind="visible: auth.errorMessage().length > 0 && (auth.signInMode() || auth.signUpMode() || auth.forgotMode())">
+		<span data-bind="text: auth.errorMessage"></span>
+	</div>
+	<div class="content" data-bind="fadeVisible: (!auth.signInMode() && !auth.signUpMode() && !auth.forgotMode() && !auth.currentUser())">
 		<img src="svg/logo.svg" />
-		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
-		<form data-bind="submit: auth.signInUp, visible: !auth.forgotMode()">
-			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode" autocapitalize="off" autocorrect="off">
-			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode" autocapitalize="on" autocorrect="off">
-			<input name="auth_username" type="text" class="form-control" placeholder="Username" autocapitalize="off" autocorrect="off">
-			<input name="auth_password" type="password" class="form-control" placeholder="Password">
-			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="fadeVisible: auth.signUpMode">
-			<button type="submit" class="btn btn-default navbar-btn" data-bind="text: (auth.signUpMode() ? 'Sign up' : 'Sign in')">Sign in</button> or <a data-bind="tap: auth.showSignUp, text: (auth.signUpMode() ? 'sign in' : 'sign up')">Sign up</a>
+		<h1>Let's make sure all the right people are in all the right places.</h1>
+		<div class="footer">
+			<button type="button" class="green" data-bind="click: auth.goSignUp">Create an account</button><br />
+			<button type="button" class="clear" data-bind="click: auth.goSignIn">Already have an account? <strong>Log in now</strong></button>
+		</div>
+	</div>
+	<div class="panel sign-up" data-bind="slidePanelVisible: auth.signUpMode">
+		<form data-bind="submit: auth.signInUp">
+			<h2>Sign Up</h2>
+			<button type="button" class="clear cancel fa fa-times-circle" data-bind="click: auth.goSignUp"></button>
+			<input name="auth_email" type="text" placeholder="Email" autocapitalize="off" autocorrect="off">
+			<input name="auth_displayName" type="text" placeholder="First and Last" autocapitalize="on" autocorrect="off">
+			<input name="auth_password" type="password" placeholder="Password">
+			<input name="auth_confirmPassword" type="password" placeholder="Confirm password">
+			<button type="submit" class="green">Join</button>
 		</form>
-		<div class="forgot" data-bind="tap: auth.toggleForgotMode, fadeVisible: !auth.forgotMode()">Forgot your password?</div>
-		<form data-bind="submit: auth.forgot, visible: auth.forgotMode">
-			<input name="auth_forgot" type="text" class="form-control" placeholder="Email" autocapitalize="off" autocorrect="off">
-			<button type="submit" class="btn btn-default navbar-btn">Reset Password</button>
-			<a data-bind="tap: auth.toggleForgotMode">Cancel</a>
+	</div>
+	<div class="panel sign-in" data-bind="slidePanelVisible: auth.signInMode() && !auth.forgotMode()">
+		<form data-bind="submit: auth.signInUp">
+			<h2>Log In</h2>
+			<button type="button" class="clear cancel fa fa-times-circle" data-bind="click: auth.goSignIn"></button>
+			<input name="auth_email" type="text" placeholder="Email" autocapitalize="off" autocorrect="off">
+			<input name="auth_password" type="password" placeholder="Password">
+			<button type="submit" class="green">Log in</button>
+			<div class="forgot" data-bind="click: auth.goForgot">Forgot your password?</div>
+		</form>
+	</div>
+	<div class="panel forgot" data-bind="slidePanelVisible: auth.forgotMode">
+		<form data-bind="submit: auth.forgot">
+			<h2>We'll email you a link so you can reset your password.</h2>
+			<button type="button" class="clear cancel fa fa-times-circle" data-bind="click: auth.goForgot"></button>
+			<input name="auth_forgot" type="text" placeholder="Email" autocapitalize="off" autocorrect="off">
+			<button type="submit" class="green">Reset Password</button>
 		</form>
 	</div>
 </div>
-<!-- /ko -->
+<div id="auth_logout" data-bind="fadeVisible: auth.currentUser">
+	<button type="button" class="green" data-bind="click: auth.logout">Log out</button>
+</div>

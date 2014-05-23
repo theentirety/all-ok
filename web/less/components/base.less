@@ -3,10 +3,17 @@
    base.less
    ========================================================================== */
 
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
-	font-family: @_font-helvetica;
+	font-family: @_font-arimo;
 	// overflow: hidden;
 
 	-ms-touch-action: none;
@@ -42,6 +49,10 @@ html, body {
 	}
 }
 
+body {
+	display: none;
+}
+
 .screen {
 	position: absolute;
 	top: 65px;
@@ -49,9 +60,55 @@ html, body {
 	width: 100%;
 	z-index: 1;
 	-webkit-overflow-scrolling: touch;
-	// -webkit-transition: all 0.25s ease-in-out;
-	// -moz-transition: all 0.25s ease-in-out;
-	// transition: all 0.25s ease-in-out;
+}
+
+.panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+	transform: translate3d(0,10000px,0);
+	visibility: hidden;
+}
+
+button {
+	line-height: 45px;
+	padding: 0 40px;
+	border-radius: 5px;
+	border: 0px none;
+	font-size: 18px;
+	color: #FFF;
+	text-align: center;
+	font-family: @_font-arimo;
+	&.green {
+		background-color: #a1cc3b;
+		color: #FFF;
+		border: 2px solid #8cb42f;
+	}
+	&.clear {
+		background-color: transparent;
+		color: #FFF;
+		text-shadow: 0 1px 0 #202426;
+	}
+}
+
+input[type=text], input[type=password], input[type=tel] {
+	height: 45px;
+	margin-bottom: 10px;
+	line-height: 45px;
+	background-color: #f4f4f4;
+	font-family: @_font-arimo;
+	color: #514646;
+	border: 0px none;
+	font-size: 18px;
+	padding: 0 10px;
+	display: block;
+	border-radius: 0;
+	width: 260px;
 }
 
 .modal {
@@ -86,7 +143,7 @@ html, body {
 			background-color: fade(#000, 10%);
 			padding: 10px;
 			margin: 0;
-			font-family: @_font-helvetica;
+			font-family: @_font-arimo;
 			font-size: 18px;
 		}
 		button {
