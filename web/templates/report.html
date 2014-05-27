@@ -1,0 +1,27 @@
+<div id="report" class="panel" data-bind="slidePanelVisible: report.show() && auth.currentUser()">
+	<ul class="content" data-bind="foreach: report.times()[report.activeWeek()]">
+		<li data-bind="isotope: {container: '#report>.content', itemSelector: '.isoitems'}" class="isoitems">
+			<h2 data-bind="text: attributes.user.attributes.displayName"></h2>
+			<div class="details">
+				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }"></div>
+				<div class="snapshot" data-bind="css: { over: attributes.total() > 100 }">
+					<span class="percent" data-bind="text: attributes.total() * ($parent.report.viewType() == 'hours' ? 0.4 : 1)"></span>
+					<span class="label" data-bind="text: ($parent.report.viewType() == 'hours' ? 'hr' : '%')"></span>
+				</div>
+			</div>
+			<ol class="projects">
+				<!-- ko foreach: $data.attributes.data.projects -->
+				<li class="percentage-container" data-bind="css: { over: percentage > 100 }">
+					<div class="name">
+						<span class="percent" data-bind="text: percentage * ($root.report.viewType() == 'hours' ? 0.4 : 1)"></span>
+						<span class="label" data-bind="text: ($root.report.viewType() == 'hours' ? 'hr' : '%')"></span>
+						<span class="company" data-bind="text: $root.report.getCompanyName(id) + ':'"></span>
+						<span class="project" data-bind="text: $root.report.getProjectName(id)"></span>
+					</div>
+					<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
+				</li>
+				<!-- /ko -->
+			</ol>
+		</li>
+	</ul>
+</div>

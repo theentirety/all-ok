@@ -23,7 +23,7 @@ Parse.Cloud.define('getPeople', function(request, response) {
 	}
 });
 
-// getTimes retrieves the list of people from the database matching the email address of the user
+// getTimes retrieves the list of times for the corresponding date range
 Parse.Cloud.define('getTimes', function(request, response) {
 	var currentUser = Parse.User.current();
 	var dates = request.params.dates;
@@ -33,6 +33,7 @@ Parse.Cloud.define('getTimes', function(request, response) {
 		email = email.substring(email.lastIndexOf('@'));
 		query.endsWith('email', email);
 		query.include('user');
+		query.containedIn('date', dates);
 		query.find({
 			success: function(times) {
 				response.success(times);

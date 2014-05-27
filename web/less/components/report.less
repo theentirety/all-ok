@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Report Stylesheet
+   report.less
+   ========================================================================== */
+
+#report {
+	text-align: center;
+	padding: 0;
+	background-color: #202426;
+	margin-top: 60px;
+	margin-bottom: 20px;
+	.content {
+		// width: 100%;
+		// margin: 20px 0;
+		// overflow: auto;
+		background-color: fade(#FFF, 100%);
+		// border-radius: 0;
+		padding: 0;
+		list-style: none;
+		// border-bottom: 2px solid fade(#000, 20%);
+		// border-top: 2px solid fade(#000, 20%);
+		>li {
+			border-bottom: 1px solid #d3d8dc;
+			border-right: 1px solid #d3d8dc;
+			min-width: 400px;
+			text-align: left;
+			padding: 20px;
+			white-space: nowrap;
+		}
+	}
+	h2 {
+		text-align: left;
+		font-size: 20px;
+		color: #333;
+		padding: 0;
+		margin: 0 0 5px 0;
+	}
+	.avatar {
+		width: 100px;
+		height: 100px;
+		border-radius: 3px 3px 0 0;
+		background-color: #FFF;
+		font-size: 24px;
+		text-align: center;
+		line-height: 34px;
+		background-size: cover;
+		-webkit-filter: grayscale(1);
+		display: inline-block;
+		margin-right: 5px;
+		vertical-align: middle;
+		&.fa {
+			color: #a1cc3b;
+			-webkit-filter: inherit;
+		}
+	}
+	.details, .projects {
+		display: inline-block;
+	}
+	.details {
+		width: 100px;
+	}
+	.projects {
+		min-width: 300px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		vertical-align: top;
+		li {
+			height: 25px;
+			line-height: 25px;
+		}
+		.name {
+			position: absolute;
+			z-index: 1;
+			overflow: hidden;
+			white-space: nowrap;
+			width: 100%;
+			text-overflow: ellipsis;
+			span {
+				line-height: 20px;
+				font-size: 14px;
+			}
+			.percent {
+				width: 20px;
+				text-align: right;
+				font-size: 14px;
+				display: inline-block;
+			}
+			.label {
+				font-size: 12px;
+				padding-left: 0;
+				padding-right: 10px;
+				width: 20px;
+				text-align: left;
+				display: inline-block;
+				color: fade(#000, 50%);
+			}
+			.person {
+				font-size: 20px;
+				color: #333333;
+			}
+			.company {
+				font-weight: bold;
+			}
+		}
+		.percentage-container {
+			white-space: nowrap;
+			position: relative;
+		}
+		.percentage {
+			height: 25px;
+			background-color: #a1cc3b;
+			position: relative;
+			border-bottom: 1px solid #bddb76;
+			display: inline-block;
+		}
+	}
+	.snapshot {
+		text-align: center;
+		background-color: #999;
+		border-radius: 0 0 3px 3px;
+		background-color: #d0e59d;
+		line-height: 30px;
+		&.over {
+			background-color: #b91f67;
+			color: #FFF;
+		}
+		.percent {
+			font-size: 20px;
+			font-weight: bold;
+		}
+		.label {
+			font-size: 12px;
+		}
+	}
+}

@@ -1,8 +1,5 @@
 /**
  * scripts/main.js
- *
- * This is the starting point for your application.
- * Take a look at http://browserify.org/ for more info
  */
 
 'use strict';
@@ -10,14 +7,8 @@
 $(document).ready(function() {
     var App = require('./app.js');
     var Auth = require('./auth.js');
-    // var Steps = require('./steps.js');
-    // var SelectProject = require('./select-project.js');
-    // var Header = require('./header.js');
-    // var RateWeek = require('./rate-week.js');
-    // var Notes = require('./notes.js');
-    // var People = require('./people.js');
-    // var Save = require('./save.js');
-    // var PeopleDetails = require('./people-details.js');
+    var Report = require('./report.js');
+    var Header = require('./header.js');
 
     // initialize parse
     Parse.initialize("JkYNfPBw2aPgcc7PeTGHMAU2XKvjzeqVIkyClVuo", "45OMU3ZS3o5c168lQxa0ilxQu4FdMVHT1NVTkORl");
@@ -27,16 +18,10 @@ $(document).ready(function() {
 
     var app = new App();
     var auth = new Auth(app);
-    // var steps = new Steps(app);
-    // var selectProject = new SelectProject(app);
-    // var header = new Header(app);
-    // var rateWeek = new RateWeek(app);
-    // var notes = new Notes(app);
-    // var people = new People(app);
-    // var save = new Save(app);
-    // var peopleDetails = new PeopleDetails(app);
+    var report = new Report(app);
+    var header = new Header(app);
 
-    // Custom knockout extneders
+    // Custom knockout extenders
 
     // Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods
     // Could be stored in a separate utility library
@@ -91,6 +76,19 @@ $(document).ready(function() {
 
     app.initialize();
 });
+
+ko.bindingHandlers.isotope = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {},
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var $el = $(element);
+        var value = ko.utils.unwrapObservable(valueAccessor());
+        var $container = $(value.container);
+        $container.isotope({
+            itemSelector: value.itemSelector
+        });
+        $container.isotope('appended', $el);
+    }
+};
 
 
 $.fn.serializeObject = function() {

@@ -1,4 +1,4 @@
-<div class="bg"></div>
+<div id="bg" data-bind="visible: !auth.currentUser()"></div>
 <div id="auth" data-bind="fadeVisible: !auth.currentUser()">
 	<div class="alert" data-bind="visible: auth.errorMessage().length > 0 && (auth.signInMode() || auth.signUpMode() || auth.forgotMode())">
 		<span data-bind="text: auth.errorMessage"></span>
@@ -40,7 +40,4 @@
 			<button type="submit" class="green">Reset Password</button>
 		</form>
 	</div>
-</div>
-<div id="auth_logout" data-bind="fadeVisible: auth.currentUser">
-	<button type="button" class="green" data-bind="click: auth.logout">Log out</button>
 </div>

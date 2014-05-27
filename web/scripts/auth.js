@@ -96,6 +96,7 @@ function Auth(app) {
 				success: function(user) {
 					auth.currentUser(user);
 					auth.signInMode(false);
+					app.myViewModel.report.init();
 					// app.goToView('select-project');
 					// app.myViewModel.selectProject.init();
 					// if (user.attributes.isAdmin) {
@@ -128,6 +129,7 @@ function Auth(app) {
 
 	auth.logout = function() {
 		auth.signUpMode(false);
+		app.myViewModel.report.resetReport();
 		auth.signInMode(false);
 		auth.forgotMode(false);
 		Parse.User.logOut();
