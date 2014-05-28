@@ -42,9 +42,23 @@
 	</div>
 </div>
 <div id="header" data-bind="fadeVisible: auth.currentUser">
+	<img src="svg/logo.svg" />
 	<button type="button" class="green logout" data-bind="click: auth.logout">Log out</button>
 </div>
 <div id="report" class="panel" data-bind="slidePanelVisible: report.show() && auth.currentUser()">
+	<div class="sub-header">
+		<div class="toggle-weeks" data-bind="foreach: report.weeks">
+			<button data-bind="click: function() { $parent.report.selectWeek($index()) }, css: { active: $parent.report.activeWeek() == $index()}">
+				<span class="date" data-bind="text: date"></span>
+			</button>
+		</div>
+		<div class="filters">
+			<div class="toggle" data-bind="click: report.toggleView">
+				<button data-bind="css: { active: report.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
+				<button data-bind="css: { active: report.viewType() == 'percent' }">%</button>
+			</div>
+		</div>
+	</div>
 	<ul class="content" data-bind="foreach: report.times()[report.activeWeek()]">
 		<li data-bind="isotope: {container: '#report>.content', itemSelector: '.isoitems'}" class="isoitems">
 			<h2 data-bind="text: attributes.user.attributes.displayName"></h2>

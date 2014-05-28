@@ -28,12 +28,6 @@ function Report(app) {
 		Parse.Cloud.run('getProjects', {}, {
 			success: function(projects) {
 				report.allProjects(projects);
-				console.log(projects)
-				// for (var i = 0; i < projects.length; i++) {
-				// 	report[i].attributes.percentage = ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }]);
-				// 	report.allProjects.push(projects[i]);
-				// }
-
 			}, error: function(error) {
 				console.log(error);
 			}
@@ -48,7 +42,15 @@ function Report(app) {
 		}
 
 		var isoContainer = $('#report>.content');
-		isoContainer.isotope({ layoutMode: 'fitRows' });
+		isoContainer.isotope({
+			layoutMode: 'fitRows',
+			hiddenStyle: {
+				opacity: 0
+			},
+			visibleStyle: {
+				opacity: 1
+			}
+		});
 		isoContainer.isotope('bindResize');
 		var dates = [];
 		for (var i = 0; i < report.numWeeks; i++) {
@@ -82,11 +84,22 @@ function Report(app) {
 
 					report.times.push(sorted);
 				}
-				console.log(report.times())
 			}, error: function(error) {
 				console.log(error);
 			}
 		});
+	}
+
+	report.selectWeek = function(index) {
+		report.activeWeek(index);
+	}
+
+	report.toggleView = function() {
+		if (report.viewType() == 'hours') {
+			report.viewType('percent');
+		} else {
+			report.viewType('hours');
+		}
 	}
 
 	report.getCompanyName = function(id) {

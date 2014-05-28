@@ -33,6 +33,7 @@ Parse.Cloud.define('getTimes', function(request, response) {
 		email = email.substring(email.lastIndexOf('@'));
 		query.endsWith('email', email);
 		query.include('user');
+		query.ascending('uupdatedAt');
 		query.containedIn('date', dates);
 		query.find({
 			success: function(times) {
