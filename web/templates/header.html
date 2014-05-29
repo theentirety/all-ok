@@ -1,4 +1,9 @@
 <div id="header" data-bind="fadeVisible: auth.currentUser">
 	<img src="svg/logo.svg" />
 	<button type="button" class="green logout" data-bind="click: auth.logout">Log out</button>
+	<ul class="nav">
+		<li data-bind="css: { active: header.viewType() == 'people' }"><button type="button" data-bind="click: function() { header.viewType('people') }">People</button></li>
+		<li data-bind="css: { active: header.viewType() == 'projects' }"><button type="button" data-bind="click: function() { header.viewType('projects') }">Projects</button></li>
+		<li data-bind="css: { active: header.viewType() == 'groups' }"><button type="button" data-bind="click: function() { header.viewType('groups') }">Groups</button></li>
+	</ul>
 </div>

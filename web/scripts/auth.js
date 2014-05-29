@@ -79,11 +79,6 @@ function Auth(app) {
 			user.signUp(null, {
 				success: function(user) {
 					auth.currentUser(user);
-					// app.goToView('select-project');
-					// app.myViewModel.selectProject.init();
-					// if (user.attributes.isAdmin) {
-					// 	auth.isAdmin(true);
-					// }
 				},
 				error: function(user, error) {
 					auth.errorMessage(auth.sanitizeErrors(error));
@@ -96,12 +91,6 @@ function Auth(app) {
 				success: function(user) {
 					auth.currentUser(user);
 					auth.signInMode(false);
-					app.myViewModel.report.init();
-					// app.goToView('select-project');
-					// app.myViewModel.selectProject.init();
-					// if (user.attributes.isAdmin) {
-					// 	auth.isAdmin(true);
-					// }
 				},
 				error: function(user, error) {
 					// The login failed. Check error to see why.

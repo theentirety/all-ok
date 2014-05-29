@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="author" content="Intuitive Company" />
     
-    <title>allocate</title>
+    <title>all-ok</title>
     <link href="styles/app.css" rel="stylesheet" />
     <link rel="shortcut icon" href="favicon.png" />
   </head>
@@ -60,12 +60,17 @@
 <div id="header" data-bind="fadeVisible: auth.currentUser">
 	<img src="svg/logo.svg" />
 	<button type="button" class="green logout" data-bind="click: auth.logout">Log out</button>
+	<ul class="nav">
+		<li data-bind="css: { active: header.viewType() == 'people' }"><button type="button" data-bind="click: function() { header.viewType('people') }">People</button></li>
+		<li data-bind="css: { active: header.viewType() == 'projects' }"><button type="button" data-bind="click: function() { header.viewType('projects') }">Projects</button></li>
+		<li data-bind="css: { active: header.viewType() == 'groups' }"><button type="button" data-bind="click: function() { header.viewType('groups') }">Groups</button></li>
+	</ul>
 </div>
-<div id="report" class="panel" data-bind="slidePanelVisible: report.show() && auth.currentUser()">
-	<div class="sub-header">
+<div id="report" data-bind="visible: report.show() && auth.currentUser() && header.viewType() == 'people'">
+	<div class="header">
 		<div class="toggle-weeks" data-bind="foreach: report.weeks">
 			<button data-bind="click: function() { $parent.report.selectWeek($index()) }, css: { active: $parent.report.activeWeek() == $index()}">
-				<span class="date" data-bind="text: date"></span>
+				<span class="date" data-bind="text: $parent.report.styleWeek($index(), $data.date())"></span>
 			</button>
 		</div>
 		<div class="filters">
@@ -75,7 +80,7 @@
 			</div>
 		</div>
 	</div>
-	<ul class="content" data-bind="foreach: report.times()[report.activeWeek()]">
+	<ul class="content panel" data-bind="foreach: report.times()[report.activeWeek()], slidePanelVisible: report.show() && auth.currentUser()">
 		<li data-bind="isotope: {container: '#report>.content', itemSelector: '.isoitems'}" class="isoitems">
 			<h2 data-bind="text: attributes.user.attributes.displayName"></h2>
 			<div class="details">
@@ -85,9 +90,9 @@
 					<span class="label" data-bind="text: ($parent.report.viewType() == 'hours' ? 'hr' : '%')"></span>
 				</div>
 			</div>
-			<ol class="projects">
+			<ol class="projects hide">
 				<!-- ko foreach: $data.attributes.data.projects -->
-				<li class="percentage-container" data-bind="css: { over: percentage > 100 }">
+				<li class="percentage-container" data-bind="css: { over: percentage > 100 }, css: { 'over': $index() > 4 }">
 					<div class="name">
 						<span class="percent" data-bind="text: percentage * ($root.report.viewType() == 'hours' ? 0.4 : 1)"></span>
 						<span class="label" data-bind="text: ($root.report.viewType() == 'hours' ? 'hr' : '%')"></span>
@@ -97,6 +102,7 @@
 					<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
 				</li>
 				<!-- /ko -->
+				<li data-bind="visible: $data.attributes.data.projects.length > 5"><button type="button" class="showall clear" data-bind="click: $root.report.toggleProjects">Show all projects</button></li>
 			</ol>
 		</li>
 	</ul>

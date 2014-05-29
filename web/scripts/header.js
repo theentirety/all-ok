@@ -9,6 +9,8 @@ function Header(app) {
 
 	var header = app.myViewModel.header = {};
 
+	header.viewType = ko.observable('people');
+
 	header.init = function() {
 		// report.show(true);
 	}

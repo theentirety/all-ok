@@ -20,7 +20,7 @@ function Report(app) {
 
 	report.numWeeks = 3;
 	report.today = moment(new Date()).startOf('isoweek');
-	report.weeks = ko.observableArray();
+	report.weeks = ko.observableArray([]);
 
 	report.init = function() {
 		report.show(true);
@@ -33,11 +33,13 @@ function Report(app) {
 			}
 		});
 
-
+		report.weeks([]);
+		var dates = [];
 		for (var i = 0; i < report.numWeeks; i++) {
 			var week = {
 				date: ko.observable(moment(report.today).add('days', (i * 7)).format('MMM D'))
-			}
+			};
+			dates.push(moment(report.today).add('days', (i * 7)).format('YYYY, M, D'));
 			report.weeks.push(week);
 		}
 
@@ -52,11 +54,6 @@ function Report(app) {
 			}
 		});
 		isoContainer.isotope('bindResize');
-		var dates = [];
-		for (var i = 0; i < report.numWeeks; i++) {
-			dates.push(moment(report.today).add('days', (i * 7)).format('YYYY, M, D'));
-			report.weeks()[i].date(moment(report.today).add('days', (i * 7)).format('MMM D'));
-		}
 
 		Parse.Cloud.run('getTimes', {
 			dates: dates
@@ -72,17 +69,28 @@ function Report(app) {
 
 					times[j].attributes.total = ko.observable(total.percentage);
 				}
+
 				for (var i = 0; i < report.numWeeks; i++) {
 					var weekDate = moment(report.today).add('days', (i * 7)).format('YYYY, M, D');
 					var week = _.filter(times, function(obj) {
 						return obj.attributes.data.date == weekDate;
 					});
 
-					var sorted = _.sortBy(week, function(obj){ 
-						return -obj.attributes.total();
-					});
 
-					report.times.push(sorted);
+					for (j = 0; j < week.length; j++) {
+						var sorted = _.sortBy(week[j].attributes.data.projects, function(project) {
+							return -project.percentage;
+						});
+
+						var filtered = _.filter(sorted, function(obj) {
+							return obj.percentage > 0;
+						});
+
+						week[j].attributes.data.projects = filtered;
+					}
+
+					report.times.push(week);
+
 				}
 			}, error: function(error) {
 				console.log(error);
@@ -94,12 +102,33 @@ function Report(app) {
 		report.activeWeek(index);
 	}
 
+	report.styleWeek = function(index, date) {
+		var styledDate = 'Week of ' +date;
+		if (index == 0) { styledDate = 'This week' };
+		if (index == 1) { styledDate = 'Next week' };
+		return styledDate;
+	}
+
 	report.toggleView = function() {
 		if (report.viewType() == 'hours') {
 			report.viewType('percent');
 		} else {
 			report.viewType('hours');
 		}
+	}
+
+	report.toggleProjects = function(item, e) {
+		var target = e.target;
+		var parent = $(target).parents('ol');
+		if (parent.hasClass('hide')) {
+			parent.removeClass('hide').addClass('show');
+			$(target).text('Hide');
+		} else {
+			parent.addClass('hide').removeClass('show');
+			$(target).text('Show all projects');
+		}
+		var isoContainer = $('#report>.content');
+		isoContainer.isotope('layout');
 	}
 
 	report.getCompanyName = function(id) {
@@ -130,6 +159,14 @@ function Report(app) {
 		report.times([]);
 	}
 
+	// subscribe to the auth event to init the reports
+	app.myViewModel.auth.currentUser.subscribe(function(user) {
+		if (user) {
+			report.init();
+		}
+	});
+
+	// if already logged in and refresh the page init the reports
 	if (app.myViewModel.auth.currentUser()) {
 		report.init();
 	}

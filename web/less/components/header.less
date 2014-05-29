@@ -8,11 +8,11 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 60px;
-	background-color: #31363a;
+	height: 118px;
+	background-color: #121516;
 	z-index: 10;
 	text-align: center;
-	padding: 10px;
+	padding: 0;
 	.logout {
 		position: absolute;
 		top: 10px;
@@ -21,6 +21,27 @@
 		line-height: 35px;
 	}
 	img {
-		height: 40px;
+		height: 35px;
+		margin-top: 10px;
+	}
+	.nav {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		margin-top: 10px;
+		padding: 5px 0;
+		background-color: #31363a;
+		li {
+			display: inline-block;
+			white-space: nowrap;
+			button {
+				background-color: transparent;
+			}
+			&.active {
+				button {
+					background-color: #121516;
+				}
+			}
+		}
 	}
 }
