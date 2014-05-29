@@ -101,7 +101,7 @@
 		</div>
 	</div>
 	<ul class="content" data-bind="foreach: projects.times">
-		<li>
+		<li class="project-row">
 			<span class="company" data-bind="text: $parent.projects.getCompanyName($data.projectId)"></span>: 
 			<span class="project" data-bind="text: $parent.projects.getProjectName($data.projectId)"></span>
 			<ol>
@@ -110,8 +110,9 @@
 					<span class="person" data-bind="text: $data.user.attributes.displayName"></span>
 					<ol>
 					<!-- ko foreach: $data.times -->
-						<li data-bind="attr: { class: 'column column-' + $root.projects.getDateColumnPosition($data.date) }">
-							<span class="time" data-bind="text: $data.percentage"></span>
+						<li data-bind="attr: { class: 'column column-' + $root.projects.getDateColumnPosition($data.date) }, visible: $data.percentage > 0">
+							<span class="percent" data-bind="text: $data.percentage * ($root.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+							<span class="label" data-bind="text: ($root.people.viewType() == 'hours' ? 'hr' : '%')"></span>
 						</li>
 					<!-- /ko -->
 					</ol>
