@@ -7,8 +7,9 @@
 $(document).ready(function() {
     var App = require('./app.js');
     var Auth = require('./auth.js');
-    var Report = require('./report.js');
+    var People = require('./people.js');
     var Header = require('./header.js');
+    var Projects = require('./projects.js');
 
     // initialize parse
     Parse.initialize("JkYNfPBw2aPgcc7PeTGHMAU2XKvjzeqVIkyClVuo", "45OMU3ZS3o5c168lQxa0ilxQu4FdMVHT1NVTkORl");
@@ -18,8 +19,9 @@ $(document).ready(function() {
 
     var app = new App();
     var auth = new Auth(app);
-    var report = new Report(app);
+    var people = new People(app);
     var header = new Header(app);
+    var projects = new Projects(app);
 
     // Custom knockout extenders
 

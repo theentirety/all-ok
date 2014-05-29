@@ -1,49 +1,46 @@
 /**
- * scripts/auth.js
- *
- * This is a sample CommonJS module.
- * Take a look at http://browserify.org/ for more info
+ * scripts/people.js
  */
 
 'use strict';
 
-function Report(app) {
+function People(app) {
 	var self = this;
 
-	var report = app.myViewModel.report = {};
-	report.show = ko.observable(false);
-	report.times = ko.observableArray([]);
-	report.viewType = ko.observable('hours');
-	report.activeWeek = ko.observable(0);
+	var people = app.myViewModel.people = {};
+	people.show = ko.observable(false);
+	people.times = ko.observableArray([]);
+	people.viewType = ko.observable('hours');
+	people.activeWeek = ko.observable(0);
 
-	report.allProjects = ko.observableArray();
+	people.allProjects = ko.observableArray();
 
-	report.numWeeks = 3;
-	report.today = moment(new Date()).startOf('isoweek');
-	report.weeks = ko.observableArray([]);
+	people.numWeeks = 3;
+	people.today = moment(new Date()).startOf('isoweek');
+	people.weeks = ko.observableArray([]);
 
-	report.init = function() {
-		report.show(true);
+	people.init = function() {
+		people.show(true);
 
 		Parse.Cloud.run('getProjects', {}, {
 			success: function(projects) {
-				report.allProjects(projects);
+				people.allProjects(projects);
 			}, error: function(error) {
 				console.log(error);
 			}
 		});
 
-		report.weeks([]);
+		people.weeks([]);
 		var dates = [];
-		for (var i = 0; i < report.numWeeks; i++) {
+		for (var i = 0; i < people.numWeeks; i++) {
 			var week = {
-				date: ko.observable(moment(report.today).add('days', (i * 7)).format('MMM D'))
+				date: ko.observable(moment(people.today).add('days', (i * 7)).format('MMM D'))
 			};
-			dates.push(moment(report.today).add('days', (i * 7)).format('YYYY, M, D'));
-			report.weeks.push(week);
+			dates.push(moment(people.today).add('days', (i * 7)).format('YYYY, M, D'));
+			people.weeks.push(week);
 		}
 
-		var isoContainer = $('#report>.content');
+		var isoContainer = $('#people>.content');
 		isoContainer.isotope({
 			layoutMode: 'fitRows',
 			hiddenStyle: {
@@ -59,7 +56,7 @@ function Report(app) {
 			dates: dates
 		}, {
 			success: function(times) {
-				report.times([]);
+				people.times([]);
 				for (var j = 0; j < times.length; j++) {
 					times[j].attributes.data = $.parseJSON(times[j].attributes.data);
 					var total = _(times[j].attributes.data.projects).reduce(function(acc, obj) {
@@ -70,8 +67,8 @@ function Report(app) {
 					times[j].attributes.total = ko.observable(total.percentage);
 				}
 
-				for (var i = 0; i < report.numWeeks; i++) {
-					var weekDate = moment(report.today).add('days', (i * 7)).format('YYYY, M, D');
+				for (var i = 0; i < people.numWeeks; i++) {
+					var weekDate = moment(people.today).add('days', (i * 7)).format('YYYY, M, D');
 					var week = _.filter(times, function(obj) {
 						return obj.attributes.data.date == weekDate;
 					});
@@ -89,7 +86,7 @@ function Report(app) {
 						week[j].attributes.data.projects = filtered;
 					}
 
-					report.times.push(week);
+					people.times.push(week);
 
 				}
 			}, error: function(error) {
@@ -98,26 +95,26 @@ function Report(app) {
 		});
 	}
 
-	report.selectWeek = function(index) {
-		report.activeWeek(index);
+	people.selectWeek = function(index) {
+		people.activeWeek(index);
 	}
 
-	report.styleWeek = function(index, date) {
+	people.styleWeek = function(index, date) {
 		var styledDate = 'Week of ' +date;
 		if (index == 0) { styledDate = 'This week' };
 		if (index == 1) { styledDate = 'Next week' };
 		return styledDate;
 	}
 
-	report.toggleView = function() {
-		if (report.viewType() == 'hours') {
-			report.viewType('percent');
+	people.toggleView = function() {
+		if (people.viewType() == 'hours') {
+			people.viewType('percent');
 		} else {
-			report.viewType('hours');
+			people.viewType('hours');
 		}
 	}
 
-	report.toggleProjects = function(item, e) {
+	people.toggleProjects = function(item, e) {
 		var target = e.target;
 		var parent = $(target).parents('ol');
 		if (parent.hasClass('hide')) {
@@ -127,13 +124,13 @@ function Report(app) {
 			parent.addClass('hide').removeClass('show');
 			$(target).text('Show all projects');
 		}
-		var isoContainer = $('#report>.content');
+		var isoContainer = $('#people>.content');
 		isoContainer.isotope('layout');
 	}
 
-	report.getCompanyName = function(id) {
+	people.getCompanyName = function(id) {
 		var name = '';
-		var project = _.find(report.allProjects(), function(obj) {
+		var project = _.find(people.allProjects(), function(obj) {
 			return obj.id == id;
 		});
 
@@ -143,9 +140,9 @@ function Report(app) {
 		return name;
 	}
 
-	report.getProjectName = function(id) {
+	people.getProjectName = function(id) {
 		var name = '';
-		var project = _.find(report.allProjects(), function(obj) {
+		var project = _.find(people.allProjects(), function(obj) {
 			return obj.id == id;
 		});
 
@@ -155,23 +152,23 @@ function Report(app) {
 		return name;
 	}
 
-	report.resetReport = function() {
-		report.times([]);
+	people.resetpeople = function() {
+		people.times([]);
 	}
 
-	// subscribe to the auth event to init the reports
+	// subscribe to the auth event to init the peoples
 	app.myViewModel.auth.currentUser.subscribe(function(user) {
 		if (user) {
-			report.init();
+			people.init();
 		}
 	});
 
-	// if already logged in and refresh the page init the reports
+	// if already logged in and refresh the page init the peoples
 	if (app.myViewModel.auth.currentUser()) {
-		report.init();
+		people.init();
 	}
 
 	return self;
 }
 
-module.exports = Report;
+module.exports = People;

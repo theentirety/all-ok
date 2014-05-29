@@ -33,11 +33,84 @@ Parse.Cloud.define('getTimes', function(request, response) {
 		email = email.substring(email.lastIndexOf('@'));
 		query.endsWith('email', email);
 		query.include('user');
-		query.ascending('uupdatedAt');
+		query.ascending('updatedAt');
 		query.containedIn('date', dates);
 		query.find({
 			success: function(times) {
 				response.success(times);
+			},
+			error: function(error) {
+				response.error(error);
+			}
+		});
+	} else {
+		response.error('You must be logged in.');
+	}
+});
+
+// getTimesByProject retrieves the list of times for the corresponding date range organized by projects
+Parse.Cloud.define('getTimesByProject', function(request, response) {
+	var currentUser = Parse.User.current();
+	var dates = request.params.dates;
+	if (currentUser) {
+		var query = new Parse.Query('Times');
+		var email = currentUser.attributes.email;
+		email = email.substring(email.lastIndexOf('@'));
+		query.endsWith('email', email);
+		query.include('user');
+		query.ascending('updatedAt');
+		query.containedIn('date', dates);
+		query.find({
+			success: function(times) {
+				var projectTimes = [];
+				_.each(times, function(time) {
+					var data = JSON.parse(time.attributes.data);
+					var date = data.date;
+					var user = time.attributes.user;
+					_.each(data.projects, function(project) {
+						project.date = date;
+						project.user = user;
+						projectTimes.push(project);
+					});
+				});
+				var grouped = _.groupBy(projectTimes, function(entry) {
+					return entry.id;
+				});
+
+				projectTimes = [];
+				_.each(grouped, function(projects) {
+					var data = {};
+					data.projectId = projects[0].id;
+
+					var groupedByUser = _.groupBy(projects, function(entry) {
+						return entry.user.id;
+					});
+
+					data.users = [];
+
+					_.each(groupedByUser, function(user) {
+						var userObj = {
+							user: user[0].user,
+							times: []
+						};
+
+						var sortedUserTimes = _.sortBy(user, function(userEntry) {
+							return userEntry.date;
+						});
+
+						_.each(sortedUserTimes, function(userEntry) {
+							var time = {
+								date: userEntry.date,
+								percentage: userEntry.percentage
+							};
+							userObj.times.push(time);
+						});
+						data.users.push(userObj);
+					});
+
+					projectTimes.push(data);
+				})
+				response.success(projectTimes);
 			},
 			error: function(error) {
 				response.error(error);

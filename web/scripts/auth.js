@@ -118,7 +118,7 @@ function Auth(app) {
 
 	auth.logout = function() {
 		auth.signUpMode(false);
-		app.myViewModel.report.resetReport();
+		app.myViewModel.people.resetReport();
 		auth.signInMode(false);
 		auth.forgotMode(false);
 		Parse.User.logOut();
