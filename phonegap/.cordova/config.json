@@ -6,9 +6,9 @@
             "uri": "https://github.com/phonegap/phonegap-app-hello-world/archive/3.4.0.tar.gz"
         }
     },
-    "id": "com.intuitivecompany.allocate",
-    "name": "allocate",
+    "id": "com.parseapp.all-ok",
+    "name": "all-ok",
     "phonegap": {
-        "id": 792004
+        "id": 941398
     }
 }
