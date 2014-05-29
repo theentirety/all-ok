@@ -3,10 +3,10 @@
 	<div class="page-header">
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: peopleDetails.goBack"></button>
 		<div class="user">
-			<!-- ko if: typeof peopleDetails.person().attributes.user.attributes.avatar === 'string' -->
-			<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + peopleDetails.person().attributes.user.attributes.avatar + ')' }"></div>
+			<!-- ko if: peopleDetails.person().attributes.user.attributes.avatar -->
+			<div class="avatar" data-bind="style: { 'background-image': 'url(' + peopleDetails.person().attributes.user.attributes.avatar._url + ')' }"></div>
 			<!-- /ko -->
-			<!-- ko ifnot: typeof peopleDetails.person().attributes.user.attributes.avatar === 'string' -->
+			<!-- ko ifnot: peopleDetails.person().attributes.user.attributes.avatar -->
 			<div class="avatar fa fa-user"></div>
 			<!-- /ko -->
 			<span data-bind="text: peopleDetails.person().attributes.user.attributes.displayName"></span>

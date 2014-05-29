@@ -88,6 +88,8 @@ function People(app) {
 
 					people.times.push(week);
 
+					console.log(people.times())
+
 				}
 			}, error: function(error) {
 				console.log(error);
@@ -152,7 +154,7 @@ function People(app) {
 		return name;
 	}
 
-	people.resetpeople = function() {
+	people.resetData = function() {
 		people.times([]);
 	}
 

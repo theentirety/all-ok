@@ -17,10 +17,10 @@
 			<div class="name">
 				<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 				<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
-				<!-- ko if: typeof attributes.user.attributes.avatar === 'string' -->
-				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }"></div>
+				<!-- ko if: attributes.user.attributes.avatar -->
+				<div class="avatar" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
 				<!-- /ko -->
-				<!-- ko ifnot: typeof attributes.user.attributes.avatar === 'string' -->
+				<!-- ko ifnot: attributes.user.attributes.avatar -->
 				<div class="avatar fa fa-user"></div>
 				<!-- /ko -->
 				<span class="person" data-bind="text: $data.attributes.user.attributes.displayName"></span>

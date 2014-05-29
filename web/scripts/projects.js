@@ -51,7 +51,6 @@ function Projects(app) {
 		}, {
 			success: function(times) {
 				projects.times(times);
-				console.log(projects.times())
 			},
 			error: function(error) {
 				console.log(error);

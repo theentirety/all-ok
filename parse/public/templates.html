@@ -68,7 +68,12 @@
 		<li data-bind="isotope: {container: '#people>.content', itemSelector: '.isoitems'}" class="isoitems">
 			<h2 data-bind="text: attributes.user.attributes.displayName"></h2>
 			<div class="details">
-				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }"></div>
+				<!-- ko if: $data.attributes.user.attributes.avatar -->
+				<div class="avatar" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
+				<!-- /ko -->
+				<!-- ko ifnot: $data.attributes.user.attributes.avatar -->
+				<div class="avatar fa fa-smile-o"></div>
+				<!-- /ko -->
 				<div class="snapshot" data-bind="css: { over: attributes.total() > 100 }">
 					<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 					<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>

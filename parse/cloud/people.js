@@ -125,14 +125,15 @@ Parse.Cloud.define('getTimesByProject', function(request, response) {
 Parse.Cloud.define('updateAvatar', function(request, response) {
 	var currentUser = Parse.User.current();
 	if (currentUser) {
-		currentUser.set('avatar', request.params.avatar);
-		currentUser.save(null, {
-			success: function(user) {
-				response.success(user);
-			},
-			error: function(error) {
-				response.error(error);
-			}
+
+		var avatar = new Parse.File("avatar.png", { base64: request.params.avatar });
+		avatar.save().then(function(image) {
+			currentUser.set('avatar', image);
+			currentUser.save();
+		}).then(function() {
+			response.success();
+		}, function(error) {
+			response.error(error);
 		});
 	}
 });

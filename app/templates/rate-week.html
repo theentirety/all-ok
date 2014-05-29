@@ -2,10 +2,10 @@
 <div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || header.activePage() == 1">
 	<div class="page-header">
 		<div class="user">
-			<!-- ko if: typeof auth.currentUser().attributes.avatar === 'string' -->
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }"></div>
+			<!-- ko if: auth.currentUser().attributes.avatar -->
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
 			<!-- /ko -->
-			<!-- ko ifnot: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
 			<!-- /ko -->
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
