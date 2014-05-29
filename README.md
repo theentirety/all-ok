@@ -1,2 +1,2 @@
-allocate
+all-ok
 ========
