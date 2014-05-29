@@ -46,11 +46,10 @@ function Auth(app) {
 		// ko.postbox.publish('isLoading', true);
 		auth.resetError();
 
-		var username = $(formElement).find('input[name=auth_username]').val();
+		var username = $(formElement).find('input[name=auth_email]').val();
 		var password = $(formElement).find('input[name=auth_password]').val();
 
 		if (auth.signUpMode()) {
-			var email = $(formElement).find('input[name=auth_email]').val().toLowerCase();
 			var displayName = $(formElement).find('input[name=auth_displayName]').val();
 			var passwordConfirm = $(formElement).find('input[name=auth_confirmPassword]').val();
 
@@ -62,11 +61,6 @@ function Auth(app) {
 
 			if (displayName.length < 1) {
 				auth.errorMessage('Please enter your first and last name.');
-				return false;
-			}
-
-			if (username.length < 1) {
-				auth.errorMessage('Please enter a username.');
 				return false;
 			}
 

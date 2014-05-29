@@ -20,9 +20,8 @@
 		<img src="svg/logo.svg" />
 		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
 		<form data-bind="submit: auth.signInUp, visible: !auth.forgotMode()">
-			<input name="auth_email" type="text" class="form-control" placeholder="Email" data-bind="fadeVisible: auth.signUpMode" autocapitalize="off" autocorrect="off">
-			<input name="auth_displayName" type="text" class="form-control" placeholder="First and last name" data-bind="fadeVisible: auth.signUpMode" autocapitalize="on" autocorrect="off">
-			<input name="auth_username" type="text" class="form-control" placeholder="Username" autocapitalize="off" autocorrect="off">
+			<input name="auth_email" type="text" class="form-control" placeholder="Email" autocapitalize="off" autocorrect="off">
+			<input name="auth_displayName" type="text" class="form-control" placeholder="First and Last name" data-bind="fadeVisible: auth.signUpMode" autocapitalize="on" autocorrect="off">
 			<input name="auth_password" type="password" class="form-control" placeholder="Password">
 			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="fadeVisible: auth.signUpMode">
 			<button type="submit" class="btn btn-default navbar-btn" data-bind="text: (auth.signUpMode() ? 'Sign up' : 'Sign in')">Sign in</button> or <a data-bind="tap: auth.showSignUp, text: (auth.signUpMode() ? 'sign in' : 'sign up')">Sign up</a>
@@ -58,10 +57,10 @@
 <div id="notes" class="screen" data-bind="visible: steps.currentStep() == 2">
 	<div class="page-header">
 		<div class="user">
-			<!-- ko if: typeof auth.currentUser().attributes.avatar === 'string' -->
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }"></div>
+			<!-- ko if: auth.currentUser().attributes.avatar -->
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
 			<!-- /ko -->
-			<!-- ko ifnot: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
 			<!-- /ko -->
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
@@ -100,10 +99,10 @@
 	<div class="page-header">
 		<button class="back-button fa fa-chevron-circle-left" data-bind="tap: peopleDetails.goBack"></button>
 		<div class="user">
-			<!-- ko if: typeof peopleDetails.person().attributes.user.attributes.avatar === 'string' -->
-			<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + peopleDetails.person().attributes.user.attributes.avatar + ')' }"></div>
+			<!-- ko if: peopleDetails.person().attributes.user.attributes.avatar -->
+			<div class="avatar" data-bind="style: { 'background-image': 'url(' + peopleDetails.person().attributes.user.attributes.avatar._url + ')' }"></div>
 			<!-- /ko -->
-			<!-- ko ifnot: typeof peopleDetails.person().attributes.user.attributes.avatar === 'string' -->
+			<!-- ko ifnot: peopleDetails.person().attributes.user.attributes.avatar -->
 			<div class="avatar fa fa-user"></div>
 			<!-- /ko -->
 			<span data-bind="text: peopleDetails.person().attributes.user.attributes.displayName"></span>
@@ -168,10 +167,10 @@
 			<div class="name">
 				<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 				<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
-				<!-- ko if: typeof attributes.user.attributes.avatar === 'string' -->
-				<div class="avatar" data-bind="style: { 'background-image': 'url(data:image/png;base64,' + $data.attributes.user.attributes.avatar + ')' }"></div>
+				<!-- ko if: attributes.user.attributes.avatar -->
+				<div class="avatar" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
 				<!-- /ko -->
-				<!-- ko ifnot: typeof attributes.user.attributes.avatar === 'string' -->
+				<!-- ko ifnot: attributes.user.attributes.avatar -->
 				<div class="avatar fa fa-user"></div>
 				<!-- /ko -->
 				<span class="person" data-bind="text: $data.attributes.user.attributes.displayName"></span>
@@ -188,10 +187,10 @@
 <div id="rate-week" class="screen" data-bind="visible: steps.currentStep() == 1 || header.activePage() == 1">
 	<div class="page-header">
 		<div class="user">
-			<!-- ko if: typeof auth.currentUser().attributes.avatar === 'string' -->
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(data:image/png;base64,' + auth.currentUser().attributes.avatar + ')' }"></div>
+			<!-- ko if: auth.currentUser().attributes.avatar -->
+			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
 			<!-- /ko -->
-			<!-- ko ifnot: typeof auth.currentUser().attributes.avatar === 'string' -->
+			<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
 			<!-- /ko -->
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
