@@ -2,3 +2,5 @@ node_modules
 app/bower_components
 phonegap/platforms
 phonegap/plugins
+allocate.sublime*
+phonegap.zip
