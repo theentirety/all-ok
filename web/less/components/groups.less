@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Groups Stylesheet
+   groups.less
+   ========================================================================== */
+
+#groups {
+	text-align: center;
+	padding: 0;
+	background-color: #202426;
+	.header {
+		position: fixed;
+		z-index: 2;
+		top: 120px;
+		left: 0;
+		width: 100%;
+		padding-top: 15px;
+		background-color: #202426;
+		border-bottom: fade(#FFF, 30%);
+		min-height: 60px;
+	}
+	.content {
+		background-color: fade(#FFF, 100%);
+		padding: 0;
+		margin-top: 180px;
+		margin-bottom: 25px;
+		min-height: 120px;
+		h2 {
+			padding: 0;
+			margin: 0;
+			font-size: 24px;
+			display: inline-block;
+		}
+		.others {
+			border-left: 1px solid #d3d8dc
+		}
+		.mine, .others {
+			width: 49%;
+			display: inline-block;
+			position: relative;
+			vertical-align: top;
+			padding: 0 20px;
+			margin: 20px 0;
+			text-align: left;
+		}
+		.sub-header {
+			position: relative;
+			button {
+				padding: 10px;
+				margin-right: 10px;
+			}
+		}
+		.new-group {
+			input, button {
+				display: inline-block;
+			}
+		}
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			padding-left: 50px;
+			li {
+				line-height: 35px;
+			}
+		}
+	}
+}

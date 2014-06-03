@@ -41,6 +41,43 @@
 		</form>
 	</div>
 </div>
+<div id="groups" data-bind="visible: auth.currentUser() && header.viewType() == 'groups'">
+	<div class="header">
+	</div>
+	<div class="content">
+		<div class="mine">
+			<div class="sub-header">
+				<button type="button" class="fa fa-plus green button toggle-new" data-bind="click: groups.toggleNew"></button><h2>My Groups</h2>
+			</div>
+			<div class="new-group" data-bind="visible: groups.showNew">
+				<form data-bind="submit: groups.saveGroup">
+					<input type="text" name="groupname" placeholder="Name" data-bind="value: groups.newGroupName" />
+					<label for="newgroup-private"><input type="checkbox" id="newgroup-private" name="private" data-bind="value: groups.newGroupPrivacy" />Private</label>
+					<button type="submit">Save</button>
+				</form>
+			</div>
+			<ul data-bind="foreach: groups.mine">
+				<li data-bind="text: attributes.name"></li>
+			</ul>
+			<!-- ko if: groups.mine().length <= 0 -->
+			<p>No groups</p>
+			<!-- /ko -->
+		</div>
+		<div class="others">
+			<div class="sub-header">
+				<h2>My Company Groups</h2>
+			</div>
+			<ul data-bind="foreach: groups.others">
+				<!-- ko if: attributes.email != $root.auth.currentUser().attributes.email -->
+				<li data-bind="text: attributes.name"></li>
+				<!-- /ko -->
+			</ul>
+			<!-- ko if: groups.others().length <= 0 -->
+			<p>No other groups</p>
+			<!-- /ko -->
+		</div>
+	</div>
+</div>
 <div id="header" data-bind="fadeVisible: auth.currentUser">
 	<img src="svg/logo.svg" />
 	<button type="button" class="green logout" data-bind="click: auth.logout">Log out</button>
@@ -52,31 +89,42 @@
 </div>
 <div id="people" data-bind="visible: auth.currentUser() && header.viewType() == 'people'">
 	<div class="header">
-		<div class="toggle-weeks" data-bind="foreach: people.weeks">
-			<button data-bind="click: function() { $parent.people.selectWeek($index()) }, css: { active: $parent.people.activeWeek() == $index()}">
-				<span class="date" data-bind="text: $parent.people.styleWeek($index(), $data.date())"></span>
-			</button>
-		</div>
+		<ul class="toggle-bordered weeks" data-bind="foreach: people.weeks">
+			<li data-bind="css: { active: $parent.people.activeWeek() == $index()}">
+				<button data-bind="click: function() { $parent.people.selectWeek($index()) }">
+					<span class="date" data-bind="text: $parent.people.styleWeek($index(), $data.date())"></span>
+				</button>
+			</li>
+		</ul>
 		<div class="filters">
-			<div class="toggle" data-bind="click: people.toggleView">
-				<button data-bind="css: { active: people.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
-				<button data-bind="css: { active: people.viewType() == 'percent' }">%</button>
-			</div>
+			<ul class="toggle" data-bind="click: people.toggleView">
+				<li data-bind="css: { active: people.viewType() == 'hours' }"><button><span class="fa fa-clock-o"></span></button></li>
+				<li data-bind="css: { active: people.viewType() == 'percent' }"><button>%</button></li>
+			</ul>
 		</div>
 	</div>
 	<ul class="content panel" data-bind="foreach: people.times()[people.activeWeek()], slidePanelVisible: people.show() && auth.currentUser()">
 		<li data-bind="isotope: {container: '#people>.content', itemSelector: '.isoitems'}" class="isoitems">
 			<h2 data-bind="text: attributes.user.attributes.displayName"></h2>
 			<div class="details">
-				<!-- ko if: $data.attributes.user.attributes.avatar -->
-				<div class="avatar" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
-				<!-- /ko -->
-				<!-- ko ifnot: $data.attributes.user.attributes.avatar -->
-				<div class="avatar fa fa-smile-o"></div>
-				<!-- /ko -->
+				
+				<div class="avatar">
+					<!-- ko if: $data.attributes.user.attributes.avatar -->
+					<div class="picture" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
+					<!-- /ko -->
+					<!-- ko ifnot: $data.attributes.user.attributes.avatar -->
+					<div class="picture fa fa-user"></div>
+					<!-- /ko -->
+					<div class="border"></div>
+				</div>
+				
 				<div class="snapshot" data-bind="css: { over: attributes.total() > 100 }">
-					<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
-					<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hr' : '%')"></span>
+					<div class="time">
+						<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+						<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hours' : '%')"></span>
+					</div>
+					<div class="emoji"></div>
+					<div class="notes"></div>
 				</div>
 			</div>
 			<ol class="projects hide">

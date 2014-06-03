@@ -87,9 +87,6 @@ function People(app) {
 					}
 
 					people.times.push(week);
-
-					console.log(people.times())
-
 				}
 			}, error: function(error) {
 				console.log(error);

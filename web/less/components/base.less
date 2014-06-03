@@ -13,7 +13,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	font-family: @_font-arimo;
+	font-family: @_font-sans;
 	// overflow: hidden;
 
 	-ms-touch-action: none;
@@ -37,6 +37,22 @@ html, body {
 		outline: none;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 		-webkit-appearance: none;
+		&[type='checkbox'] {
+			border: 1px solid fade(#000, 40%);
+			vertical-align: middle;
+			border-radius: 3px;
+			height: 40px;
+			width: 40px;
+			&:checked {
+				&:before {
+					font-family: FontAwesome;
+					top: 0;
+					left: 0;
+					content: "\f00c";
+					font-size: 38px;
+				}
+			}
+		}
 	}
 	&.root-modal, &.root-menu {
 		overflow: hidden;
@@ -88,7 +104,7 @@ button {
 	font-size: 18px;
 	color: #FFF;
 	text-align: center;
-	font-family: @_font-arimo;
+	font-family: @_font-sans;
 	&.green {
 		background-color: #a1cc3b;
 		color: #FFF;
@@ -106,7 +122,7 @@ input[type=text], input[type=password], input[type=tel] {
 	margin-bottom: 10px;
 	line-height: 45px;
 	background-color: #f4f4f4;
-	font-family: @_font-arimo;
+	font-family: @_font-sans;
 	color: #514646;
 	border: 0px none;
 	font-size: 18px;
@@ -148,7 +164,7 @@ input[type=text], input[type=password], input[type=tel] {
 			background-color: fade(#000, 10%);
 			padding: 10px;
 			margin: 0;
-			font-family: @_font-arimo;
+			font-family: @_font-sans;
 			font-size: 18px;
 		}
 		button {
@@ -193,41 +209,141 @@ input[type=text], input[type=password], input[type=tel] {
 }
 
 .toggle {
-	background-color: #1a1d1f;
-	color: #31363a;
 	border-radius: 5px;
-	padding: 3px;
+	padding: 5px;
+	margin-top: 2px;
+	list-style: none;
+	font-size: 0;
+	li {
+		display: inline-block;
+		position: relative;
+		&:first-child {
+			::after {
+				display: none;
+			}
+		}
+		::after {
+			content: " ";
+			background-color: #e6e8eb;
+			width: 2px;
+			height:	26px;
+			position: absolute;
+			left: -1px;
+			top: 2px;
+		}
+		&.active {
+			button, span {
+				color: #739dd0;
+			}
+		}
+	}
 	button {
 		overflow: hidden;
-		line-height: 18px;
+		line-height: 21px;
 		font-family: Arial;
-		padding: 0 15px;
+		padding: 0 10px;
 		height: 30px;
 		margin: 0;
 		border: 0px none;
-		font-size: 18px;
+		font-size: 21px;
 		float: left;
 		border-radius: 3px;
 		background-color: transparent;
 		-webkit-transition: all 0.25s ease-in-out;
 		-moz-transition: all 0.25s ease-in-out;
 		transition: all 0.25s ease-in-out;
-		&.active {
-			background-color: #31363a;
-			color: #b0b5ba;
-		}
+		color: #dfdfdf;
 	}
 }
 
-.toggle-weeks {
-	button {
-		background-color: #31363a;
-		margin: 0;
-		border: 0px none;
-		float: left;
-		padding: 0;
+.toggle-bordered {
+	white-space: nowrap;
+	font-size: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		border-radius: 0;
+		border-top: 2px solid #dfdfdf;
+		border-bottom: 2px solid #dfdfdf;
+		line-height: normal;
+		display: inline-block;
+		position: relative;
 		&.active {
-			background-color: #FFF;
+			border: 0px none;
+			border-top: 2px solid #739dd0;
+			border-bottom: 2px solid #739dd0;
+			&:first-child {
+				border-left: 2px solid #739dd0;
+				border-right: 2px solid #739dd0;
+
+			}
+			&:last-child {
+				border-right: 2px solid #739dd0;
+				border-left: 2px solid #739dd0;
+			}
+			button {
+				color: #FFF;
+				background-color: #739dd0;
+				font-weight: bold;
+			}
+		}
+		button {
+			color: #aaa;
+			padding: 11px 25px;
+			margin: 0;
+			font-size: 14px;
+			font-family: @_font-sans;
+			background-color: transparent;
+			line-height: 14px;
+			border-radius: 0;
+		}
+		span {
+			line-height: 14px;
+		}
+		&:first-child {
+			border-left: 2px solid #dfdfdf;
+			border-radius: 5px 0 0 5px;
+		}
+		&:last-child {
+			border-right: 2px solid #dfdfdf;
+			border-radius: 0 5px 5px 0;
+		}
+		&:first-child {
+			&.active {
+				&+li {
+					::before {
+						display: none;
+					}
+				}
+				&+li+li {
+					::before {
+						content: " ";
+						background-color: #e6e8eb;
+						width: 2px;
+						height:	26px;
+						position: absolute;
+						left: -1px;
+						top: 5px;
+					}
+				}
+			}
+		}
+		&:nth-child(2) {
+			::before {
+				content: " ";
+				background-color: #e6e8eb;
+				width: 2px;
+				height:	26px;
+				position: absolute;
+				left: -1px;
+				top: 5px;
+			}
+			&.active {
+				::before {
+					display: none;
+				}
+			}
 		}
 	}
 }

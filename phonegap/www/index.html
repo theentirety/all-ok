@@ -16,6 +16,33 @@
     <!-- Gulp compiled html templates -->
     <!-- ko if: !auth.currentUser() -->
 <div id="auth">
+	<div class="carousel">
+		<div class="carousel-panel">
+			<h1>How is your week going?</h1>
+			<p>Sometimes it's difficult to communicate everything you're working on.</p>
+			<video width="100%">
+				<source src="video/small.mp4" type="video/mp4">
+				<source src="video/small.ogg" type="video/ogv">
+				<source src="video/small.webm" type="video/webm">
+			</video>
+		</div>
+		<div class="carousel-panel">
+			<h1>Are you too busy?</h1>
+			<p>It can be frustrating if you have too much going on at once.</p>
+		</div>
+		<div class="carousel-panel">
+			<h1>Improve communication</h1>
+			<p>With all-ok, easy communication of your allocations helps keep everything running smoothly.</p>
+		</div>
+		<div class="carousel-panel">
+			<h1>Working with groups</h1>
+			<p>Share projects with your team members and keep everyone connected.</p>
+		</div>
+	</div>
+
+
+
+
 	<div>
 		<img src="svg/logo.svg" />
 		<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
@@ -32,6 +59,9 @@
 			<button type="submit" class="btn btn-default navbar-btn">Reset Password</button>
 			<a data-bind="tap: auth.toggleForgotMode">Cancel</a>
 		</form>
+	</div>
+	<div class="footer">
+
 	</div>
 </div>
 <!-- /ko -->

@@ -22,17 +22,25 @@ function Projects(app) {
 	}
 
 	projects.getCompanyName = function(id) {
-		var project = _.find(app.myViewModel.people.allProjects(), function(project) {
-			return project.id == id;
-		});
-		return project.attributes.company;
+		if (app.myViewModel.people.allProjects().length > 0) {
+			var project = _.find(app.myViewModel.people.allProjects(), function(project) {
+				return project.id == id;
+			});
+			return project.attributes.company;
+		} else {
+			return null;
+		}
 	}
 
 	projects.getProjectName = function(id) {
-		var project = _.find(app.myViewModel.people.allProjects(), function(project) {
-			return project.id == id;
-		});
-		return project.attributes.name;
+		if (app.myViewModel.people.allProjects().length > 0) {
+			var project = _.find(app.myViewModel.people.allProjects(), function(project) {
+				return project.id == id;
+			});
+			return project.attributes.name;
+		} else {
+			return null;
+		}
 	}
 
 	projects.init = function() {

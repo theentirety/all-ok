@@ -1,0 +1,37 @@
+<div id="groups" data-bind="visible: auth.currentUser() && header.viewType() == 'groups'">
+	<div class="header">
+	</div>
+	<div class="content">
+		<div class="mine">
+			<div class="sub-header">
+				<button type="button" class="fa fa-plus green button toggle-new" data-bind="click: groups.toggleNew"></button><h2>My Groups</h2>
+			</div>
+			<div class="new-group" data-bind="visible: groups.showNew">
+				<form data-bind="submit: groups.saveGroup">
+					<input type="text" name="groupname" placeholder="Name" data-bind="value: groups.newGroupName" />
+					<label for="newgroup-private"><input type="checkbox" id="newgroup-private" name="private" data-bind="value: groups.newGroupPrivacy" />Private</label>
+					<button type="submit">Save</button>
+				</form>
+			</div>
+			<ul data-bind="foreach: groups.mine">
+				<li data-bind="text: attributes.name"></li>
+			</ul>
+			<!-- ko if: groups.mine().length <= 0 -->
+			<p>No groups</p>
+			<!-- /ko -->
+		</div>
+		<div class="others">
+			<div class="sub-header">
+				<h2>My Company Groups</h2>
+			</div>
+			<ul data-bind="foreach: groups.others">
+				<!-- ko if: attributes.email != $root.auth.currentUser().attributes.email -->
+				<li data-bind="text: attributes.name"></li>
+				<!-- /ko -->
+			</ul>
+			<!-- ko if: groups.others().length <= 0 -->
+			<p>No other groups</p>
+			<!-- /ko -->
+		</div>
+	</div>
+</div>

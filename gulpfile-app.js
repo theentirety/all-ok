@@ -97,6 +97,16 @@ gulp.task('svg', function () {
     .pipe(gulp.dest(rootFolder + '/svg'))
 });
 
+// SVG
+gulp.task('video', function () {
+  return gulp.src([
+    'app/video/*.mp4',
+    'app/svg/*.ogv',
+    'app/svg/*.webm'
+    ])
+    .pipe(gulp.dest(rootFolder + '/video'))
+});
+
 // Lint
 gulp.task('lint', function () {
   return gulp.src('app/scripts/**/*.js')
@@ -122,7 +132,7 @@ gulp.task('clean', function () {
 });
 
 // Dev Server
-gulp.task('dev', ['html', 'styles', 'scripts', 'vendor', 'images', 'connect', 'watch', 'svg']);
+gulp.task('dev', ['html', 'styles', 'scripts', 'vendor', 'images', 'connect', 'watch', 'svg', 'video']);
 
 // Connect
 gulp.task('connect', appServer.server({
