@@ -40,17 +40,17 @@ function People(app) {
 			people.weeks.push(week);
 		}
 
-		var isoContainer = $('#people>.content');
-		isoContainer.isotope({
-			layoutMode: 'fitRows',
-			hiddenStyle: {
-				opacity: 0
-			},
-			visibleStyle: {
-				opacity: 1
-			}
-		});
-		isoContainer.isotope('bindResize');
+		// var isoContainer = $('#people>.content');
+		// isoContainer.isotope({
+		// 	layoutMode: 'fitRows',
+		// 	hiddenStyle: {
+		// 		opacity: 0
+		// 	},
+		// 	visibleStyle: {
+		// 		opacity: 1
+		// 	}
+		// });
+		// isoContainer.isotope('bindResize');
 
 		Parse.Cloud.run('getTimes', {
 			dates: dates
@@ -94,6 +94,32 @@ function People(app) {
 		});
 	}
 
+	people.convertNumToWords = function(number) {
+		switch (number) {
+			case 0:
+				return 'zero';
+			case 1:
+				return 'one';
+			case 2:
+				return 'two';
+			case 3:
+				return 'three';
+			case 4:
+				return 'four';
+			default:
+				return 'unknown';
+		}
+	}
+
+	people.flip = function(item, e) {
+		var target = $(e.target).parents('li');
+		if (target.hasClass('flipped')) {
+			target.removeClass('flipped')
+		} else {
+			target.addClass('flipped')
+		}
+	}
+
 	people.selectWeek = function(index) {
 		people.activeWeek(index);
 	}
@@ -123,8 +149,8 @@ function People(app) {
 			parent.addClass('hide').removeClass('show');
 			$(target).text('Show all projects');
 		}
-		var isoContainer = $('#people>.content');
-		isoContainer.isotope('layout');
+		// var isoContainer = $('#people>.content');
+		// isoContainer.isotope('layout');
 	}
 
 	people.getCompanyName = function(id) {

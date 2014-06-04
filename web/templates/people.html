@@ -15,10 +15,9 @@
 		</div>
 	</div>
 	<ul class="content panel" data-bind="foreach: people.times()[people.activeWeek()], slidePanelVisible: people.show() && auth.currentUser()">
-		<li data-bind="isotope: {container: '#people>.content', itemSelector: '.isoitems'}" class="isoitems">
+		<li class="isoitems" data-bind="css: $parent.people.convertNumToWords($data.attributes.data.rating)"> <!-- data-bind="isotope: {container: '#people>.content', itemSelector: '.isoitems'}"  -->
 			<h2 data-bind="text: attributes.user.attributes.displayName"></h2>
 			<div class="details">
-				
 				<div class="avatar">
 					<!-- ko if: $data.attributes.user.attributes.avatar -->
 					<div class="picture" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
@@ -29,29 +28,37 @@
 					<div class="border"></div>
 				</div>
 				
-				<div class="snapshot" data-bind="css: { over: attributes.total() > 100 }">
+				<div class="snapshot" data-bind="css: { over: attributes.total() > 100 }, click: $parent.people.flip">
 					<div class="time">
 						<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
 						<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hours' : '%')"></span>
 					</div>
-					<div class="emoji"></div>
-					<div class="notes"></div>
+					<div class="emoji" data-bind="text: attributes.data.rating">
+
+					</div>
+					<div class="notes" data-bind="text: attributes.data.notes"></div>
 				</div>
 			</div>
-			<ol class="projects hide">
-				<!-- ko foreach: $data.attributes.data.projects -->
-				<li class="percentage-container" data-bind="css: { over: percentage > 100 }, css: { 'over': $index() > 4 }">
-					<div class="name">
-						<span class="percent" data-bind="text: percentage * ($root.people.viewType() == 'hours' ? 0.4 : 1)"></span>
-						<span class="label" data-bind="text: ($root.people.viewType() == 'hours' ? 'hr' : '%')"></span>
-						<span class="company" data-bind="text: $root.people.getCompanyName(id) + ':'"></span>
-						<span class="project" data-bind="text: $root.people.getProjectName(id)"></span>
-					</div>
-					<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
-				</li>
-				<!-- /ko -->
-				<li data-bind="visible: $data.attributes.data.projects.length > 5"><button type="button" class="showall clear" data-bind="click: $root.people.toggleProjects">Show all projects</button></li>
-			</ol>
+			<div class="container">
+				<ol class="projects hide">
+					<!-- ko foreach: $data.attributes.data.projects -->
+					<li class="percentage-container" data-bind="css: { over: percentage > 100 }, css: { 'over': $index() > 4 }">
+						<div class="name">
+							<span class="percent" data-bind="text: percentage * ($root.people.viewType() == 'hours' ? 0.4 : 1)"></span>
+							<span class="label" data-bind="text: ($root.people.viewType() == 'hours' ? 'hr' : '%')"></span>
+							<span class="company" data-bind="text: $root.people.getCompanyName(id) + ':'"></span>
+							<span class="project" data-bind="text: $root.people.getProjectName(id)"></span>
+						</div>
+						<div class="percentage" data-bind="style: { width: $data.percentage * .666 + '%' }"></div> 
+					</li>
+					<!-- /ko -->
+					<li data-bind="visible: $data.attributes.data.projects.length > 5"><button type="button" class="showall clear" data-bind="click: $root.people.toggleProjects">Show all projects</button></li>
+				</ol>
+				<div class="back" data-bind="click: $root.people.flip">
+					<div class="fa fa-arrow-left"></div>
+					<p data-bind="text: attributes.data.notes"></p>
+				</div>
+			</div>
 		</li>
 	</ul>
 </div>
