@@ -9,7 +9,6 @@
 
 var App = require('./app.js');
 var Auth = require('./auth.js');
-var Steps = require('./steps.js');
 var SelectProject = require('./select-project.js');
 var RateWeek = require('./rate-week.js');
 var Notes = require('./notes.js');
@@ -35,7 +34,6 @@ h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bw
 var app = new App();
 var auth = new Auth(app);
 var home = new Home(app);
-var steps = new Steps(app);
 var selectProject = new SelectProject(app);
 var rateWeek = new RateWeek(app);
 var notes = new Notes(app);

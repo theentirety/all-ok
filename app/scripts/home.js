@@ -44,6 +44,11 @@ function Home(app) {
 		return blankWeek;
 	}
 
+	home.go = function(index) {
+		app.myViewModel.selectProject.init(index);
+		app.goToView('select-project');
+	}
+
 	home.convertNumToWords = function(number) {
 		switch (number) {
 			case 0:
@@ -66,7 +71,6 @@ function Home(app) {
 		for (var i = 0; i < app.myViewModel.numWeeks; i++) {
 			home.weeks.push(moment(home.today).startOf('isoweek').add('days', (i * 7)).format('YYYY, M, D'));
 		}
-		console.log(home.weeks())
 		Parse.Cloud.run('getTotalsAndRating', {
 			weeks: home.weeks()
 		}, {
@@ -81,7 +85,6 @@ function Home(app) {
 						marginTop: 0
 					}, 100);
 				}
-				console.log(totalsAndRating)
 				home.totals(totalsAndRating);
 			}, error: function(error) {
 				console.log(error);
@@ -94,9 +97,9 @@ function Home(app) {
 			var top = $(document).scrollTop();
 			var delta = Math.floor(event.gesture.distance);
 			if (top == 0 && delta > 30) {
-				if (delta > 80) delta = 80;
+				if (delta > 150) delta = 150;
 				$('#home .page').css('margin-top', delta - 30);
-				if (delta >= 60) {
+				if (delta >= 100) {
 					$('#home .refresh').html('<span class="fa fa-arrow-circle-up"></span> Release to refresh');
 				} else {
 					$('#home .refresh').html('<span class="fa fa-arrow-circle-down"></span> Pull to refresh');
@@ -112,7 +115,7 @@ function Home(app) {
 			$(event.gesture.target).one('dragend', function(event) {
 				var delta = parseInt($('#home .page').css('margin-top'));
 
-				if (delta >= 30) {
+				if (delta >= 70) {
 					home.getTotalsAndRating();
 					$('#home .refresh').html('<span class="fa fa-refresh fa-spin"></span> Refreshing...');
 				} else {

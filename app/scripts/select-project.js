@@ -20,6 +20,9 @@ function SelectProject(app) {
 	selectProject.isRefreshDragging = ko.observable(false);
 	selectProject.dragStart = ko.observable(0);
 	selectProject.count = ko.observable(0);
+	selectProject.week = ko.observable('This Week');
+	selectProject.show = ko.observable(false);
+	selectProject.today = moment(new Date()).startOf('isoweek');
 
 	selectProject.getProjects = function() {
 		Parse.Cloud.run('getProjects', {}, {
@@ -51,7 +54,17 @@ function SelectProject(app) {
 		});
 	}
 
-	selectProject.init = function() {
+	selectProject.goHome = function() {
+		selectProject.show(false);
+		app.goToView('home');
+	}
+
+	selectProject.init = function(index) {
+		var styledDate = 'Week of ' + moment(selectProject.today).add('days', (index * 7)).format('MMM D');
+		if (index == 0) styledDate = 'This Week';
+		if (index == 1) styledDate = 'Next Week';
+		selectProject.week(styledDate);
+		selectProject.show(true);
 		selectProject.getProjects();
 	}
 
@@ -126,7 +139,7 @@ function SelectProject(app) {
 
 	selectProject.dragRefresh = function(item, event) {
 		if (selectProject.isRefreshDragging() && selectProject.dragStart() == 0) {
-			var top = $(document).scrollTop();
+			var top = $('#select-project .all-projects').scrollTop();
 			var delta = Math.floor(event.gesture.distance);
 			if (top == 0 && delta > 30) {
 				if (delta > 150) delta = 150;
@@ -141,8 +154,8 @@ function SelectProject(app) {
 	}
 
 	selectProject.startRefreshDrag = function(item, event) {
-		if (!selectProject.isRefreshDragging() && !app.myViewModel.header.isOpen() && selectProject.dragStart() == 0) {
-			selectProject.dragStart($(document).scrollTop());
+		if (!selectProject.isRefreshDragging() && selectProject.dragStart() == 0) {
+			selectProject.dragStart($('#select-project .all-projects').scrollTop());
 			selectProject.isRefreshDragging(true);
 			$(event.gesture.target).one('dragend', function(event) {
 				var delta = parseInt($('#select-project .all-projects').css('margin-top'));

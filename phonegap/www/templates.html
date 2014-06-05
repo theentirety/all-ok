@@ -97,13 +97,13 @@
 			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
 			<p>Blah</p>
 		</div>
-		<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 	</div>
+	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 	<div class="page" data-bind="dragdown: home.dragRefresh, drag: home.startRefreshDrag">
 		<h2>What are you working on?</h2>
 		<!-- ko if: home.totals().length > 0 -->
 		<ul data-bind="foreach: home.totals">
-			<li data-bind="css: { 'none': $data.total < 0, 'over': $data.total > 100 }">
+			<li data-bind="css: { 'none': $data.total < 0, 'over': $data.total > 100 }, tap: function() { $parent.home.go($index()) }">
 				<div class="date" data-bind="text: $parent.home.styleWeek($index())"></div>
 				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating > 0 ? $data.rating : 'missing') + '.svg)' }"></div>
 				<div class="total" data-bind="text: $data.total >= 0 ? $data.total * 0.4 : '- -', css: $parent.home.convertNumToWords($data.rating)"></div>
@@ -113,7 +113,7 @@
 		</ul>
 		<!-- /ko -->
 		<!-- ko ifnot: home.totals().length > 0 -->
-		Loading...
+		<div class="loading">Loading...</div>
 		<!-- /ko -->
 	</div>
 </div>
@@ -317,15 +317,17 @@
 </div>
 <!-- /ko -->
 <!-- ko if: auth.currentUser() && views[activeView()] == 'select-project' -->
-<div id="select-project" class="screen" data-bind="visible: steps.currentStep() == 0">
-	<div class="page-header">
-		<h1>Select projects</h1>
-		<button class="add" data-bind="visible: auth.isAdmin, tap: selectProject.toggleAddMode"><span class="fa fa-plus"></span></button>
-		<!-- <div class="toggle" data-bind="tap: selectProject.toggleView">
-			<button data-bind="css: { active: selectProject.viewType() == 'all' }">all</button>
-			<button data-bind="css: { active: selectProject.viewType() == 'selected' }"><span class="fa fa-check"></span></button>
-		</div> -->
+<div id="select-project" class="panel" data-bind="slidePanelVisible: selectProject.show">
+	<div class="header">
+		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
+	<div class="sub-header">
+		<button type="button" class="left fa fa-chevron-left disabled" disabled="disabled"></button>
+		<h2>Select Projects</h2>
+		<button type="button" class="right fa fa-chevron-right"></button>
+	</div>
+	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 	<ul data-bind="foreach: selectProject.allProjects, dragdown: selectProject.dragRefresh, drag: selectProject.startRefreshDrag" class="all-projects">
 		<!-- ko if: ($data.attributes.active() || $parent.selectProject.viewType() == 'all') && !$data.attributes.archived -->
 		<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'Internal' }, tap: $parent.selectProject.toggleProject">
@@ -335,45 +337,5 @@
 		</li>
 		<!-- /ko -->
 	</ul>
-	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
-</div>
-<div class="modal add-project" data-bind="fadeVisible: selectProject.isAddMode">
-	<div class="container">
-		<div class="title">
-			<h2>Add Project</h2>
-			<button data-bind="tap: selectProject.toggleAddMode"><span class="fa fa-times"></span></button>
-		</div>
-		<div class="content">
-			<div class="typeahead">
-				<div class="input-group input-group-lg">
-					<!-- <span class="input-group-addon">Company</span> -->
-					<input class="project-typeahead-field form-control" type="text" data-bind="event: { keyup: selectProject.showTypeaheadResults }" autocapitalize="on" autocorrect="off" placeholder="Company">
-				</div>
-				<ul class="project-typeahead" data-bind="foreach: selectProject.filteredProjectList, visible: selectProject.filteredProjectList().length > 0">
-					<li data-bind="text: $data, tap: $parent.selectProject.selectProjectTypeahead"></li>
-				</ul>
-			</div>
-			<div class="input-group input-group-lg">
-				<!-- <span class="input-group-addon">Project</span> -->
-				<input class="project-name-field form-control" type="text" autocapitalize="on" autocorrect="on" placeholder="Project">
-			</div>
-		</div>
-		<div class="footer">
-			<button class="btn btn-default" data-bind="tap: selectProject.saveNewProject">Save</button>
-			<span data-bind="tap: selectProject.toggleAddMode">Cancel</span>
-		</div>
-	</div>
-</div>
-<!-- /ko -->
-<!-- ko if: auth.currentUser() && (views[activeView()] == 'select-project' || views[activeView()] == 'rate-week' || views[activeView()] == 'notes') -->
-<div id="steps">
-	<button data-bind="fadeVisible: steps.currentStep() > 0, tap: function() { steps.nextStep(-1) }" class="fa fa-arrow-left left"></button>
-	<ul data-bind="foreach: steps.steps">
-		<li data-bind="css: { active: $data.stepNumber == $parent.steps.currentStep() }"></li>
-	</ul>
-	<button data-bind="fadeVisible: steps.currentStep() < steps.steps().length - 1, tap: function() { steps.nextStep(1) }, css: { disabled: selectProject.count() <= 0 }" class="fa fa-arrow-right right"></button>
-	<div class="done" data-bind="fadeVisible: steps.currentStep() == steps.steps().length - 1">
-		<button type="button" class="save fa fa-check right" data-bind="tap: save.submit"></button>
-	</div>
 </div>
 <!-- /ko -->

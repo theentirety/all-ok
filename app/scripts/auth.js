@@ -17,8 +17,6 @@ function Auth(app) {
 	auth.signUpMode = ko.observable(false);
 	auth.signInMode = ko.observable(false);
 	auth.forgotMode = ko.observable(false);
-	auth.steps = ko.observableArray();
-	auth.numsteps = 4;
 
 	var currentUser = Parse.User.current();
 	if (currentUser) {
@@ -26,23 +24,11 @@ function Auth(app) {
 	}
 
 	auth.init = function() {
-		for (var i = 0; i < auth.numsteps; i++) {
-			auth.steps.push(auth.Step({ step: i }))
-		}
 		if (auth.currentUser()) {
 			app.goToView('home');
 		} else {
 			app.goToView('auth');
 		}
-	}
-
-	auth.Step = function(data) {
-		var step = {};
-		step.active = ko.observable(false);
-		if (data.step == 0) {
-			step.active(true);
-		}
-		return step;
 	}
 
 	auth.resetError = function() {
@@ -138,8 +124,8 @@ function Auth(app) {
 	}
 
 	auth.logout = function() {
-		app.myViewModel.steps.currentStep(0);
 		app.myViewModel.rateWeek.activeWeek(0);
+		app.myViewModel.profile.show(false);
 		app.goToView('auth');
 		Parse.User.logOut();
 		auth.currentUser(null);

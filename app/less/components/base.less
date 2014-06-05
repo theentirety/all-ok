@@ -124,9 +124,7 @@ html, body {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	overflow-x: hidden;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
 	display: -moz-box;
 	display: flex;
 	display: -webkit-flex;
@@ -158,8 +156,9 @@ html, body {
 		right: 0;
 		height: 64px;
 		overflow: hidden;
-		z-index: 2;
+		z-index: 3;
 		background-color: #2B2F33;
+		text-align: center;
 		.left, .right {
 			position: absolute;
 			top: 0;
@@ -188,6 +187,47 @@ html, body {
 			font-weight: bold;
 			text-align: center;
 			line-height: 64px;
+		}
+	}
+	.sub-header {
+		position: fixed;
+		left: 0;
+		top: 64px;
+		right: 0;
+		height: 58px;
+		overflow: hidden;
+		z-index: 3;
+		background-color: #1A1D1E;
+		border-top: 2px solid #17191A;
+		text-align: center;
+		.left, .right {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			border: 0px none;
+			background-color: transparent;
+			color: #FFF;
+			font-size: 30px;
+			min-width: 64px;
+			text-align: center;
+			padding: 0;
+		}
+		.left {
+			left: 0;
+		}
+		.right {
+			right: 0;
+		}
+		h2 {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			font-family: @_font-serif;
+			font-size: 21px;
+			color: #FFF;
+			font-weight: normal;
+			text-align: center;
+			line-height: 58px;
 		}
 	}
 }
