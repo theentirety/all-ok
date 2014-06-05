@@ -15,8 +15,10 @@ function Auth(app) {
 	auth.currentUser = ko.observable();
 	auth.errorMessage = ko.observable('');
 	auth.signUpMode = ko.observable(false);
-	auth.isAdmin = ko.observable(false);
+	auth.signInMode = ko.observable(false);
 	auth.forgotMode = ko.observable(false);
+	auth.steps = ko.observableArray();
+	auth.numsteps = 4;
 
 	var currentUser = Parse.User.current();
 	if (currentUser) {
@@ -24,18 +26,23 @@ function Auth(app) {
 	}
 
 	auth.init = function() {
+		for (var i = 0; i < auth.numsteps; i++) {
+			auth.steps.push(auth.Step({ step: i }))
+		}
 		if (auth.currentUser()) {
-			app.goToView('select-project');
+			app.goToView('home');
 		} else {
 			app.goToView('auth');
 		}
-		Parse.Cloud.run('checkAdminStatus', {}, {
-			success: function(isAdmin) {
-				auth.isAdmin(isAdmin);
-			}, error: function(error) {
-				console.log(error);
-			}
-		});
+	}
+
+	auth.Step = function(data) {
+		var step = {};
+		step.active = ko.observable(false);
+		if (data.step == 0) {
+			step.active(true);
+		}
+		return step;
 	}
 
 	auth.resetError = function() {
@@ -43,7 +50,6 @@ function Auth(app) {
 	}
 
 	auth.signInUp = function(formElement) {
-		// ko.postbox.publish('isLoading', true);
 		auth.resetError();
 
 		var username = $(formElement).find('input[name=auth_email]').val();
@@ -54,7 +60,7 @@ function Auth(app) {
 			var passwordConfirm = $(formElement).find('input[name=auth_confirmPassword]').val();
 
 			// validation
-			if (email.length < 1) {
+			if (username.length < 1) {
 				auth.errorMessage('Please enter your email address.');
 				return false;
 			}
@@ -75,20 +81,15 @@ function Auth(app) {
 
 			user.set('username', scrubbedUsername);
 			user.set('password', password);
-			user.set('email', email);
+			user.set('email', scrubbedUsername);
 			user.set('displayName', displayName);
-
-			// other fields can be set just like with Parse.Object
-			// user.set("phone", "415-392-0202");
 
 			user.signUp(null, {
 				success: function(user) {
 					auth.currentUser(user);
-					app.goToView('select-project');
+					app.goToView('home');
 					app.myViewModel.selectProject.init();
-					if (user.attributes.isAdmin) {
-						auth.isAdmin(true);
-					}
+					auth.resetViews();
 				},
 				error: function(user, error) {
 					auth.errorMessage(auth.sanitizeErrors(error));
@@ -100,11 +101,9 @@ function Auth(app) {
 			Parse.User.logIn(username, password, {
 				success: function(user) {
 					auth.currentUser(user);
-					app.goToView('select-project');
+					app.goToView('home');
 					app.myViewModel.selectProject.init();
-					if (user.attributes.isAdmin) {
-						auth.isAdmin(true);
-					}
+					auth.resetViews();
 				},
 				error: function(user, error) {
 					// The login failed. Check error to see why.
@@ -118,16 +117,24 @@ function Auth(app) {
 	auth.forgot = function(formElement) {
 		var email = $(formElement).find('input[name=auth_forgot]').val();
 
-		Parse.User.requestPasswordReset(email, {
-			success: function() {
-				auth.forgotMode(false);
-				$(formElement).find('input[name=auth_forgot]').val('');
-				auth.errorMessage('Please check your email for instructions on resetting your password.');
-			},
-			error: function(error) {
-				auth.errorMessage(auth.sanitizeErrors(error));
-			}
-		});
+		if (email.length <= 0) {
+			auth.errorMessage('Please enter an email address.');
+		} else {
+			Parse.User.requestPasswordReset(email, {
+				success: function() {
+					auth.forgotMode(false);
+					$(formElement).find('input[name=auth_forgot]').val('');
+					auth.errorMessage('Please check your email for instructions on resetting your password.');
+				},
+				error: function(error) {
+					auth.errorMessage(auth.sanitizeErrors(error));
+				}
+			});
+		}
+	}
+
+	auth.resetError = function() {
+		auth.errorMessage('');
 	}
 
 	auth.logout = function() {
@@ -136,20 +143,38 @@ function Auth(app) {
 		app.goToView('auth');
 		Parse.User.logOut();
 		auth.currentUser(null);
+		auth.resetViews();
 	}
 
-	auth.showSignUp = function() {
-		auth.errorMessage('');
+	auth.resetViews = function() {
+		auth.resetError();
+		auth.signInMode(false);
+		auth.signUpMode(false);
+		auth.forgotMode(false);
+	}
+
+	auth.toggleSignIn = function() {
+		if (auth.signInMode()) {
+			auth.signInMode(false);
+			auth.resetError();
+		} else {
+			auth.signInMode(true);
+		}
+	}
+
+	auth.toggleSignUp = function() {
 		if (auth.signUpMode()) {
 			auth.signUpMode(false);
+			auth.resetError();
 		} else {
 			auth.signUpMode(true);
 		}
 	}
 
-	auth.toggleForgotMode = function() {
+	auth.toggleForgot = function() {
 		if (auth.forgotMode()) {
 			auth.forgotMode(false);
+			auth.resetError();
 		} else {
 			auth.forgotMode(true);
 		}

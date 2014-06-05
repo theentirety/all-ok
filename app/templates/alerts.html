@@ -1,0 +1,8 @@
+<!-- ko if: auth.currentUser() -->
+<div id="alerts" class="panel" data-bind="slidePanelVisible: alerts.show">
+	<div class="header">
+		<button type="button" class="left fa fa-times" data-bind="tap: function() { alerts.show(false) }"></button>
+		<h1>Notifications</h1>
+	</div>
+</div>
+<!-- /ko -->

@@ -16,6 +16,7 @@ function App() {
 	self.myViewModel.activeView = ko.observable(0);
 	self.myViewModel.views = [
 		'auth',
+		'home',
 		'select-project',
 		'rate-week',
 		'notes',
@@ -23,6 +24,10 @@ function App() {
 		'people-details',
 		'save'
 	];
+
+	self.myViewModel.numWeeks = 3;
+	self.myViewModel.today = moment(new Date()).startOf('isoweek');
+	self.myViewModel.weeks = ko.observableArray();
 
 	self.goToView = function(view) {
 		var index = self.myViewModel.views.indexOf(view);

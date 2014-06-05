@@ -1,0 +1,41 @@
+<!-- ko if: auth.currentUser() && views[activeView()] == 'home' -->
+<div id="home" class="screen">
+	<div class="header">
+		<button type="button" class="left fa fa-cog" data-bind="tap: home.showProfile"></button>
+		<img src="svg/logo.svg" />
+		<button type="submit" class="right fa fa-bell" data-bind="visible: alerts.list().length > 0, tap: home.showAlerts">
+			<div class="quantity">3</div>
+		</button>
+	</div>
+	<div class="user">
+		<!-- ko if: auth.currentUser().attributes.avatar -->
+		<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
+		<!-- /ko -->
+		<!-- ko ifnot: auth.currentUser().attributes.avatar -->
+		<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
+		<!-- /ko -->
+		<div class="info">
+			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
+			<p>Blah</p>
+		</div>
+		<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
+	</div>
+	<div class="page" data-bind="dragdown: home.dragRefresh, drag: home.startRefreshDrag">
+		<h2>What are you working on?</h2>
+		<!-- ko if: home.totals().length > 0 -->
+		<ul data-bind="foreach: home.totals">
+			<li data-bind="css: { 'none': $data.total < 0, 'over': $data.total > 100 }">
+				<div class="date" data-bind="text: $parent.home.styleWeek($index())"></div>
+				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating > 0 ? $data.rating : 'missing') + '.svg)' }"></div>
+				<div class="total" data-bind="text: $data.total >= 0 ? $data.total * 0.4 : '- -', css: $parent.home.convertNumToWords($data.rating)"></div>
+				<div class="label" data-bind="text: $data.total == 1 ? 'hour' : 'hours'"></div>
+				<div class="notes" data-bind="text: notes"></div>
+			</li>
+		</ul>
+		<!-- /ko -->
+		<!-- ko ifnot: home.totals().length > 0 -->
+		Loading...
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->

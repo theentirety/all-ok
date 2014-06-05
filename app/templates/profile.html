@@ -1,0 +1,9 @@
+<!-- ko if: auth.currentUser() -->
+<div id="profile" class="panel" data-bind="slidePanelVisible: profile.show">
+	<div class="header">
+		<button type="button" class="left fa fa-times" data-bind="tap: function() { profile.show(false) }"></button>
+		<h1>Profile</h1>
+	</div>
+	<button class="button" data-bind="tap: auth.logout">Log Off</button>
+</div>
+<!-- /ko -->

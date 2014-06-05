@@ -31,11 +31,9 @@
 				<div class="snapshot" data-bind="css: { over: attributes.total() > 100 }, click: $parent.people.flip">
 					<div class="time">
 						<span class="percent" data-bind="text: attributes.total() * ($parent.people.viewType() == 'hours' ? 0.4 : 1)"></span>
-						<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hours' : '%')"></span>
+						<span class="label" data-bind="text: ($parent.people.viewType() == 'hours' ? 'hours' : 'percent')"></span>
 					</div>
-					<div class="emoji" data-bind="text: attributes.data.rating">
-
-					</div>
+					<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + (attributes.data.rating + 1) + '.svg)' }"></div>
 					<div class="notes" data-bind="text: attributes.data.notes"></div>
 				</div>
 			</div>
@@ -55,7 +53,7 @@
 					<li data-bind="visible: $data.attributes.data.projects.length > 5"><button type="button" class="showall clear" data-bind="click: $root.people.toggleProjects">Show all projects</button></li>
 				</ol>
 				<div class="back" data-bind="click: $root.people.flip">
-					<div class="fa fa-arrow-left"></div>
+					<div class="fa fa-arrow-right"></div>
 					<p data-bind="text: attributes.data.notes"></p>
 				</div>
 			</div>
