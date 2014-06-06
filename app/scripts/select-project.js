@@ -63,6 +63,7 @@ function SelectProject(app) {
 
 								_.each(results.projects, function(project) {
 									project.attributes.selected = ko.observable(false);
+									project.attributes.percentage = ko.observable(0);
 								});
 
 								if (group) {
@@ -105,6 +106,12 @@ function SelectProject(app) {
 	selectProject.goHome = function() {
 		selectProject.show(false);
 		app.goToView('home');
+	}
+
+	selectProject.goNext = function() {
+		selectProject.show(false);
+		app.myViewModel.rateWeek.show(true);
+		app.goToView('rate-week');
 	}
 
 	selectProject.init = function(index) {

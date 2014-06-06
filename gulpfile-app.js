@@ -44,7 +44,8 @@ gulp.task('vendor', function () {
     'app/scripts/vendor/hammer.min.js',
     'app/scripts/vendor/knockout-3.0.0.js',
     'app/scripts/vendor/knockouch.min.js',
-    'app/scripts/vendor/moment.min.js'
+    'app/scripts/vendor/moment.min.js',
+    'app/scripts/vendor/knockout-projections.min.js'
     ])
     .pipe($.concat('vendor.js'))
     .pipe($.uglify())

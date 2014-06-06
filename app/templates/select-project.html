@@ -7,7 +7,7 @@
 	<div class="sub-header">
 		<button type="button" class="left fa fa-chevron-left disabled" disabled="disabled"></button>
 		<h2>Select Projects</h2>
-		<button type="button" class="right fa fa-chevron-right" data-bind="tap: "></button>
+		<button type="button" class="right fa fa-chevron-right" data-bind="tap: selectProject.goNext"></button>
 	</div>
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 	<ul data-bind="foreach: selectProject.groups, dragdown: selectProject.dragRefresh, drag: selectProject.startRefreshDrag" class="groups">
