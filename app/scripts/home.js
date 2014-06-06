@@ -29,8 +29,8 @@ function Home(app) {
 	home.styleWeek = function(index) {
 
 		var styledDate = 'Week of ' + moment(home.today).startOf('isoweek').add('days', (index * 7)).format('MMM D');
-		if (index == 0) { styledDate = 'This week' };
-		if (index == 1) { styledDate = 'Next week' };
+		if (index == 0) { styledDate = 'This Week' };
+		if (index == 1) { styledDate = 'Next Week' };
 		return styledDate;
 	}
 

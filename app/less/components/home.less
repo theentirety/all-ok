@@ -21,6 +21,9 @@
 				font-family: 'nimbus-sans',sans-serif;
 				border: 2px solid #FFF;
 			}
+			&.right {
+				font-size: 26px;
+			}
 		}
 		img {
 			width: 190px;
@@ -47,13 +50,13 @@
 			span {
 				color: #FFF;
 				font-family: @_font-serif;
-				font-size: 26px;
+				font-size: 21px;
 				margin: 0;
 				padding: 0;
 			}
 			p {
 				color: #696D71;
-				font-size: 12px;
+				font-size: 10px;
 				font-style: italic;
 				font-family: @_font-sans;
 				margin: 5px 0 0 0;
@@ -90,7 +93,8 @@
 		color: #FFF;
 		text-align: center;
 		margin: 0;
-		padding: 5px;
+		padding: 10px;
+		font-size: 16px;
 	}
 	.loading {
 		text-align: center;
@@ -128,11 +132,24 @@
 		}
 		.date {
 			color: #BFC2C5;
-			font-family: @_font-sans;
-			font-size: 16px;
-			font-style: italic;
-			padding: 15px 10px 0 10px;
+			padding: 15px 25px 0 25px;
 			min-height: 55px;
+			position: relative;
+			span {
+				font-family: @_font-sans;
+				font-size: 14px;
+				font-style: italic;
+				font-weight: bold;
+			}
+			::before {
+				font-family: 'FontAwesome';
+				font-style: normal;
+				font-weight: lighter;
+				position: absolute;
+				right: 12px;
+				font-size: 14px;
+				line-height: 26px;
+			}
 		}
 		.emoji {
 			background-repeat: no-repeat;
@@ -143,10 +160,10 @@
 			margin: 15px 0 10px 0;
 		}
 		.total {
-			font-size: 48px;
+			font-size: 47px;
 			font-variant: @_font-sans;
 			font-weight: bold;
-			line-height: 48px;
+			line-height: 47px;
 			&.zero {
 				color: @_color-emoji-0;
 			}
@@ -164,13 +181,13 @@
 			}
 		}
 		.label {
-			font-size: 13px;
+			font-size: 11px;
 			font-variant: @_font-sans;
 			font-weight: bold;
 			color: #BFC2C5;
 		}
 		.notes {
-			font-size: 12px;
+			font-size: 11px;
 			font-variant: @_font-sans;
 			font-style: italic;
 			color: #BFC2C5;

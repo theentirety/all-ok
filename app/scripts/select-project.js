@@ -12,7 +12,6 @@ function SelectProject(app) {
 
 	var selectProject = app.myViewModel.selectProject = {};
 
-	selectProject.viewType = ko.observable('all');
 	selectProject.allProjects = ko.observableArray();
 	selectProject.isAddMode = ko.observable(false);
 	selectProject.uniqueCompanyNames = ko.observableArray();
@@ -23,31 +22,80 @@ function SelectProject(app) {
 	selectProject.week = ko.observable('This Week');
 	selectProject.show = ko.observable(false);
 	selectProject.today = moment(new Date()).startOf('isoweek');
+	selectProject.groups = ko.observableArray();
 
-	selectProject.getProjects = function() {
-		Parse.Cloud.run('getProjects', {}, {
-			success: function(projects) {
-				selectProject.allProjects([]);
-				for (var i = 0; i < projects.length; i++) {
-					projects[i].attributes.active = ko.observable(false);
-					projects[i].attributes.percentage = ko.observableArray([{ value: ko.observable(0) }, { value: ko.observable(0) }, { value: ko.observable(0) }]);
-					selectProject.allProjects.push(projects[i]);
-				}
+	selectProject.Group = function(type) {
+		var group = {
+			attributes: {}
+		}
+		group.attributes.name = (type == 'private' ? 'My Private Projects' : 'My Shared Projects');
+		return group;
+	}
+
+	selectProject.getGroups = function() {
+		selectProject.groups([]);
+		Parse.Cloud.run('getGroups', {}, {
+			success: function(groups) {
+				// groups.splice(0,0,new selectProject.Group('private'), new selectProject.Group('public'));
+				_.each(groups, function(group) {
+					group.attributes.projects = ko.observableArray();
+					group.attributes.nonMember = ko.observable(false);
+				});
+				selectProject.groups(groups);
 
 				$('#select-project .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
 				selectProject.isRefreshDragging(false);
 				selectProject.dragStart(0);
-				$('#select-project .all-projects').animate({
+				$('#select-project .groups').animate({
 					marginTop: 0
 				}, 100);
-			}, error: function(error) {
-				console.log(error);
-			}
-		});
 
-		Parse.Cloud.run('getUniqueCompanyNames', {}, {
-			success: function(projects) {
-				selectProject.uniqueCompanyNames(projects);
+
+				for (var i = 0; i < selectProject.groups().length; i++) {
+					Parse.Cloud.run('getProjects', {
+						groupId: selectProject.groups()[i].id
+					}, {
+						success: function(results) {
+							if (results.projects.length > 0) {
+								var group = _.find(selectProject.groups(), function(group) {
+									return group.id == results.projects[0].attributes.group.id;
+								})
+
+								_.each(results.projects, function(project) {
+									project.attributes.selected = ko.observable(false);
+								});
+
+								if (group) {
+									group.attributes.projects(results.projects);
+								}
+							} else {
+								// check membership status for the empty group
+								Parse.Cloud.run('getMembershipStatus', {
+									groupId: results.groupId
+								}, {
+									success: function(results) {
+										if (!results.status) {
+											var group = _.find(selectProject.groups(), function(group) {
+												return group.id == results.groupId;
+											});
+
+											if (group) {
+												group.attributes.nonMember(true);
+											}
+										}
+									},
+									error: function(error) {
+										console.log(error);
+									}
+								});
+							}
+
+						}, error: function(error) {
+							console.log(error);
+						}
+					});
+				}
+				// console.log(selectProject.groups())
 			}, error: function(error) {
 				console.log(error);
 			}
@@ -65,15 +113,14 @@ function SelectProject(app) {
 		if (index == 1) styledDate = 'Next Week';
 		selectProject.week(styledDate);
 		selectProject.show(true);
-		selectProject.getProjects();
 	}
 
 	selectProject.toggleProject = function(item, event) {
-		if (item.attributes.active()) {
-			item.attributes.active(false);
+		if (item.attributes.selected()) {
+			item.attributes.selected(false);
 			selectProject.count(selectProject.count() - 1);
 		} else {
-			item.attributes.active(true);
+			item.attributes.selected(true);
 			selectProject.count(selectProject.count() + 1);
 		}
 	}
@@ -88,14 +135,6 @@ function SelectProject(app) {
 			$('.project-name-field').val('');
 			selectProject.filteredProjectList([]);
 			selectProject.isAddMode(true);
-		}
-	}
-
-	selectProject.toggleView = function() {
-		if (selectProject.viewType() == 'all') {
-			selectProject.viewType('selected');
-		} else {
-			selectProject.viewType('all');
 		}
 	}
 
@@ -129,7 +168,7 @@ function SelectProject(app) {
 			success: function(project) {
 				alert('"' + project.attributes.company + ': ' + project.attributes.name + '" created successfully.');
 				selectProject.toggleAddMode();
-				selectProject.getProjects();
+				selectProject.getGroups();
 			}, error: function(error) {
 				// alert(error)
 				console.log(error);
@@ -139,11 +178,11 @@ function SelectProject(app) {
 
 	selectProject.dragRefresh = function(item, event) {
 		if (selectProject.isRefreshDragging() && selectProject.dragStart() == 0) {
-			var top = $('#select-project .all-projects').scrollTop();
+			var top = $('#select-project .groups').scrollTop();
 			var delta = Math.floor(event.gesture.distance);
 			if (top == 0 && delta > 30) {
 				if (delta > 150) delta = 150;
-				$('#select-project .all-projects').css('margin-top', delta - 30);
+				$('#select-project .groups').css('margin-top', delta - 30);
 				if (delta >= 100) {
 					$('#select-project .refresh').html('<span class="fa fa-arrow-circle-up"></span>Release to refresh');
 				} else {
@@ -155,28 +194,29 @@ function SelectProject(app) {
 
 	selectProject.startRefreshDrag = function(item, event) {
 		if (!selectProject.isRefreshDragging() && selectProject.dragStart() == 0) {
-			selectProject.dragStart($('#select-project .all-projects').scrollTop());
+			selectProject.dragStart($('#select-project .groups').scrollTop());
 			selectProject.isRefreshDragging(true);
 			$(event.gesture.target).one('dragend', function(event) {
-				var delta = parseInt($('#select-project .all-projects').css('margin-top'));
+				var delta = parseInt($('#select-project .groups').css('margin-top'));
 
 				if (delta >= 70) {
-					selectProject.getProjects();
+					selectProject.getGroups();
 					$('#select-project .refresh').html('<span class="fa fa-refresh fa-spin"></span>Refreshing...');
 				} else {
 					$('#select-project .refresh').html('<span class="fa fa-arrow-circle-down"></span>Pull to refresh');
 					selectProject.isRefreshDragging(false);
 					selectProject.dragStart(0);
-					$('#select-project .all-projects').animate({
+					$('#select-project .groups').animate({
 						marginTop: 0
 					}, 100);
 				}
 			})
 		}
-
 	}
 
-	selectProject.init();
+	if (app.myViewModel.auth.currentUser()) {
+		selectProject.getGroups();
+	}
 
 	return self;
 }

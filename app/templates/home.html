@@ -25,7 +25,9 @@
 		<!-- ko if: home.totals().length > 0 -->
 		<ul data-bind="foreach: home.totals">
 			<li data-bind="css: { 'none': $data.total < 0, 'over': $data.total > 100 }, tap: function() { $parent.home.go($index()) }">
-				<div class="date" data-bind="text: $parent.home.styleWeek($index())"></div>
+				<div class="date">
+					<span data-bind="text: $parent.home.styleWeek($index())" class="fa fa-chevron-right"></span>
+				</div>
 				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating > 0 ? $data.rating : 'missing') + '.svg)' }"></div>
 				<div class="total" data-bind="text: $data.total >= 0 ? $data.total * 0.4 : '- -', css: $parent.home.convertNumToWords($data.rating)"></div>
 				<div class="label" data-bind="text: $data.total == 1 ? 'hour' : 'hours'"></div>

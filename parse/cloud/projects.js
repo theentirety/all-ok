@@ -4,21 +4,38 @@ var _ = require('underscore');
 Parse.Cloud.define('getProjects', function(request, response) {
 	var currentUser = Parse.User.current();
 	if (currentUser) {
+
+		var innerQuery = new Parse.Query('Memberships');
+		innerQuery.equalTo('group', {
+			__type: 'Pointer',
+			className: 'Groups',
+			objectId: request.params.groupId
+		});
+		innerQuery.equalTo('user', {
+			__type: 'Pointer',
+			className: '_User',
+			objectId: currentUser.id
+		});
+
 		var query = new Parse.Query('Projects');
-		var email = currentUser.attributes.email;
-		email = email.substring(email.lastIndexOf('@'));
-		query.endsWith('creator', email);
+		query.matchesKeyInQuery('group', 'group', innerQuery);
 		query.ascending('company', 'name');
+		query.notEqualTo('private', true);
+
 		query.find({
 			success: function(projects) {
-				response.success(projects);
+				var result = {
+					groupId: request.params.groupId,
+					projects: projects
+				};
+				response.success(result);
 			},
 			error: function(error) {
 				response.error(error);
 			}
 		});
 	} else {
-		response.error('You must be logged in with admin permissions to add projects.');
+		response.error('You must be logged in.');
 	}
 });
 

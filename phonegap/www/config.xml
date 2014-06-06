@@ -92,4 +92,5 @@
     <access origin="*://*.parse.com/*" subdomains="true" />
     <access origin="*://*.parseapp.com/*" subdomains="true" />
     <access origin="*://*.bootstrapcdn.com/*" subdomains="true" />
+    <access origin="*://*.googleapis.com/*" subdomains="true" />
 </widget>

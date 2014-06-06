@@ -25,10 +25,6 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		-webkit-overflow-scrolling: touch;
-	}
-	.all-projects {
-		padding-top: 122px;
 		width: 100%;
 		top: 0;
 		bottom: 0;
@@ -38,31 +34,149 @@
 		overflow-x: hidden;
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
+	}
+	.groups {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		padding-top: 112px;
+		min-height: 300px;
 		li {
-			background-color: #FFF;
-			font-size: 19px;
-			height: 61px;
-			line-height: 66px;
-			color: #333333;
-			padding-left: 65px;
-			font-family: @_font-sans;
-			position: relative;
-			border-bottom: 1px solid #d3d8dc;
-			&.active {
-				background-color: #a1cc3b;
-				color: #333333;
-				border-bottom: 1px solid #bddb76;
-			}
-			.check {
-				color: white;
-				position: absolute;
-				left: 23px;
-				font-size: 20px;
-				top: 20px;
+			border-bottom: 1px solid #81A6D4;
+			.group-header {
+				width: 100%;
+				background-color: #6993C9;
+				height: 40px;
+				position: relative;
+				.avatar {
+					position: absolute;
+					left: 10px;
+					top: 5px;
+					width: 30px;
+					height: 30px;
+					border-radius: 15px;
+					border: 2px solid #FFF;
+					background-color: #FFF;
+					box-shadow: inset 0 2px 4px fade(#000, 30%);
+					background-size: cover;
+					-webkit-filter: grayscale(1);
+					display: inline-block;
+					&.user {
+						text-align: center;
+						color: gray;
+						line-height: 30px;
+						font-size: 26px;
+						overflow: hidden;
+					}
+				}
+				.locked {
+					color: #B3205B;
+					background-color: #FFF;
+					height: 16px;
+					font-size: 11px;
+					width: 16px;
+					position: absolute;
+					left: 32px;
+					top: 12px;
+					border-radius: 10px;
+					text-align: center;
+					line-height: 17px;
+				}
+				.my-group, .other-group {
+					padding: 0 60px;
+				}
+				.other-group {
+					.group-name {
+						line-height: 16px;
+						padding-top: 4px;
+					}
+				}
+				.group-name {
+					font-family: @_font-sans;
+					text-transform: uppercase;
+					font-size: 14px;
+					font-weight: bold;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					color: #FFF;
+					line-height: 40px;
+					overflow: hidden;
+				}
+				.person-name {
+					font-family: @_font-serif;
+					font-size: 11px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					color: #FFF;
+					line-height: 16px;
+					overflow: hidden;
+				}
+				.member, .add {
+					position: absolute;
+					right: 0;
+					top: 0;
+					background-color: #5881B6;
+					border-radius: 0;
+					border: 0 none;
+					height: 40px;
+					width: 48px;
+					color: #FFF;
+					font-size: 12px;
+					font-weight: bold;
+					font-family: @_font-sans;
+					&::before {
+						font-family: 'FontAwesome';
+						font-size: 18px;
+					}
+				}
 			}
 		}
-		.company {
-			font-family: @_font-sans;
+		ol {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			background-color: #FFF;
+			li {
+				position: relative;
+				white-space: nowrap;
+				overflow: visible;
+				border-bottom: 2px solid #ECECEC;
+				color: #2D2D2D;
+				&.selected {
+					background-color: #DFEEBC;
+					border-color: #DFEEBC;
+					button {
+						background-color: #97C534;
+						color: #FFF;
+					}
+				}
+				.title {
+					font-size: 14px;
+					height: 46px;
+					line-height: 46px;
+					padding: 0 10px 0 60px;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+				}
+				button {
+					position: absolute;
+					left: 0;
+					top: 0;
+					background-color: #ECECEC;
+					border-radius: 0;
+					border: 0 none;
+					height: 48px;
+					width: 48px;
+					color: #DADADA;
+					font-size: 24px;text-align: center;
+					padding: 0;
+					margin: 0;
+				}
+				.company {
+					font-weight: bold;
+				}
+			}
 		}
 	}
 	.internal {
@@ -74,7 +188,7 @@
 		background-color: #272b2e;
 		text-align: center;
 		position: fixed;
-		top: 122px;
+		top: 112px;
 		color: #CCC;
 		border-top: 2px solid #24282a;
 		border-bottom: 2px solid #24282a;

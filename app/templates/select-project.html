@@ -7,17 +7,49 @@
 	<div class="sub-header">
 		<button type="button" class="left fa fa-chevron-left disabled" disabled="disabled"></button>
 		<h2>Select Projects</h2>
-		<button type="button" class="right fa fa-chevron-right"></button>
+		<button type="button" class="right fa fa-chevron-right" data-bind="tap: "></button>
 	</div>
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
-	<ul data-bind="foreach: selectProject.allProjects, dragdown: selectProject.dragRefresh, drag: selectProject.startRefreshDrag" class="all-projects">
-		<!-- ko if: ($data.attributes.active() || $parent.selectProject.viewType() == 'all') && !$data.attributes.archived -->
-		<li data-bind="css: { active: $data.attributes.active(), 'internal': $data.attributes.company == 'Internal' }, tap: $parent.selectProject.toggleProject">
-			<span class="company" data-bind="text: (attributes.company == 'Internal' ? 'Internal' : attributes.company) + ':'"></span>
-			<span class="project" data-bind="text: attributes.name"></span>
-			<span class="check fa fa-check" data-bind="visible: attributes.active"></span>
+	<ul data-bind="foreach: selectProject.groups, dragdown: selectProject.dragRefresh, drag: selectProject.startRefreshDrag" class="groups">
+		<li class="group">
+			<div class="group-header">
+				<!-- ko if: attributes.user.attributes.avatar -->
+				<div class="avatar" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div>
+				<div class="locked fa fa-lock" data-bind="visible: attributes.editable == false"></div>
+				<!-- /ko -->
+				<!-- ko ifnot: attributes.user.attributes.avatar -->
+				<div class="avatar user fa fa-user"></div>
+				<!-- /ko -->
+				<!-- ko ifnot: attributes.user.id == $root.auth.currentUser().id -->
+				<div class="other-group">
+					<div class="group-name" data-bind="text: attributes.name"></div>
+					<div class="person-name" data-bind="text: attributes.user.attributes.displayName"></div>
+				</div>
+				<!-- /ko -->
+				<!-- ko if: attributes.user.id == $root.auth.currentUser().id -->
+				<div class="my-group">
+					<div class="group-name" data-bind="text: attributes.name"></div>
+				</div>
+				<button class="add fa fa-plus"></button>
+				<!-- /ko -->
+				<!-- ko if: attributes.nonMember -->
+				<button class="member">Join</button>
+				<!-- /ko -->
+			</div>
+			<!-- ko if: attributes.projects().length > 0 -->
+			<ol>
+				<!-- ko foreach: attributes.projects -->
+				<li class="project" data-bind="tap: $root.selectProject.toggleProject, css: { selected: $data.attributes.selected() }">
+					<button type="button" class="fa fa-check"></button>
+					<div class="title">
+						<span class="company" data-bind="text: $data.attributes.company + ': '"></span>
+						<span class="name" data-bind="text: $data.attributes.name"></span>
+					</div>
+				</li>
+				<!-- /ko -->
+			</ol>
+			<!-- /ko -->
 		</li>
-		<!-- /ko -->
 	</ul>
 </div>
 <!-- /ko -->
