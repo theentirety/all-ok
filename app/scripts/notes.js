@@ -38,6 +38,16 @@ function Notes(app) {
 		notes.rating(item.value);
 	}
 
+	notes.reset = function(index) {
+		if (index != null) {
+			notes.rating(app.myViewModel.home.totals()[index].rating);
+			notes.content(app.myViewModel.home.totals()[index].notes);
+		} else {
+			notes.rating(2);
+			notes.content('');
+		}
+	}
+
 	notes.goBack = function() {
 		app.myViewModel.rateWeek.show(true);
 		notes.show(false);

@@ -33,6 +33,23 @@ function SelectProject(app) {
 		return group;
 	}
 
+	selectProject.init = function(index) {
+
+		if (app.myViewModel.home.totals()[index].total >= 0) {
+			app.myViewModel.notes.reset(index);
+		} else {
+			app.myViewModel.notes.reset(null);
+		}
+		selectProject.populateSelections(index);
+
+		var styledDate = 'Week of ' + moment(selectProject.today).add('days', (index * 7)).format('MMM D');
+		if (index == 0) styledDate = 'This Week';
+		if (index == 1) styledDate = 'Next Week';
+		selectProject.week(styledDate);
+		selectProject.weekIndex(index);
+		selectProject.show(true);
+	}
+
 	selectProject.getGroups = function() {
 		selectProject.groups([]);
 		Parse.Cloud.run('getGroups', {}, {
@@ -115,13 +132,38 @@ function SelectProject(app) {
 		app.goToView('rate-week');
 	}
 
-	selectProject.init = function(index) {
-		var styledDate = 'Week of ' + moment(selectProject.today).add('days', (index * 7)).format('MMM D');
-		if (index == 0) styledDate = 'This Week';
-		if (index == 1) styledDate = 'Next Week';
-		selectProject.week(styledDate);
-		selectProject.weekIndex(index);
-		selectProject.show(true);
+	selectProject.populateSelections = function(index) {
+		var data = {
+			userId: app.myViewModel.auth.currentUser().id,
+			dates: [app.myViewModel.home.totals()[index].week]
+		};
+
+		Parse.Cloud.run('getTimes', data, {
+			success: function(times) {
+				if (times.length > 0) {
+					var data = JSON.parse(times[0].attributes.data);
+					var projects = data.projects;
+					var set = [];
+					_.each(projects, function(project) {
+						set[project.id] = project.percentage;
+					});
+
+					_.each(app.myViewModel.selectProject.groups(), function(group) {
+						_.each(group.attributes.projects(), function(project) {
+							if (set[project.id]) {
+								project.attributes.selected(true);
+								project.attributes.percentage(set[project.id]);
+							} else {
+								project.attributes.selected(false);
+								project.attributes.percentage(0);
+							}
+						});
+					});
+				}
+			}, error: function(error) {
+				console.log(error);
+			}
+		});
 	}
 
 	selectProject.toggleProject = function(item, event) {

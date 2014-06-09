@@ -39,7 +39,7 @@ function Home(app) {
 			notes: '',
 			rating: -1,
 			total: -1,
-			week: home.weeks()[missingWeek]
+			week: missingWeek
 		};
 		return blankWeek;
 	}
@@ -75,17 +75,31 @@ function Home(app) {
 			weeks: home.weeks()
 		}, {
 			success: function(totalsAndRating) {
-				for (var i = totalsAndRating.length; i < app.myViewModel.numWeeks; i++) {
-					// add blank entries to the results
-					totalsAndRating.push(home.Week(i));
-					$('#home .refresh').html('<span class="fa fa-arrow-circle-down"></span> Pull to refresh');
-					home.isRefreshDragging(false);
-					home.dragStart(0);
-					$('#home .page').animate({
-						marginTop: 0
-					}, 100);
+
+				var set = [];
+				_.each(totalsAndRating, function(data) {
+					set[data.week] = true;
+				});
+
+				for (var i = 0; i < app.myViewModel.numWeeks; i++) {
+					var date = moment(home.today).startOf('isoweek').add('days', (i * 7)).format('YYYY, M, D');
+					if (!set[date]) {
+						totalsAndRating.push(new home.Week(date));
+					}
 				}
-				home.totals(totalsAndRating);
+
+				$('#home .refresh').html('<span class="fa fa-arrow-circle-down"></span> Pull to refresh');
+				home.isRefreshDragging(false);
+				home.dragStart(0);
+				$('#home .page').animate({
+					marginTop: 0
+				}, 100);
+
+				var sorted = _.sortBy(totalsAndRating, function(item) {
+					return moment(item.week).valueOf();
+				});
+
+				home.totals(sorted);
 			}, error: function(error) {
 				console.log(error);
 			}

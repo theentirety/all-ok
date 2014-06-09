@@ -23,15 +23,26 @@ Parse.Cloud.define('getPeople', function(request, response) {
 	}
 });
 
-// getTimes retrieves the list of times for the corresponding date range
+// getTimes retrieves the list of times for the corresponding date range for the currentUser (if passed in) or all projects in company
 Parse.Cloud.define('getTimes', function(request, response) {
 	var currentUser = Parse.User.current();
 	var dates = request.params.dates;
+	var userId = request.params.userId;
 	if (currentUser) {
 		var query = new Parse.Query('Times');
-		var email = currentUser.attributes.email;
-		email = email.substring(email.lastIndexOf('@'));
-		query.endsWith('email', email);
+
+		if (userId) {
+			query.equalTo('user', {
+				__type: 'Pointer',
+				className: '_User',
+				objectId: userId
+			});
+		} else {
+			var email = currentUser.attributes.email;
+			email = email.substring(email.lastIndexOf('@'));
+			query.endsWith('email', email);
+		}
+
 		query.include('user');
 		query.ascending('updatedAt');
 		query.containedIn('date', dates);
@@ -86,7 +97,7 @@ Parse.Cloud.define('getTotalsAndRating', function(request, response) {
 			}
 		});
 	} else {
-		response.error('You must be logged in with admin permissions to add projects.');
+		response.error('You must be logged.');
 	}
 });
 

@@ -48,6 +48,7 @@ function Save(app) {
 		});
 
 		var date = moment(new Date()).startOf('isoweek').add('days', (app.myViewModel.selectProject.weekIndex() * 7)).format('YYYY, M, D');
+		console.log(date)
 
 		var data = {
 			date: date,
