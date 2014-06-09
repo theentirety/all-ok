@@ -23,6 +23,7 @@ function SelectProject(app) {
 	selectProject.show = ko.observable(false);
 	selectProject.today = moment(new Date()).startOf('isoweek');
 	selectProject.groups = ko.observableArray();
+	selectProject.weekIndex = ko.observable(0);
 
 	selectProject.Group = function(type) {
 		var group = {
@@ -119,6 +120,7 @@ function SelectProject(app) {
 		if (index == 0) styledDate = 'This Week';
 		if (index == 1) styledDate = 'Next Week';
 		selectProject.week(styledDate);
+		selectProject.weekIndex(index);
 		selectProject.show(true);
 	}
 

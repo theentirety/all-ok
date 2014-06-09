@@ -1,5 +1,5 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'save' -->
-<div id="save" data-bind="fadeVisible: save.saveMode">
+<div id="save" data-bind="fadeVisible: save.show">
 	<!-- ko if: save.saving() && !save.success() && !save.error() -->
 	<h1><span class="fa fa-refresh fa-spin"></span> Saving</h1>
 	<button data-bind="tap: save.reset">Cancel</button>

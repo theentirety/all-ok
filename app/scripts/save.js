@@ -12,69 +12,63 @@ function Save(app) {
 
 	var save = app.myViewModel.save = {};
 
-	save.saveMode = ko.observable(false);
+	save.show = ko.observable(false);
 	save.success = ko.observable(false);
 	save.error = ko.observable(false);
 	save.saving = ko.observable(false);
 
 	save.result = ko.observableArray();
-	save.done = ko.computed(function() {
-		var done = false;
-		for (var i = 0; i < save.result.length; i++) {
-			done = done || save.result[i];
-		}
-		return done;
-	});
+	// save.done = ko.computed(function() {
+	// 	var done = false;
+	// 	for (var i = 0; i < save.result.length; i++) {
+	// 		done = done || save.result[i];
+	// 	}
+	// 	return done;
+	// });
 
 	save.submit = function() {
 		app.goToView('save');
-		save.saveMode(true);
+		save.show(true);
 		save.saving(true);
 		var temp = {};
 		var curWeek;
-		var numWeeks = app.myViewModel.rateWeek.weeks().length;
-		var projects = _.filter(app.myViewModel.selectProject.allProjects(), function(obj) {
-			return obj.attributes.active();
-		});
-		var numProjects = projects.length;
-		var today = app.myViewModel.rateWeek.today;
-		var tempProject = {};
-		var done = 0;
+		// var numWeeks = app.myViewModel.rateWeek.weeks().length;
 
-		for (var i = 0; i < numWeeks; i++) {
-			curWeek = app.myViewModel.rateWeek.weeks()[i];
-			temp = {
-				date: moment(today).add('days', (i * 7)).format('YYYY, M, D'),
-				rating: curWeek.rating(),
-				notes: curWeek.notes()
-			};
-
-			var tempProjects = [];
-			for (var j = 0; j < numProjects; j++) {
-				tempProject = {
-					id: projects[j].id,
-					percentage: projects[j].attributes.percentage()[i].value()
-				}
-				tempProjects.push(tempProject);
-			}
-			temp.projects = tempProjects;
-
-			Parse.Cloud.run('saveTime', {
-				data: JSON.stringify(temp),
-				date: temp.date
-			}, {
-				success: function(data) {
-					done = done+1;
-					if (done >= numWeeks && save.saving()) {
-						save.success(true);
+		var projects = [];
+		_.each(app.myViewModel.selectProject.groups(), function(group) {
+			_.each(group.attributes.projects(), function(project) {
+				if (project.attributes.selected()) {
+					var newProject = {
+						id: project.id,
+						percentage: project.attributes.percentage()
 					}
-				}, error: function(error) {
-					console.log(error);
-					save.error(true);
-					save.reset();
+					projects.push(newProject);
 				}
-			});
+			})
+		});
+
+		var date = moment(new Date()).startOf('isoweek').add('days', (app.myViewModel.selectProject.weekIndex() * 7)).format('YYYY, M, D');
+
+		var data = {
+			date: date,
+			rating: app.myViewModel.notes.rating(),
+			notes: app.myViewModel.notes.content(),
+			projects: projects
 		}
+
+		Parse.Cloud.run('saveTime', {
+			date: date,
+			data: JSON.stringify(data)
+		}, {
+			success: function(data) {
+				app.myViewModel.home.getTotalsAndRating();
+				save.success(true);
+			}, error: function(error) {
+				console.log(error);
+				save.error(true);
+				save.reset();
+			}
+		});
 	}
 
 	save.tryAgain = function() {
@@ -85,11 +79,10 @@ function Save(app) {
 
 	save.reset = function() {
 		save.saving(false);
-		save.saveMode(false);
+		save.show(false);
 		save.error(false);
 		save.success(false);
-		app.myViewModel.steps.currentStep(0);
-		app.goToView('select-project');
+		app.goToView('home');
 	}
 
 	return self;

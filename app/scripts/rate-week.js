@@ -45,9 +45,9 @@ function RateWeek(app) {
 	}
 
 	rateWeek.goNext = function() {
-		// selectProject.show(false);
-		// app.myViewModel.rateWeek.show(true);
-		// app.goToView('rate-week');
+		rateWeek.show(false);
+		app.myViewModel.notes.show(true);
+		app.goToView('notes');
 	}
 
 	return self;

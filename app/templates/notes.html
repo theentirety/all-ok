@@ -1,41 +1,24 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'notes' -->
-<div id="notes" class="screen" data-bind="visible: steps.currentStep() == 2">
-	<div class="page-header">
-		<div class="user">
-			<!-- ko if: auth.currentUser().attributes.avatar -->
-			<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
-			<!-- /ko -->
-			<!-- ko ifnot: auth.currentUser().attributes.avatar -->
-			<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
-			<!-- /ko -->
-			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
-		</div>
-		<div class="toggle" data-bind="tap: rateWeek.toggleView">
-			<button data-bind="css: { active: rateWeek.viewType() == 'hours' }"><span class="fa fa-clock-o"></span></button>
-			<button data-bind="css: { active: rateWeek.viewType() == 'percent' }">%</button>
-		</div>
+<div id="notes" class="panel" data-bind="slidePanelVisible: notes.show">
+	<div class="header">
+		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
-	<div class="toggle-weeks" data-bind="foreach: rateWeek.weeks">
-		<button data-bind="tap: function() { $parent.rateWeek.selectWeek($index()) }, css: { active: $parent.rateWeek.activeWeek() == $index(), over: $data.total() > 100, zero: $data.total() == 0 }">
-			<span class="date" data-bind="text: date"></span>
-			<div class="total">
-				<span class="number" data-bind="text: total() * ($parent.rateWeek.viewType() == 'hours' ? 0.4 : 1)"></span>
-				<span class="label" data-bind="text: ($parent.rateWeek.viewType() == 'hours' ? 'hr' : '%')"></span>
-			</div>
-		</button>
+	<div class="sub-header">
+		<button type="button" class="left fa fa-chevron-left" data-bind="tap: notes.goBack"></button>
+		<h2>A few last tidbits</h2>
+		<button type="button" class="right fa fa-chevron-right" data-bind="tap: notes.goNext"></button>
 	</div>
 	<div class="workload">
 		<h1>How's your workload?</h1>
 		<div class="options" data-bind="foreach: notes.statusOptions">
-			<button data-bind="css: { 'active': $parent.rateWeek.weeks()[$parent.rateWeek.activeWeek()].rating() == $index() }, tap: $parent.notes.selectStatus">
-				<div data-bind="style: { 'background-image': 'url(svg/' + $data.icon + ')' }"></div>
-			</button>
+			<button type="button" data-bind="css: { 'active': $parent.notes.rating() == $index() }, tap: $parent.notes.selectStatus"></button>
 		</div>
-		<div class="label" data-bind="text: notes.statusOptions()[rateWeek.weeks()[rateWeek.activeWeek()].rating()].label"></div>
+		<div class="label" data-bind="text: notes.statusOptions()[notes.rating()].label"></div>
 	</div>
 	<div class="comments">
-		<h1>Anything to note?</h1>
-		<textarea data-bind="value: rateWeek.weeks()[rateWeek.activeWeek()].notes"></textarea>
+		<h1>Any other comments?</h1>
+		<textarea data-bind="value: notes.content"></textarea>
 	</div>
 </div>
 <!-- /ko -->

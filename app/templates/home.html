@@ -28,7 +28,7 @@
 				<div class="date">
 					<span data-bind="text: $parent.home.styleWeek($index())" class="fa fa-chevron-right"></span>
 				</div>
-				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating > 0 ? $data.rating : 'missing') + '.svg)' }"></div>
+				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating > 0 ? $data.rating + 1 : 'missing') + '.svg)' }"></div>
 				<div class="total" data-bind="text: $data.total >= 0 ? $data.total * 0.4 : '- -', css: $parent.home.convertNumToWords($data.rating)"></div>
 				<div class="label" data-bind="text: $data.total == 1 ? 'hour' : 'hours'"></div>
 				<div class="notes" data-bind="text: notes"></div>
