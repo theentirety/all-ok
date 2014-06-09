@@ -9,7 +9,9 @@
 	</div>
 	<div class="user">
 		<!-- ko if: auth.currentUser().attributes.avatar -->
-		<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
+		<div class="avatar" data-bind="tap: rateWeek.takePicture">
+			<img data-bind="attr: { src: auth.currentUser().attributes.avatar._url }" />
+		</div>
 		<!-- /ko -->
 		<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 		<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>

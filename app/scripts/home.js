@@ -28,7 +28,7 @@ function Home(app) {
 
 	home.styleWeek = function(index) {
 
-		var styledDate = 'Week of ' + moment(home.today).startOf('isoweek').add('days', (index * 7)).format('MMM D');
+		var styledDate = 'Week of ' + moment(home.today).add('days', (index * 7)).format('MMM D');
 		if (index == 0) { styledDate = 'This Week' };
 		if (index == 1) { styledDate = 'Next Week' };
 		return styledDate;
@@ -88,6 +88,14 @@ function Home(app) {
 					}
 				}
 
+				var sorted = _.sortBy(totalsAndRating, function(item) {
+					var date = item.week.split(',');
+					var time = moment(new Date(date[0], date[1], date[2])).valueOf();
+					return parseInt(time);
+				});
+
+				home.totals(sorted);
+
 				$('#home .refresh').html('<span class="fa fa-arrow-circle-down"></span> Pull to refresh');
 				home.isRefreshDragging(false);
 				home.dragStart(0);
@@ -95,11 +103,6 @@ function Home(app) {
 					marginTop: 0
 				}, 100);
 
-				var sorted = _.sortBy(totalsAndRating, function(item) {
-					return moment(item.week).valueOf();
-				});
-
-				home.totals(sorted);
 			}, error: function(error) {
 				console.log(error);
 			}

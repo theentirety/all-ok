@@ -86,7 +86,9 @@
 	</div>
 	<div class="user">
 		<!-- ko if: auth.currentUser().attributes.avatar -->
-		<div class="avatar" data-bind="tap: rateWeek.takePicture, style: { 'background-image': 'url(' + auth.currentUser().attributes.avatar._url + ')' }"></div>
+		<div class="avatar" data-bind="tap: rateWeek.takePicture">
+			<img data-bind="attr: { src: auth.currentUser().attributes.avatar._url }" />
+		</div>
 		<!-- /ko -->
 		<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 		<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
@@ -130,14 +132,17 @@
 		<button type="button" class="right fa fa-chevron-right" data-bind="tap: notes.goNext"></button>
 	</div>
 	<div class="workload">
-		<h1>How's your workload?</h1>
+		<h3>How's your workload?</h3>
 		<div class="options" data-bind="foreach: notes.statusOptions">
-			<button type="button" data-bind="css: { 'active': $parent.notes.rating() == $index() }, tap: $parent.notes.selectStatus"></button>
+			<button type="button" data-bind="css: { 'active': $parent.notes.rating() == $index() }, tap: $parent.notes.selectStatus">
+				<img data-bind="attr: { src: 'svg/emoji-white-' + ($index() + 1) + '.svg' }" class="off" />
+				<img data-bind="attr: { src: 'svg/emoji-' + ($index() + 1) + '.svg' }" class="on" />
+			</button>
 		</div>
 		<div class="label" data-bind="text: notes.statusOptions()[notes.rating()].label"></div>
 	</div>
 	<div class="comments">
-		<h1>Any other comments?</h1>
+		<h3>Any other comments?</h3>
 		<textarea data-bind="value: notes.content"></textarea>
 	</div>
 </div>

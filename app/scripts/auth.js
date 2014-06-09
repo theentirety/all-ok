@@ -124,7 +124,6 @@ function Auth(app) {
 	}
 
 	auth.logout = function() {
-		app.myViewModel.rateWeek.activeWeek(0);
 		app.myViewModel.profile.show(false);
 		app.goToView('auth');
 		Parse.User.logOut();
