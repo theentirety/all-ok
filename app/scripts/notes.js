@@ -18,6 +18,16 @@ function Notes(app) {
 
 	notes.statusOptions = ko.observableArray();
 
+	notes.workloadWeek = ko.computed(function() {
+		var text = app.myViewModel.selectProject.week();
+		if (app.myViewModel.selectProject.weekIndex() >= 2) {
+			text = 'the ' + text;
+		} else {
+			text = text.toLowerCase();
+		}
+		return text;
+	});
+
 	notes.init = function() {
 		notes.statusOptions.push(new notes.Status('Bring on the work',0));
 		notes.statusOptions.push(new notes.Status('I\'m a little light',1));

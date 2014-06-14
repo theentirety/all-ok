@@ -4,6 +4,9 @@
    ========================================================================== */
 
 #notes {
+	.sub-header .right {
+		background-color: #97C534;
+	}
 	h3 {
 		font-family: @_font-serif;
 		font-size: 16px;
@@ -50,12 +53,13 @@
 			}
 		}
 		.label {
-			font-size: 10px;
+			font-size: 13px;
 			font-family: @_font-sans;
 			color: #BFC2C5;
 			vertical-align: bottom;
 			line-height: 40px;
 			font-style: italic;
+			font-weight: bold;
 		}
 	}
 	.comments {
@@ -65,12 +69,22 @@
 		clear: both;
 		padding-top: 20px;
 		textarea {
+			background-color: #efefef;
 			height: 80px;
 			width: 100%;
 			border-radius: 0;
 			border: 2px solid #D5D5D5;
 			box-shadow: none;
-			background-color: #efefef;
+			color: #2B2F33;
+			font-size: 16px;
+			font-style: italic;
+			padding: 0 13px;
+			background-image: linear-gradient(transparent 34px,#DADADA 0px);
+			background-size: 95% 36px;
+			background-repeat: repeat-y;
+			background-position: center top;
+			line-height: 36px;
+			min-height: 110px;
 		}
 	}
 }

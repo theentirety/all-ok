@@ -17,8 +17,41 @@
     <!-- ko if: auth.currentUser() -->
 <div id="alerts" class="panel" data-bind="slidePanelVisible: alerts.show">
 	<div class="header">
-		<button type="button" class="left fa fa-times" data-bind="tap: function() { alerts.show(false) }"></button>
-		<h1>Notifications</h1>
+		<button type="button" class="left" data-bind="tap: function() { alerts.show(false) }">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-times"></span>
+		</button>
+		<h1><span class="quantity" data-bind="text: alerts.list().length"></span> <span class="label" data-bind="text: alerts.list().length == 1 ? 'Notification' : 'Notifications'"></span></h1>
+	</div>
+	<div class="sub-header">
+		<button type="button" class="left fa fa-chevron-left" data-bind="tap: alerts.goBack, css: { disabled: alerts.index() == 0 }, disable: alerts.index() == 0"></button>
+		<h2 data-bind="text: alerts.current().title"></h2>
+		<button type="button" class="right fa fa-chevron-right" data-bind="tap: alerts.goNext, css: { disabled: alerts.index() == alerts.list().length - 1 }, disable: alerts.index() == alerts.list().length - 1"></button>
+	</div>
+	<div class="alert" data-bind="with: alerts.current">
+		<div data-bind="css: type">
+			<!-- ko if: type == 'join-request' -->
+			<div class="top">
+				<div class="avatar">
+					<!-- <div class="picture" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div> -->
+
+					<div class="picture fa fa-user"></div>
+
+					<div class="border"></div>
+				</div>
+				<div class="greeting" data-bind="text: $parent.alerts.randomGreeting"></div>
+			</div>
+			<div class="message">
+				<h3 data-bind="text: person"></h3>
+				<p>wants to join</p>
+				<h4 data-bind="text: group"></h4>
+			</div>
+			<div class="actions">
+				<button type="button" class="button fa fa-times red clear" data-bind="tap: function() { $parent.alerts.takeAction($data, 'deny') }">Deny</button>
+				<button type="button" class="button fa fa-check green" data-bind="tap: function() { $parent.alerts.takeAction($data, 'allow') }">Accept</button>
+			</div>
+			<!-- /ko -->
+		</div>
 	</div>
 </div>
 <!-- /ko -->
@@ -78,10 +111,17 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'home' -->
 <div id="home" class="screen">
 	<div class="header">
-		<button type="button" class="left fa fa-cog" data-bind="tap: home.showProfile"></button>
+		<button type="button" class="left" data-bind="tap: home.showProfile">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-cog"></span>
+		</button>
 		<img src="svg/logo.svg" />
-		<button type="submit" class="right fa fa-bell" data-bind="visible: alerts.list().length > 0, tap: home.showAlerts">
-			<div class="quantity">3</div>
+		<button type="submit" class="right" data-bind="visible: alerts.list().length > 0, tap: home.showAlerts">
+			<div class="quantity" data-bind="text: alerts.list().length"></div>
+			<span class="fa-stack">
+				<span class="fa fa-square fa-stack-2x fa-inverse"></span>
+				<span class="fa fa-bell fa-stack-1x fa-inverse"></span>
+			</span>
 		</button>
 	</div>
 	<div class="user">
@@ -93,10 +133,7 @@
 		<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 		<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
 		<!-- /ko -->
-		<div class="info">
-			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
-			<p>Blah</p>
-		</div>
+		<h1 data-bind="text: auth.currentUser().attributes.displayName"></h1>
 	</div>
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 	<div class="page" data-bind="dragdown: home.dragRefresh, drag: home.startRefreshDrag">
@@ -105,7 +142,7 @@
 		<ul data-bind="foreach: home.totals">
 			<li data-bind="css: { 'none': $data.total < 0, 'over': $data.total > 100 }, tap: function() { $parent.home.go($index()) }">
 				<div class="date">
-					<span data-bind="text: $parent.home.styleWeek($index())" class="fa fa-chevron-right"></span>
+					<span data-bind="text: $parent.home.styleWeek($index())"></span>
 				</div>
 				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating >= 0 ? $data.rating + 1: 'missing') + '.svg)' }"></div>
 				<div class="total" data-bind="text: $data.total >= 0 ? $data.total * 0.4 : '- -', css: $parent.home.convertNumToWords($data.rating)"></div>
@@ -123,16 +160,19 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'notes' -->
 <div id="notes" class="panel" data-bind="slidePanelVisible: notes.show">
 	<div class="header">
-		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<button type="button" class="left" data-bind="tap: selectProject.goHome">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-home"></span>
+		</button>
 		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
 	<div class="sub-header">
 		<button type="button" class="left fa fa-chevron-left" data-bind="tap: notes.goBack"></button>
-		<h2>A few last tidbits</h2>
-		<button type="button" class="right fa fa-chevron-right" data-bind="tap: notes.goNext"></button>
+		<h2>Set Your Mood</h2>
+		<button type="button" class="right fa fa-check" data-bind="tap: notes.goNext"></button>
 	</div>
 	<div class="workload">
-		<h3>How's your workload?</h3>
+		<h3>How's your workload for <span data-bind="text: notes.workloadWeek"></span>?</h3>
 		<div class="options" data-bind="foreach: notes.statusOptions">
 			<button type="button" data-bind="css: { 'active': $parent.notes.rating() == $index() }, tap: $parent.notes.selectStatus">
 				<img data-bind="attr: { src: 'svg/emoji-white-' + ($index() + 1) + '.svg' }" class="off" />
@@ -248,7 +288,10 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'rate-week' -->
 <div id="rate-week" class="panel" data-bind="slidePanelVisible: rateWeek.show">
 	<div class="header">
-		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<button type="button" class="left" data-bind="tap: selectProject.goHome">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-home"></span>
+		</button>
 		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
 	<div class="sub-header">
@@ -296,7 +339,10 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'select-project' -->
 <div id="select-project" class="panel" data-bind="slidePanelVisible: selectProject.show">
 	<div class="header">
-		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<button type="button" class="left" data-bind="tap: selectProject.goHome">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-home"></span>
+		</button>
 		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
 	<div class="sub-header">

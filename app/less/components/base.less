@@ -35,7 +35,7 @@ html, body {
 
 .screen {
 	position: absolute;
-	padding-bottom: 64px;
+	height: 100%;
 	width: 100%;
 	z-index: 1;
 	-webkit-overflow-scrolling: touch;
@@ -189,6 +189,25 @@ html, body {
 			text-align: center;
 			line-height: 64px;
 		}
+		button {
+			span {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				line-height: 64px;
+				&.fa {
+					font-size: 18px;
+					color: #FFF;
+				}
+				&.fa-square {
+					color: #1D2022;
+					font-size: 32px;
+				}
+			}
+		}
 	}
 	.sub-header {
 		position: fixed;
@@ -274,6 +293,22 @@ form {
 		&.clear {
 			background-color: transparent;
 			color: #6A93C7;
+		}
+	}
+	&.green {
+		background-color: #97C534;
+		border: 2px solid #97C534;
+		&.clear {
+			background-color: transparent;
+			color: #97C534;
+		}
+	}
+	&.red {
+		background-color: #B01C5C;
+		border: 2px solid #B01C5C;
+		&.clear {
+			background-color: transparent;
+			color: #B01C5C;
 		}
 	}
 }

@@ -10,16 +10,17 @@
 			width: 64px;
 			.quantity {
 				position: absolute;
-				right: 16px;
+				right: 11px;
 				top: 11px;
 				background-color: #AE205C;
-				font-size: 12px;
-				font-weight: 700;
-				width: 17px;
-				height: 17px;
+				font-size: 9px;
+				font-weight: 300;
+				width: 15px;
+				height: 15px;
 				border-radius: 10px;
 				font-family: 'nimbus-sans',sans-serif;
 				border: 2px solid #FFF;
+				z-index: 2;
 			}
 			&.right {
 				font-size: 26px;
@@ -32,40 +33,37 @@
 	}
 	.user {
 		position: relative;
-		padding: 13px;
+		padding: 5px;
 		background-color: #1D2022;
+		border-top: 2px solid #191D1D;
+		height: 109px;
 		.avatar {
-			width: 70px;
-			height: 70px;
-			border: 2px solid #FFF;
-			border-radius: 5px;
-			display: inline-block;
+			width: 82px;
+			height: 82px;
+			border: 4px solid #FFF;
+			border-radius: 41px;
+			position: absolute;
+			left: 50%;
+			top: 40px;
+			margin-left: -41px;
+			z-index: 3;
+			box-shadow: inset 0 2px 4px fade(#000, 20%);
+			background-color: #FFF;
 			img {
 				width: 100%;
 				height: 100%;
 				-webkit-filter: grayscale(1);
-				border-radius: 5px;
+				border-radius: 41px;
 			}
 		}
-		.info {
-			display: inline-block;
-			vertical-align: top;
-			padding: 0 22px;
-			span {
-				color: #FFF;
-				font-family: @_font-serif;
-				font-size: 21px;
-				margin: 0;
-				padding: 0;
-			}
-			p {
-				color: #696D71;
-				font-size: 10px;
-				font-style: italic;
-				font-family: @_font-sans;
-				margin: 5px 0 0 0;
-				padding: 0;
-			}
+		h1 {
+			color: #FFF;
+			font-family: @_font-serif;
+			font-size: 21px;
+			font-weight: normal;
+			margin: 0;
+			padding: 0;
+			text-align: center;
 		}
 	}
 	.refresh {
@@ -83,21 +81,21 @@
 	}
 	.page {
 		position: absolute;
-		top: 160px;
+		top: 170px;
 		left: 0;
+		bottom: 0;
 		width: 100%;
 		z-index: 2;
 		background-color: #FFF;
 	}
 	h2 {
 		width: 100%;
-		background-color: #6993C9;
 		font-family: @_font-serif;
 		font-weight: bold;
-		color: #FFF;
+		color: #1D2122;
 		text-align: center;
 		margin: 0;
-		padding: 10px;
+		padding: 20px 10px 0 10px;
 		font-size: 16px;
 	}
 	.loading {
@@ -107,12 +105,20 @@
 	}
 	ul {
 		list-style: none;
-		margin: 15px 0 0 0;
-		padding: 0;
+		margin: 0;
+		padding: 15px 0;
+		position: absolute;
+		top: 35px;
+		bottom: 0;
+		width: 100%;
+		left: 0;
 		text-align: center;
 		white-space: nowrap;
+		display: flex;
+		flex-direction: row;
+		align-items: stretch;
 		li {
-			display: inline-block;
+			flex-grow: 1;
 			width: 33%;
 			border-left: 2px solid #E9E9E9;
 			vertical-align: top;
@@ -136,7 +142,7 @@
 		}
 		.date {
 			color: #BFC2C5;
-			padding: 15px 25px 0 25px;
+			padding: 15px;
 			min-height: 55px;
 			position: relative;
 			span {
@@ -144,15 +150,6 @@
 				font-size: 14px;
 				font-style: italic;
 				font-weight: bold;
-			}
-			::before {
-				font-family: 'FontAwesome';
-				font-style: normal;
-				font-weight: lighter;
-				position: absolute;
-				right: 12px;
-				font-size: 14px;
-				line-height: 26px;
 			}
 		}
 		.emoji {

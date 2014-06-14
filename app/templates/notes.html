@@ -1,16 +1,19 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'notes' -->
 <div id="notes" class="panel" data-bind="slidePanelVisible: notes.show">
 	<div class="header">
-		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<button type="button" class="left" data-bind="tap: selectProject.goHome">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-home"></span>
+		</button>
 		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
 	<div class="sub-header">
 		<button type="button" class="left fa fa-chevron-left" data-bind="tap: notes.goBack"></button>
-		<h2>A few last tidbits</h2>
-		<button type="button" class="right fa fa-chevron-right" data-bind="tap: notes.goNext"></button>
+		<h2>Set Your Mood</h2>
+		<button type="button" class="right fa fa-check" data-bind="tap: notes.goNext"></button>
 	</div>
 	<div class="workload">
-		<h3>How's your workload?</h3>
+		<h3>How's your workload for <span data-bind="text: notes.workloadWeek"></span>?</h3>
 		<div class="options" data-bind="foreach: notes.statusOptions">
 			<button type="button" data-bind="css: { 'active': $parent.notes.rating() == $index() }, tap: $parent.notes.selectStatus">
 				<img data-bind="attr: { src: 'svg/emoji-white-' + ($index() + 1) + '.svg' }" class="off" />

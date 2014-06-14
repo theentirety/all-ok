@@ -1,10 +1,17 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'home' -->
 <div id="home" class="screen">
 	<div class="header">
-		<button type="button" class="left fa fa-cog" data-bind="tap: home.showProfile"></button>
+		<button type="button" class="left" data-bind="tap: home.showProfile">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-cog"></span>
+		</button>
 		<img src="svg/logo.svg" />
-		<button type="submit" class="right fa fa-bell" data-bind="visible: alerts.list().length > 0, tap: home.showAlerts">
-			<div class="quantity">3</div>
+		<button type="submit" class="right" data-bind="visible: alerts.list().length > 0, tap: home.showAlerts">
+			<div class="quantity" data-bind="text: alerts.list().length"></div>
+			<span class="fa-stack">
+				<span class="fa fa-square fa-stack-2x fa-inverse"></span>
+				<span class="fa fa-bell fa-stack-1x fa-inverse"></span>
+			</span>
 		</button>
 	</div>
 	<div class="user">
@@ -16,10 +23,7 @@
 		<!-- ko ifnot: auth.currentUser().attributes.avatar -->
 		<div class="avatar fa fa-camera" data-bind="tap: rateWeek.takePicture"></div>
 		<!-- /ko -->
-		<div class="info">
-			<span data-bind="text: auth.currentUser().attributes.displayName"></span>
-			<p>Blah</p>
-		</div>
+		<h1 data-bind="text: auth.currentUser().attributes.displayName"></h1>
 	</div>
 	<div class="refresh"><span class="fa fa-arrow-circle-down"></span> Pull to refresh</div>
 	<div class="page" data-bind="dragdown: home.dragRefresh, drag: home.startRefreshDrag">
@@ -28,7 +32,7 @@
 		<ul data-bind="foreach: home.totals">
 			<li data-bind="css: { 'none': $data.total < 0, 'over': $data.total > 100 }, tap: function() { $parent.home.go($index()) }">
 				<div class="date">
-					<span data-bind="text: $parent.home.styleWeek($index())" class="fa fa-chevron-right"></span>
+					<span data-bind="text: $parent.home.styleWeek($index())"></span>
 				</div>
 				<div class="emoji" data-bind="style: { 'background-image': 'url(svg/emoji-' + ($data.rating >= 0 ? $data.rating + 1: 'missing') + '.svg)' }"></div>
 				<div class="total" data-bind="text: $data.total >= 0 ? $data.total * 0.4 : '- -', css: $parent.home.convertNumToWords($data.rating)"></div>

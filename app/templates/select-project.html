@@ -1,7 +1,10 @@
 <!-- ko if: auth.currentUser() && views[activeView()] == 'select-project' -->
 <div id="select-project" class="panel" data-bind="slidePanelVisible: selectProject.show">
 	<div class="header">
-		<button type="button" class="left fa fa-home" data-bind="tap: selectProject.goHome"></button>
+		<button type="button" class="left" data-bind="tap: selectProject.goHome">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-home"></span>
+		</button>
 		<h1 data-bind="text: selectProject.week"></h1>
 	</div>
 	<div class="sub-header">

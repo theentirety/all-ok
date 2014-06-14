@@ -1,8 +1,41 @@
 <!-- ko if: auth.currentUser() -->
 <div id="alerts" class="panel" data-bind="slidePanelVisible: alerts.show">
 	<div class="header">
-		<button type="button" class="left fa fa-times" data-bind="tap: function() { alerts.show(false) }"></button>
-		<h1>Notifications</h1>
+		<button type="button" class="left" data-bind="tap: function() { alerts.show(false) }">
+			<span class="fa fa-square"></span>
+			<span class="fa fa-times"></span>
+		</button>
+		<h1><span class="quantity" data-bind="text: alerts.list().length"></span> <span class="label" data-bind="text: alerts.list().length == 1 ? 'Notification' : 'Notifications'"></span></h1>
+	</div>
+	<div class="sub-header">
+		<button type="button" class="left fa fa-chevron-left" data-bind="tap: alerts.goBack, css: { disabled: alerts.index() == 0 }, disable: alerts.index() == 0"></button>
+		<h2 data-bind="text: alerts.current().title"></h2>
+		<button type="button" class="right fa fa-chevron-right" data-bind="tap: alerts.goNext, css: { disabled: alerts.index() == alerts.list().length - 1 }, disable: alerts.index() == alerts.list().length - 1"></button>
+	</div>
+	<div class="alert" data-bind="with: alerts.current">
+		<div data-bind="css: type">
+			<!-- ko if: type == 'join-request' -->
+			<div class="top">
+				<div class="avatar">
+					<!-- <div class="picture" data-bind="style: { 'background-image': 'url(' + $data.attributes.user.attributes.avatar._url + ')' }"></div> -->
+
+					<div class="picture fa fa-user"></div>
+
+					<div class="border"></div>
+				</div>
+				<div class="greeting" data-bind="text: $parent.alerts.randomGreeting"></div>
+			</div>
+			<div class="message">
+				<h3 data-bind="text: person"></h3>
+				<p>wants to join</p>
+				<h4 data-bind="text: group"></h4>
+			</div>
+			<div class="actions">
+				<button type="button" class="button fa fa-times red clear" data-bind="tap: function() { $parent.alerts.takeAction($data, 'deny') }">Deny</button>
+				<button type="button" class="button fa fa-check green" data-bind="tap: function() { $parent.alerts.takeAction($data, 'allow') }">Accept</button>
+			</div>
+			<!-- /ko -->
+		</div>
 	</div>
 </div>
 <!-- /ko -->
