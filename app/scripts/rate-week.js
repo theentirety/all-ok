@@ -17,6 +17,16 @@ function RateWeek(app) {
 	rateWeek.registerRatio = ko.observable($(document).width() - 20);
 	rateWeek.show = ko.observable(false);
 
+	rateWeek.totals = ko.computed(function() {
+		var total = 0;
+		_.each(app.myViewModel.selectProject.groups(), function(group) {
+			_.each(group.attributes.projects(), function(project) {
+				total = total + project.attributes.percentage();
+			});
+		});
+		return total;
+	});
+
 	rateWeek.drag = function(item, event) {
 		var direction = event.gesture.direction;
 		if (direction == 'left' || direction == 'right') {

@@ -1,6 +1,9 @@
+<div id="error" data-bind="fadeVisible: auth.errorMessage().length > 0">
+	<span class="text" data-bind="text: auth.errorMessage"></span>
+	<button type="button" class="fa fa-times button clear white" data-bind="tap: auth.resetError"></button>
+</div>
 <!-- ko if: !auth.currentUser() -->
 <div id="auth">
-	<div class="alert alert-danger alert-dismissable" data-bind="fadeVisible: auth.errorMessage().length > 0, text: auth.errorMessage"></div>
 	<div class="intro">
 		<div class="header">
 			<img src="svg/logo.svg" />
@@ -15,38 +18,53 @@
 		</div>
 	</div>
 	<div class="signin panel" data-bind="slidePanelVisible: auth.signInMode">
-		<form data-bind="submit: auth.signInUp">
+		<form data-bind="submit: auth.signInUp" class="wide">
 			<div class="header">
-				<button type="button" class="left fa fa-times" data-bind="tap: auth.toggleSignIn"></button>
+				<button type="button" class="left" data-bind="tap: auth.toggleSignIn">
+					<span class="fa fa-square"></span>
+					<span class="fa fa-chevron-left"></span>
+				</button>
 				<h1>Log In</h2>
-				<button type="submit" class="right fa fa-check"></button>
 			</div>
-			<input name="auth_email" type="text" class="form-control" placeholder="Email" autocapitalize="off" autocorrect="off" data-bind="hasFocus: auth.resetError()">
-			<input name="auth_password" type="password" class="form-control" placeholder="Password" data-bind="hasFocus: auth.resetError()">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+				<input name="auth_email" type="text" class="fa fa-user" placeholder="Email" autocapitalize="off" autocorrect="off" data-bind="hasFocus: auth.resetError()">
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+				<input name="auth_password" type="password" class="form-control fa fa-lock" placeholder="Password" data-bind="hasFocus: auth.resetError()">
+			</div>
+			<button type="submit" class="submit button green">Log In</button>
 		</form>
 		<div class="forgot" data-bind="tap: auth.toggleForgot">Forgot your password?</div>
 	</div>
 	<div class="signup panel" data-bind="slidePanelVisible: auth.signUpMode">
-		<form data-bind="submit: auth.signInUp">
+		<form data-bind="submit: auth.signInUp" class="wide">
 			<div class="header">
-				<button type="button" class="left fa fa-times" data-bind="tap: auth.toggleSignUp"></button>
+				<button type="button" class="left" data-bind="tap: auth.toggleSignUp">
+					<span class="fa fa-square"></span>
+					<span class="fa fa-chevron-left"></span>
+				</button>
 				<h1>Sign Up</h2>
-				<button type="submit" class="right fa fa-check"></button>
 			</div>
 			<input name="auth_email" type="text" class="form-control" placeholder="Email" autocapitalize="off" autocorrect="off" data-bind="hasFocus: auth.resetError()">
 			<input name="auth_displayName" type="text" class="form-control" placeholder="First and Last name" autocapitalize="on" autocorrect="off" data-bind="hasFocus: auth.resetError()">
 			<input name="auth_password" type="password" class="form-control" placeholder="Password" data-bind="hasFocus: auth.resetError()">
 			<input name="auth_confirmPassword" type="password" class="form-control" placeholder="Confirm password" data-bind="hasFocus: auth.resetError()">
+			<button type="submit" class="submit button green">Create Account</button>
 		</form>
 	</div>
 	<div class="forgot panel" data-bind="shiftPanelVisible: auth.forgotMode">
-		<form data-bind="submit: auth.forgot">
+		<form data-bind="submit: auth.forgot" class="wide">
 			<div class="header">
-				<button type="button" class="left fa fa-times" data-bind="tap: auth.toggleForgot"></button>
+				<button type="button" class="left" data-bind="tap: auth.toggleForgot">
+					<span class="fa fa-square"></span>
+					<span class="fa fa-chevron-left"></span>
+				</button>
 				<h1>Forgot Password</h2>
-				<button type="submit" class="right fa fa-check"></button>
 			</div>
 			<input name="auth_forgot" type="text" class="form-control" placeholder="Email" autocapitalize="off" autocorrect="off" data-bind="hasFocus: auth.resetError()">
+			<button type="submit" class="submit button green">Send Reset Email</button>
 		</form>
 	</div>
 </div>

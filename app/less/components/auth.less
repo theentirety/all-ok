@@ -3,6 +3,32 @@
    auth.less
    ========================================================================== */
 
+#error {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 9px 10px;
+	z-index: 5000;
+	background-color: orange;
+	color: #FFF;
+	line-height: 12px;
+	border-radius: 3px;
+	text-align: center;
+	padding: 17px 50px;
+	min-height: 45px;
+	button {
+		position: absolute;
+		right: 5px;
+		top: 5px;
+		width: 36px;
+		height: 36px;
+		&::before {
+			font-family: "FontAwesome";
+		}
+	}
+}
+
 #auth {
 	text-align: center;
 	position: absolute;
@@ -10,14 +36,17 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #FFF;
 	overflow: hidden;
+	.panel {
+		background-color: #ECECEC;
+	}
 	.intro {
 		display: flex;
 		justify-content: space-between;
 		flex-direction: column;
 		height: 100%;
 		width: 100%;
+		background-color: #FFF;
 		.header, .footer {
 			// padding: 10px;
 		}
@@ -49,26 +78,14 @@
 	.header {
 		button {
 			width: 64px;
-			&.left {
-				background-color: #B01F5D;
-			}
-			&.right {
-				background-color: #97C13F;
-			}
+
 		}
 	}
-	.alert {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		margin: 9px 10px;
-		z-index: 5000;
-		background-color: orange;
-		color: #FFF;
-		line-height: 12px;
-		border-radius: 3px;
-
+	.forgot {
+		font-size: 16px;
+		font-weight: bold;
+		color: #6A94CA;
+		line-height: 44px;
 	}
 	img {
 		width: 240px;
