@@ -39,9 +39,9 @@
 	</div>
 </div>
 <!-- /ko -->
-<div id="error" data-bind="fadeVisible: auth.errorMessage().length > 0">
+<div id="error" data-bind="fadeVisible: auth.errorMessage().length > 0, tap: auth.resetError">
 	<span class="text" data-bind="text: auth.errorMessage"></span>
-	<button type="button" class="fa fa-times button clear white" data-bind="tap: auth.resetError"></button>
+	<button type="button" class="fa fa-times button clear white"></button>
 </div>
 <!-- ko if: !auth.currentUser() -->
 <div id="auth">
